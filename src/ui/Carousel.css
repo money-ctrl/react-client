@@ -1,0 +1,24 @@
+.carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel__slides {
+  display: grid;
+  grid-auto-columns: auto;
+  grid-auto-flow: column;
+  grid-gap: 24px;
+}
+
+/* this ::after is a workaround to a misterious think that happens
+ * https://codepen.io/vhoyer/pen/vqmGmV
+ * */
+.carousel__slides::after {
+  content: '';
+  display: block;
+  width: 6.5px;
+}
+
+.carousel__slides > * {
+  scroll-snap-align: center;
+}

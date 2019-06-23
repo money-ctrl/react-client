@@ -1,3 +1,10 @@
 .dashboard-page {
   padding: 32px;
 }
+
+.dashboard-page__categories {
+  margin-left: -32px;
+  margin-right: -32px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
