@@ -1,0 +1,16 @@
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-color: hsla(0, 0%, 100%, 0.5);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  min-height: 50px;
+
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+}

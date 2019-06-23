@@ -7,14 +7,10 @@ class CategoriesCarousel extends React.Component {
   render() {
     return (
       <Carousel className={this.props.className}>
-        <CategoryCard
-        />
-        <CategoryCard
-        />
-        <CategoryCard
-        />
-        <CategoryCard
-        />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
       </Carousel>
     )
   }
