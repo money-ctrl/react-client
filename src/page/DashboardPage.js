@@ -11,6 +11,7 @@ class DashboardPage extends React.Component {
         <MoneyDisplay
           label="Total Balance"
           monocromatic={true}
+          size={1.5}
           value={2099}
         />
       </div>

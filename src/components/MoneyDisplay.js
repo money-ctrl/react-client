@@ -9,7 +9,7 @@ class MoneyDisplay extends React.Component {
     }
 
     return (
-      <div className={blockClasses}>
+      <div className={blockClasses} style={{fontSize:`${this.props.size}rem`}}>
         <div className="money-display__label">
           {this.props.label}
         </div>
