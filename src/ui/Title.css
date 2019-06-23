@@ -1,0 +1,17 @@
+.title {
+  color: #fdfcfc;
+  letter-spacing: .08em;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.title::after {
+  margin-bottom: 1em;
+  display: block;
+
+  color: transparent;
+  content: 'wwww';
+  font-size: 0.7em;
+  letter-spacing: initial;
+  text-decoration: wavy underline hsla(var(--secondary-color-hsl), .65);
+}

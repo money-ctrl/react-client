@@ -1,0 +1,33 @@
+.money-display__label {
+  margin-bottom: .3em;
+
+  color: var(--primary-color);
+  font-size: .8em;
+  font-weight: bold;
+  letter-spacing: .09em;
+}
+
+.money-display--monocromatic > .money-display__label {
+  color: hsla(0, 0%, 100%, .5);
+}
+
+.money-display__value {
+  color: var(--accent-color);
+  font-size: 2.2em;
+  font-weight: bold;
+  letter-spacing: .09em;
+}
+
+.money-display--monocromatic > .money-display__value {
+  color: hsl(0, 0%, 100%);
+}
+
+.money-display__value::after {
+  color: hsla(0, 0%, 10%, .25);
+  content: '$';
+  font-weight: normal;
+}
+
+.money-display--monocromatic > .money-display__value::after {
+  color: hsla(0, 0%, 100%, .5);
+}
