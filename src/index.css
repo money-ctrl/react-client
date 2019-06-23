@@ -9,13 +9,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 :root {
+  --accent-color-hsl: 265, 46.8%, 30.2%;
   --accent-color: #472971;
+  --primary-color-hsl: 328, 35.6%, 65.9%;
   --primary-color: #c789aa;
+  --secondary-color-hsl: 344, 100%, 73.7%;
   --secondary-color: #ff799d;
 }
