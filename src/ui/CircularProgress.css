@@ -1,0 +1,14 @@
+.circular-progress {
+  background-color: var(--accent-color);
+  padding: 16px;
+  width: 60px;
+  height: 60px;
+}
+
+.circular-progress__svg {
+  transform: rotate(-90deg);
+}
+
+.circular-progress__bar {
+  stroke: hsla(0, 0%, 100%, 0.4);
+}

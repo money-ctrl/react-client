@@ -1,6 +1,7 @@
 import './CategoriesCarousel.css'
 import Card from '../ui/Card'
 import Carousel from '../ui/Carousel'
+import CircularProgress from '../ui/CircularProgress'
 import MoneyDisplay from '../components/MoneyDisplay'
 import React from 'react'
 
@@ -9,6 +10,7 @@ class CategoriesCarousel extends React.Component {
     return (
       <Carousel className={this.props.className}>
         <Card className="categories-carousel__card">
+          <CircularProgress className="categories-carousel__progress" />
           <MoneyDisplay
             label="Bank account"
             value={1148.9}
