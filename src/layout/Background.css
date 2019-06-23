@@ -1,10 +1,5 @@
-:root {
-  --background-dark: #631379;
-  --background-light: #f7c3b2;
-}
-
 .background {
-  background-image: linear-gradient(160deg, var(--background-dark), var(--background-light));
+  background-image: linear-gradient(160deg, var(--secondary-color), var(--primary-color));
   bottom: 0;
   left: 0;
   position: fixed;
