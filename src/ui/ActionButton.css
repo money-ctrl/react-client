@@ -12,3 +12,15 @@
 .action-button__icon--is-open {
   transform: rotate(135deg);
 }
+
+.action-button__menu {
+  position: absolute;
+  top: 100%;
+  transform: translateY(200%);
+  transition: transform .4s;
+}
+
+.action-button__menu--is-open {
+  top: 0;
+  transform: translateY(-110%);
+}

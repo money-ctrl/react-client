@@ -11,9 +11,15 @@ class ActionButton extends React.Component {
   }
 
   openMenu() {
-    this.setState(({menuOpened}) => ({
-      menuOpened: !menuOpened,
-    }))
+    this.setState(({menuOpened}) => {
+      this.props.onMenuOpen(!menuOpened)
+
+      return {menuOpened: !menuOpened}
+    })
+  }
+
+  addAnimationDelay() {
+
   }
 
   render() {
@@ -32,8 +38,11 @@ class ActionButton extends React.Component {
             width="30px"
           />
         </Card>
-        <div className="action-button__menu">
-          {this.props.children}
+        <div
+          ariaHidden={!this.state.menuOpened}
+          className={`action-button__menu ${this.state.menuOpened ? 'action-button__menu--is-open' : ''}`}
+        >
+          {this.props.children.map((i) => i)}
         </div>
       </div>
     )

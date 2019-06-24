@@ -1,0 +1,7 @@
+.page {
+  transition: opacity .3s;
+}
+
+.page--menu-is-open {
+  opacity: .3;
+}
