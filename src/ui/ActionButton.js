@@ -7,6 +7,7 @@ class ActionButton extends React.Component {
   constructor(props) {
     super(props)
     this.openMenu = this.openMenu.bind(this)
+    this.addAnimationDelay = this.addAnimationDelay.bind(this)
 
     this.state = {isMenuOpen:false}
   }
@@ -19,8 +20,10 @@ class ActionButton extends React.Component {
     })
   }
 
-  addAnimationDelay() {
-
+  addAnimationDelay(children) {
+    return React.Children.map(children, (child, index) => React.cloneElement(child, {
+      style: {'transition-delay': `${index * 0.1}s`},
+    }))
   }
 
   render() {
@@ -51,7 +54,7 @@ class ActionButton extends React.Component {
           ariaHidden={!isMenuOpen}
           className={`action-button__menu ${isMenuOpen ? 'action-button__menu--is-open' : ''}`}
         >
-          {this.props.children.map((i) => i)}
+          {this.addAnimationDelay(this.props.children)}
         </div>
       </div>
     )

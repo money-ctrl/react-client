@@ -23,12 +23,25 @@
 
 .action-button__menu {
   position: absolute;
-  top: 100%;
-  transform: translateY(200%);
-  transition: transform .4s;
+  top: 0;
+
+  transform: translateY(-100%);
+
+  pointer-events: none;
 }
 
 .action-button__menu--is-open {
-  top: 0;
-  transform: translateY(-110%);
+  pointer-events: auto;
+}
+
+.action-button__menu > * {
+  opacity: 0;
+  transform: translateY(15vmin);
+  transition-property: all;
+  transition-duration: .2s;
+}
+
+.action-button__menu--is-open > * {
+  opacity: 1;
+  transform: translateY(0);
 }
