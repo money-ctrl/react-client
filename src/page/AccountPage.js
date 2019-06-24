@@ -1,6 +1,6 @@
 import React from 'react'
 
-class MyAccount extends React.Component {
+class AccountPage extends React.Component {
   render() {
     return (
       <div>
@@ -18,4 +18,4 @@ class MyAccount extends React.Component {
   }
 }
 
-export default MyAccount
+export default AccountPage
