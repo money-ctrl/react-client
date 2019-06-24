@@ -24,9 +24,15 @@
 .action-button__menu {
   position: absolute;
   top: 0;
+  right: 0;
   z-index: -1;
-
   transform: translateY(-100%);
+
+  display: grid;
+  grid-gap: 16px;
+
+  padding-bottom: 16px;
+  min-width: 17rem;
 
   pointer-events: none;
 }
