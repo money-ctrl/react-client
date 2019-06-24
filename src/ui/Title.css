@@ -1,11 +1,14 @@
 .title {
   color: #fdfcfc;
+  font-size: 2rem;
+  font-weight: bold;
   letter-spacing: .08em;
   margin-bottom: 0;
   margin-top: 0;
 }
 
 .title::after {
+  margin-top: .5em;
   margin-bottom: 2em;
   display: block;
 
