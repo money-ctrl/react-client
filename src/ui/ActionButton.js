@@ -1,20 +1,21 @@
 import './ActionButton.css'
 import React from 'react'
 import Card from './Card'
+import classNames from 'classnames'
 
 class ActionButton extends React.Component {
   constructor(props) {
     super(props)
     this.openMenu = this.openMenu.bind(this)
 
-    this.state = {menuOpened:false}
+    this.state = {isMenuOpen:false}
   }
 
   openMenu() {
-    this.setState(({menuOpened}) => {
-      this.props.onMenuOpen(!menuOpened)
+    this.setState(({isMenuOpen}) => {
+      this.props.onMenuOpen(!isMenuOpen)
 
-      return {menuOpened: !menuOpened}
+      return {isMenuOpen: !isMenuOpen}
     })
   }
 
@@ -23,15 +24,23 @@ class ActionButton extends React.Component {
   }
 
   render() {
+    const {
+      isMenuOpen,
+    } = this.state
+
     return (
-      <div className={`${this.props.className}`}>
+      <div className={this.props.className}>
+        <div
+          className={classNames(isMenuOpen && 'action-button__overlay')}
+          onClick={this.openMenu}
+        />
         <Card
           tag="button"
           className="action-button"
           onClick={this.openMenu}
         >
           <img
-            className={`action-button__icon ${this.state.menuOpened ? 'action-button__icon--is-open' : ''}`}
+            className={`action-button__icon ${isMenuOpen ? 'action-button__icon--is-open' : ''}`}
             src={require('../assets/plus.svg')}
             alt="transaction"
             height="30px"
@@ -39,8 +48,8 @@ class ActionButton extends React.Component {
           />
         </Card>
         <div
-          ariaHidden={!this.state.menuOpened}
-          className={`action-button__menu ${this.state.menuOpened ? 'action-button__menu--is-open' : ''}`}
+          ariaHidden={!isMenuOpen}
+          className={`action-button__menu ${isMenuOpen ? 'action-button__menu--is-open' : ''}`}
         >
           {this.props.children.map((i) => i)}
         </div>
