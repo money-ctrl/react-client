@@ -1,4 +1,5 @@
 import './Toolbar.css'
+import ActionButton from '../ui/ActionButton'
 import Card from '../ui/Card'
 import React from 'react'
 
@@ -29,16 +30,9 @@ class Toolbar extends React.Component {
       <Card className="toolbar">
         {menu}
 
-        <Card
+        <ActionButton
           className="toolbar__action-button"
-        >
-          <img
-            src={require('../assets/plus.svg')}
-            alt="transaction"
-            height="30px"
-            width="30px"
-          />
-        </Card>
+        />
       </Card>
     )
   }

@@ -23,12 +23,6 @@
 
 .toolbar__action-button {
   align-self: end;
-
-  display: flex;
-  align-items: center;
-  justify-items: center;
-
   margin-left: auto;
-  padding: 24px;
   transform: translateY(-16px);
 }

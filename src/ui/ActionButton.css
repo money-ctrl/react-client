@@ -1,0 +1,14 @@
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  padding: 24px;
+}
+
+.action-button__icon {
+  transition: transform .4s;
+}
+
+.action-button__icon--is-open {
+  transform: rotate(135deg);
+}
