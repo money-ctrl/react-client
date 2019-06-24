@@ -32,14 +32,14 @@ class ActionButton extends React.Component {
     } = this.state
 
     return (
-      <div className={this.props.className}>
+      <div className={classNames('action-button', this.props.className)}>
         <div
           className={classNames(isMenuOpen && 'action-button__overlay')}
           onClick={this.openMenu}
         />
         <Card
           tag="button"
-          className="action-button"
+          className="action-button__button"
           onClick={this.openMenu}
         >
           <img

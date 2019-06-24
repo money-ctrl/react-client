@@ -1,4 +1,8 @@
 .action-button {
+  z-index: 0;
+}
+
+.action-button__button {
   display: flex;
   align-items: center;
   justify-items: center;
@@ -11,6 +15,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: -2;
 }
 
 .action-button__icon {
