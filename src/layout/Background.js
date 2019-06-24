@@ -8,7 +8,8 @@ class Background extends React.Component {
     this.moveItem = this.moveItem.bind(this)
 
     this.state = {
-      items: Array.from({length:12}, () => ({
+      items: Array.from({length:12}, (_value, id) => ({
+        id,
         width: Math.random() * (150 - 80) + 80,
         height: Math.random() * (150 - 80) + 80,
         left: Math.random() * (window.innerWidth - 100),
@@ -66,8 +67,9 @@ class Background extends React.Component {
   }
 
   render() {
-    const items = this.state.items.map(({top, left, height, width}) =>
+    const items = this.state.items.map(({top, left, height, width, id}) =>
       <div
+        key={id}
         className="background__item"
         style={{top, left, height, width}}
       />

@@ -22,7 +22,7 @@ class ActionButton extends React.Component {
 
   addAnimationDelay(children) {
     return React.Children.map(children, (child, index) => React.cloneElement(child, {
-      style: {'transition-delay': `${index * 0.1}s`},
+      style: {transitionDelay: `${index * 0.1}s`},
     }))
   }
 
@@ -51,7 +51,7 @@ class ActionButton extends React.Component {
           />
         </Card>
         <div
-          ariaHidden={!isMenuOpen}
+          aria-hidden={!isMenuOpen}
           className={`action-button__menu ${isMenuOpen ? 'action-button__menu--is-open' : ''}`}
         >
           {this.addAnimationDelay(this.props.children)}

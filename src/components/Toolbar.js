@@ -33,6 +33,7 @@ class Toolbar extends React.Component {
       src: require('../assets/home.svg'),
     }].map((item, index) =>
       <img
+        key={item.alt}
         src={item.src}
         alt={item.alt}
         height="30px"

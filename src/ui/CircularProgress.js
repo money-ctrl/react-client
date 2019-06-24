@@ -14,8 +14,8 @@ class CircularProgress extends React.Component {
       <Card className={`circular-progress ${this.props.className}`}>
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="circular-progress__svg">
           <linearGradient id="progress" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%"   stop-color="#f4bbac"/>
-            <stop offset="100%" stop-color="#ff799d"/>
+            <stop offset="0%"   stopColor="#f4bbac"/>
+            <stop offset="100%" stopColor="#ff799d"/>
           </linearGradient>
 
           <circle
@@ -24,16 +24,16 @@ class CircularProgress extends React.Component {
             cy="253"
             r={circleRadius}
             fill="transparent"
-            stroke-width="40"
+            strokeWidth="40"
           />
           <circle
             cx="253"
             cy="253"
             r={circleRadius}
             fill="transparent"
-            stroke-dasharray={circleLength}
-            stroke-dashoffset={x}
-            stroke-width="40"
+            strokeDasharray={circleLength}
+            strokeDashoffset={x}
+            strokeWidth="40"
             stroke="url(#progress)"
           />
         </svg>
