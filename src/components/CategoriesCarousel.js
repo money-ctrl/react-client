@@ -11,6 +11,10 @@ class CategoriesCarousel extends React.Component {
         <CategoryCard />
         <CategoryCard />
         <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
       </Carousel>
     )
   }
