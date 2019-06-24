@@ -8,9 +8,27 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   min-height: 50px;
+  padding-left: 16px;
+  padding-right: 16px;
 
   display: grid;
   grid-auto-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
+}
+
+.toolbar__item--inactive {
+  filter: contrast(0) opacity(0.5);
+}
+
+.toolbar__action-button {
+  align-self: end;
+
+  display: flex;
+  align-items: center;
+  justify-items: center;
+
+  margin-left: auto;
+  padding: 24px;
+  transform: translateY(-16px);
 }
