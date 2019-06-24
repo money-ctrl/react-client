@@ -55,7 +55,13 @@ class Toolbar extends React.Component {
           className="toolbar__action-button"
           onMenuOpen={this.onMenuOpen}
         >
-          <Card className="toolbar__menu-item">item 1</Card>
+          <Card
+            className="toolbar__menu-item"
+            tag="button"
+            onClick={() => alert('wololo')}
+          >
+            item 1
+          </Card>
           <Card className="toolbar__menu-item">item 2</Card>
           <Card className="toolbar__menu-item">item 3</Card>
         </ActionButton>
