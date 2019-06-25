@@ -1,5 +1,6 @@
 .page {
   transition: opacity .3s;
+  will-change: opacity;
 }
 
 .page--menu-is-open {

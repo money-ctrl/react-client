@@ -20,6 +20,7 @@
 
 .action-button__icon {
   transition: transform .4s;
+  will-change: transform;
 }
 
 .action-button__icon--is-open {
@@ -46,9 +47,10 @@
 
 .action-button__menu > * {
   opacity: 0;
-  transform: translateY(15vmin);
-  transition-property: all;
+  transform: translateY(20vmin);
+  transition-property: transform, opacity;
   transition-duration: .2s;
+  will-change: transform, opacity;
 }
 
 .action-button__menu--is-open > * {

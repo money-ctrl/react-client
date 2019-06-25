@@ -12,8 +12,8 @@ class Background extends React.Component {
         id,
         width: Math.random() * (150 - 80) + 80,
         height: Math.random() * (150 - 80) + 80,
-        left: Math.random() * (window.innerWidth - 100),
-        top: Math.random() * (window.innerHeight - 100),
+        left: Math.random() * (window.innerWidth - 150),
+        top: Math.random() * (window.innerHeight - 150),
         direction: Math.ceil(Math.random() * 4),
         velocity: Math.ceil(Math.random() * 10),
       })),
@@ -71,7 +71,11 @@ class Background extends React.Component {
       <div
         key={id}
         className="background__item"
-        style={{top, left, height, width}}
+        style={{
+          transform: `translate(${left}px, ${top}px)`,
+          height,
+          width,
+        }}
       />
     );
 

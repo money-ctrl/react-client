@@ -17,10 +17,12 @@
   justify-items: center;
 
   transition: background-color .3s;
+  will-change: background-color;
 }
 
 .toolbar > :not(.toolbar__action-button) {
   transition: opacity .3s;
+  will-change: opacity;
 }
 
 .toolbar--menu-is-open {
