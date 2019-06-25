@@ -37,6 +37,12 @@ class ActionButton extends React.Component {
           className={classNames(isMenuOpen && 'action-button__overlay')}
           onClick={this.openMenu}
         />
+        <div
+          aria-hidden={!isMenuOpen}
+          className={`action-button__menu ${isMenuOpen ? 'action-button__menu--is-open' : ''}`}
+        >
+          {this.addAnimationDelay(this.props.children)}
+        </div>
         <Card
           tag="button"
           className="action-button__button"
@@ -50,12 +56,6 @@ class ActionButton extends React.Component {
             width="30px"
           />
         </Card>
-        <div
-          aria-hidden={!isMenuOpen}
-          className={`action-button__menu ${isMenuOpen ? 'action-button__menu--is-open' : ''}`}
-        >
-          {this.addAnimationDelay(this.props.children)}
-        </div>
       </div>
     )
   }

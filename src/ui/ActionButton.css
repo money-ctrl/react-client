@@ -15,7 +15,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: -2;
+  z-index: -1;
 }
 
 .action-button__icon {
@@ -28,10 +28,8 @@
 
 .action-button__menu {
   position: absolute;
-  top: 0;
+  bottom: 100%;
   right: 0;
-  z-index: -1;
-  transform: translateY(-100%);
 
   display: grid;
   grid-gap: 16px;
