@@ -29,13 +29,24 @@ class TransactionMenuItem extends React.Component {
 
     return (
       <Card
-        tag={this.expand ? 'div' : 'button'}
+        tag={this.state.isExpanded ? 'div' : 'button'}
         className={cardClasses}
         onClick={this.expand}
         {...attrs}
       >
         <div className="transaction-menu-item__title">
           menu item
+        </div>
+        <div
+          className="transaction-menu-item__content"
+          hidden={!this.state.isExpanded}
+        >
+          this is the card content!!<br />
+          this is the card content!!<br />
+          this is the card content!!<br />
+          this is the card content!!<br />
+          this is the card content!!<br />
+          this is the card content!!<br />
         </div>
       </Card>
     )
