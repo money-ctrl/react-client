@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-client/static/css/main.80f6b739.chunk.css",
+    "main.css": "/react-client/static/css/main.ff5ce7af.chunk.css",
     "main.js": "/react-client/static/js/main.d412abdf.chunk.js",
     "main.js.map": "/react-client/static/js/main.d412abdf.chunk.js.map",
     "runtime~main.js": "/react-client/static/js/runtime~main.1a624fa2.js",
@@ -8,9 +8,9 @@
     "static/js/2.3d00c51c.chunk.js": "/react-client/static/js/2.3d00c51c.chunk.js",
     "static/js/2.3d00c51c.chunk.js.map": "/react-client/static/js/2.3d00c51c.chunk.js.map",
     "index.html": "/react-client/index.html",
-    "precache-manifest.2fefb24f1942ff340322853d7d248a2c.js": "/react-client/precache-manifest.2fefb24f1942ff340322853d7d248a2c.js",
+    "precache-manifest.d09ab95461fada90b1559a9962565e8c.js": "/react-client/precache-manifest.d09ab95461fada90b1559a9962565e8c.js",
     "service-worker.js": "/react-client/service-worker.js",
-    "static/css/main.80f6b739.chunk.css.map": "/react-client/static/css/main.80f6b739.chunk.css.map",
+    "static/css/main.ff5ce7af.chunk.css.map": "/react-client/static/css/main.ff5ce7af.chunk.css.map",
     "static/media/dashboard.svg": "/react-client/static/media/dashboard.e78e43a1.svg",
     "static/media/feather.svg": "/react-client/static/media/feather.a437075a.svg",
     "static/media/home.svg": "/react-client/static/media/home.b1c9020b.svg",
