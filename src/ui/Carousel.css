@@ -2,6 +2,13 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding: 32px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar { 
+  display: none;
 }
 
 .carousel__slides {
