@@ -48,8 +48,6 @@ table {
   border-spacing: 0;
 }
 
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
-
 body {
   margin: 0;
   font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI",
