@@ -2,6 +2,7 @@
   "name": "react-money-ctrl",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://money-ctrl.github.io/react-client",
   "dependencies": {
     "classnames": "^2.2.6",
     "react": "^16.8.6",
