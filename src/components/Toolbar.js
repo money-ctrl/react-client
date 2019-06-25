@@ -2,6 +2,7 @@ import './Toolbar.css'
 import ActionButton from '../ui/ActionButton'
 import Card from '../ui/Card'
 import React from 'react'
+import TransactionMenuItem from '../components/TransactionMenuItem'
 import classNames from 'classnames'
 
 class Toolbar extends React.Component {
@@ -55,15 +56,9 @@ class Toolbar extends React.Component {
           className="toolbar__action-button"
           onMenuOpen={this.onMenuOpen}
         >
-          <Card
-            className="toolbar__menu-item"
-            tag="button"
-            onClick={() => alert('wololo')}
-          >
-            item 1
-          </Card>
-          <Card className="toolbar__menu-item">item 2</Card>
-          <Card className="toolbar__menu-item">item 3</Card>
+          <TransactionMenuItem />
+          <TransactionMenuItem />
+          <TransactionMenuItem />
         </ActionButton>
       </Card>
     )

@@ -1,0 +1,18 @@
+.transaction-menu-item {
+  padding: 16px;
+
+  transition-property: all;
+  transition-duration: .3s;
+}
+
+.transaction-menu-item--is-expanded {
+  position: fixed;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  z-index: 1;
+}
+
+.transaction-menu-item__title {
+  width: 100%;
+}
