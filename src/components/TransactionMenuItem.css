@@ -1,15 +1,12 @@
 .transaction-menu-item {
   padding: 16px;
 
-  transition-property: all;
+  transition-property: width, height, transform;
   transition-duration: .3s;
+  will-change: width, height, transform;
 }
 
 .transaction-menu-item--is-expanded {
-  position: fixed;
-  bottom: 4px;
-  left: 4px;
-  right: 4px;
   z-index: 2;
 }
 
