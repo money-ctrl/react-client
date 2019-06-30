@@ -7,7 +7,6 @@
 }
 
 .transaction-menu-item--is-expanded {
-  position: absolute;
   z-index: 2;
 }
 
