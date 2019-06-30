@@ -1,8 +1,8 @@
 .circular-progress {
   background-color: var(--accent-color);
   padding: 16px;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .circular-progress__svg {
