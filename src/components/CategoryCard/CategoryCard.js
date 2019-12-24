@@ -1,6 +1,6 @@
-import Card from '../ui/Card'
-import CircularProgress from '../ui/CircularProgress'
-import MoneyDisplay from '../components/MoneyDisplay'
+import Card from '../../ui/Card'
+import CircularProgress from '../../ui/CircularProgress'
+import MoneyDisplay from '../MoneyDisplay'
 import React from 'react'
 
 class CategoryCard extends React.Component {

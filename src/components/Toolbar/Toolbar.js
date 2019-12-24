@@ -1,9 +1,12 @@
 import './Toolbar.css'
-import ActionButton from '../ui/ActionButton'
-import Card from '../ui/Card'
+import ActionButton from '../../ui/ActionButton'
+import Card from '../../ui/Card'
 import React from 'react'
-import TransactionMenuItem from '../components/TransactionMenuItem'
+import TransactionMenuItem from '../../components/TransactionMenuItem'
 import classNames from 'classnames'
+import SVGDashboard from '../../assets/dashboard.svg'
+import SVGFeather from '../../assets/feather.svg'
+import SVGHome from '../../assets/home.svg'
 
 class Toolbar extends React.Component {
   constructor(props) {
@@ -25,13 +28,13 @@ class Toolbar extends React.Component {
 
     const menu = [{
       alt: 'dashboard',
-      src: require('../assets/dashboard.svg'),
+      src: SVGDashboard,
     },{
       alt: 'history',
-      src: require('../assets/feather.svg'),
+      src: SVGFeather,
     },{
       alt: 'account',
-      src: require('../assets/home.svg'),
+      src: SVGHome,
     }].map((item, index) =>
       <img
         key={item.alt}

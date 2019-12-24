@@ -1,7 +1,8 @@
 import './ActionButton.css'
 import React from 'react'
-import Card from './Card'
+import Card from '../Card'
 import classNames from 'classnames'
+import SVGPlus from '../../assets/plus.svg'
 
 class ActionButton extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class ActionButton extends React.Component {
         >
           <img
             className={`action-button__icon ${isMenuOpen ? 'action-button__icon--is-open' : ''}`}
-            src={require('../assets/plus.svg')}
+            src={SVGPlus}
             alt="transaction"
             height="30px"
             width="30px"

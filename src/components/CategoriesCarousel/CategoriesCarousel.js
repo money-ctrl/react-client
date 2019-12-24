@@ -1,6 +1,6 @@
 import './CategoriesCarousel.css'
-import Carousel from '../ui/Carousel'
-import CategoryCard from './CategoryCard'
+import Carousel from '../../ui/Carousel'
+import CategoryCard from '../CategoryCard'
 import React from 'react'
 
 class CategoriesCarousel extends React.Component {

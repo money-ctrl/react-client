@@ -1,5 +1,5 @@
 import './TransactionMenuItem.css'
-import Card from '../ui/Card'
+import Card from '../../ui/Card'
 import React, { useState } from 'react'
 
 function TransactionMenuItem({ ...props }) {

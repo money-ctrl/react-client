@@ -1,5 +1,5 @@
 import './CircularProgress.css'
-import Card from './Card'
+import Card from '../Card'
 import React from 'react'
 
 class CircularProgress extends React.Component {
