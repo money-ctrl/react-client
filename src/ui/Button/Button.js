@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-function Button({ className, variant, children }) {
+function Button({ className, variant, onClick, children }) {
   return (
     <button
       className={classnames([
@@ -11,6 +11,7 @@ function Button({ className, variant, children }) {
         variant && `button--${variant}`,
         className,
       ])}
+      onClick={onClick}
     >
       {children}
     </button>
@@ -23,6 +24,7 @@ Button.propTypes = {
   variant: PropTypes.oneOf([
     'primary',
   ]),
+  onClick: PropTypes.func,
 }
 
 export default Button

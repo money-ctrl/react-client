@@ -7,7 +7,7 @@
     '.       .       .'       auto
     '.       .       .'       auto
     '.       .       .'       auto
-    '.       zero    enter'   auto
+    'back    .    enter'   auto
     /1fr     1fr     1fr;
   place-items: center;
 }
@@ -28,6 +28,7 @@
   font-size: 1.3rem;
 }
 
-.money-calculator__zero {
-  grid-area: zero;
+.money-calculator__back {
+  grid-area: back;
+  font-size: 1.3rem;
 }
