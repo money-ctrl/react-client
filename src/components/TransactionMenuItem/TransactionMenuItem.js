@@ -3,8 +3,13 @@ import Card from '../../ui/Card'
 import React, { useState } from 'react'
 import classnames from 'classnames'
 import MoneyCalculator from '../MoneyCalculator'
+import PropTypes from 'prop-types'
 
-function TransactionMenuItem({ ...props }) {
+function TransactionMenuItem({
+  slotTitle,
+  onSubmit = () => {},
+  ...props
+}) {
   const [isExpanded, setExpanded] = useState(false)
 
   const classes = classnames([
@@ -31,15 +36,22 @@ function TransactionMenuItem({ ...props }) {
         className="transaction-menu-item__title"
         onClick={() => setExpanded(true)}
       >
-        menu item
+        {slotTitle}
       </Title>
       {isExpanded && <div
         className="transaction-menu-item__content"
       >
-        <MoneyCalculator />
+        <MoneyCalculator
+          onSubmit={onSubmit}
+        />
       </div>}
     </Card>
   </>)
+}
+
+TransactionMenuItem.propTypes = {
+  slotTitle: PropTypes.any,
+  onSubmit: PropTypes.func,
 }
 
 export default TransactionMenuItem
