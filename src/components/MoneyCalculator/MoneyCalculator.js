@@ -16,7 +16,7 @@ export default function MoneyCalculator() {
         className="money-calculator__enter"
         variant="primary"
       >
-        go
+        <i className="fas fa-check"></i>
       </Button>
       <Button className="money-calculator__point">
         .
