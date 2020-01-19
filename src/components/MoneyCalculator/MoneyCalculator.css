@@ -1,7 +1,7 @@
 .money-calculator {
   padding: var(--space-l) var(--space-m);
   display: grid;
-  grid-row-gap: var(--space-xl);
+  grid-row-gap: var(--space-m);
   grid-template:
     'display display display' auto
     '.       .       .'       auto

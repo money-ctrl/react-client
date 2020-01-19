@@ -12,7 +12,10 @@ export default function MoneyCalculator() {
         className="money-calculator__display"
         value={0}
       />
-      <Button className="money-calculator__enter">
+      <Button
+        className="money-calculator__enter"
+        variant="primary"
+      >
         go
       </Button>
       <Button className="money-calculator__point">
