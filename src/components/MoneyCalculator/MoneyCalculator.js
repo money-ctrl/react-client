@@ -24,7 +24,10 @@ export default function MoneyCalculator() {
       >
         <i className="fas fa-check"></i>
       </Button>
-      <Button className="money-calculator__back">
+      <Button
+        className="money-calculator__back"
+        onClick={() => setValue(Math.floor(value / 10))}
+      >
         <i className="fas fa-backspace"></i>
       </Button>
       {buttons.map((number) =>
