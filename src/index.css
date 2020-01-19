@@ -70,5 +70,8 @@ body {
   --secondary-color-hsl: 344, 100%, 73.7%;
   --secondary-color: #ff799d;
 
-  --space-xs: 4px;
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-s: 16px;
+  --space-m: 24px;
 }
