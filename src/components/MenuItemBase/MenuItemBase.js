@@ -1,11 +1,11 @@
-import './TransactionMenuItem.css'
+import './MenuItemBase.css'
 import Card from '../../ui/Card'
 import React, { useState } from 'react'
 import classnames from 'classnames'
 import MoneyCalculator from '../MoneyCalculator'
 import PropTypes from 'prop-types'
 
-function TransactionMenuItem({
+function MenuItemBase({
   slotTitle,
   onSubmit = () => {},
   ...props
@@ -49,9 +49,9 @@ function TransactionMenuItem({
   </>)
 }
 
-TransactionMenuItem.propTypes = {
+MenuItemBase.propTypes = {
   slotTitle: PropTypes.any,
   onSubmit: PropTypes.func,
 }
 
-export default TransactionMenuItem
+export default MenuItemBase

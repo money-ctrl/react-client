@@ -2,7 +2,7 @@ import './Toolbar.css'
 import ActionButton from '../../ui/ActionButton'
 import Card from '../../ui/Card'
 import React from 'react'
-import TransactionMenuItem from '../../components/TransactionMenuItem'
+import MenuItemBase from '../../components/MenuItemBase'
 import classNames from 'classnames'
 import SVGDashboard from '../../assets/dashboard.svg'
 import SVGFeather from '../../assets/feather.svg'
@@ -24,7 +24,7 @@ class Toolbar extends React.Component {
   }
 
   render() {
-    const activeIndex = 0;
+    const activeIndex = 0
 
     const menu = [{
       alt: 'dashboard',
@@ -59,9 +59,9 @@ class Toolbar extends React.Component {
           className="toolbar__action-button"
           onMenuOpen={this.onMenuOpen}
         >
-          <TransactionMenuItem />
-          <TransactionMenuItem />
-          <TransactionMenuItem />
+          <MenuItemBase />
+          <MenuItemBase />
+          <MenuItemBase />
         </ActionButton>
       </Card>
     )
