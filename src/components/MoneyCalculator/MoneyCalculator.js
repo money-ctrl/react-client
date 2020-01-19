@@ -2,8 +2,9 @@ import './MoneyCalculator.css'
 import React, {useState} from 'react'
 import Button from '../../ui/Button'
 import MoneyDisplay from '../MoneyDisplay'
+import PropTypes from 'prop-types'
 
-export default function MoneyCalculator() {
+function MoneyCalculator({ onSubmit = (() => {}) }) {
   const buttons = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0]
 
   const [value, setValue] = useState(0)
@@ -21,6 +22,7 @@ export default function MoneyCalculator() {
       <Button
         className="money-calculator__enter"
         variant="primary"
+        onClick={() => onSubmit(value/100)}
       >
         <i className="fas fa-check"></i>
       </Button>
@@ -42,3 +44,9 @@ export default function MoneyCalculator() {
     </div>
   )
 }
+
+MoneyCalculator.propTypes = {
+  onSubmit: PropTypes.func,
+}
+
+export default MoneyCalculator
