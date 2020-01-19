@@ -1,6 +1,7 @@
 .money-calculator {
-  display: grid;
   padding: var(--space-xs) var(--space-m);
+  display: grid;
+  grid-gap: var(--space-l);
   grid-template:
     'display display display' auto
     '.       .       .'       auto
@@ -8,9 +9,17 @@
     '.       .       .'       auto
     'point   .       enter'   auto
     /1fr     1fr     1fr;
+  place-items: center;
 }
 
 .money-calculator__display {
   grid-area: display;
-  justify-self: center;
+}
+
+.money-calculator__enter {
+  grid-area: enter;
+}
+
+.money-calculator__point {
+  grid-area: point;
 }
