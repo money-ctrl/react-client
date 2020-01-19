@@ -9,6 +9,10 @@
   text-align: center;
 }
 
+.button:active {
+  box-shadow: 0 4px 8px -2px hsl(var(--color-neutral-gray-hsl), .5) inset;
+}
+
 .button--primary {
   background-color: var(--secondary-color);
   box-shadow: 0 10px 16px -2px var(--secondary-color);

@@ -5,6 +5,11 @@
   --font-text: 'Quicksand', var(--font-basis);
   --font-number: 'Comfortaa', var(--font-basis);
 
+  --color-neutral-white: #fff;
+  --color-neutral-gray-hsl: 0, 0%, 50%;
+  --color-neutral-gray: #666;
+  --color-neutral-black: #000;
+
   --accent-color-hsl: 265, 46.8%, 30.2%;
   --accent-color: #472971;
   --primary-color-hsl: 328, 35.6%, 65.9%;
