@@ -1,7 +1,7 @@
 .money-calculator {
-  padding: var(--space-xs) var(--space-m);
+  padding: var(--space-l) var(--space-m);
   display: grid;
-  grid-gap: var(--space-l);
+  grid-row-gap: var(--space-xl);
   grid-template:
     'display display display' auto
     '.       .       .'       auto
@@ -22,4 +22,11 @@
 
 .money-calculator__point {
   grid-area: point;
+}
+
+.money-calculator__enter,
+.money-calculator__point,
+.money-calculator__number {
+  font-family: var(--font-number);
+  font-size: 2rem;
 }
