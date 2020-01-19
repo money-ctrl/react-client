@@ -2,6 +2,7 @@ import './TransactionMenuItem.css'
 import Card from '../../ui/Card'
 import React, { useState } from 'react'
 import classnames from 'classnames'
+import MoneyCalculator from '../MoneyCalculator'
 
 function TransactionMenuItem({ ...props }) {
   const [isExpanded, setExpanded] = useState(false)
@@ -25,12 +26,7 @@ function TransactionMenuItem({ ...props }) {
         className="transaction-menu-item__content"
         hidden={!isExpanded}
       >
-        this is the card content!!<br />
-        this is the card content!!<br />
-        this is the card content!!<br />
-        this is the card content!!<br />
-        this is the card content!!<br />
-        this is the card content!!<br />
+        <MoneyCalculator />
       </div>}
     </Card>
   )

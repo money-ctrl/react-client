@@ -1,0 +1,16 @@
+.money-calculator {
+  display: grid;
+  padding: var(--space-xs) var(--space-m);
+  grid-template:
+    'display display display' auto
+    '.       .       .'       auto
+    '.       .       .'       auto
+    '.       .       .'       auto
+    'point   .       enter'   auto
+    /1fr     1fr     1fr;
+}
+
+.money-calculator__display {
+  grid-area: display;
+  justify-self: center;
+}
