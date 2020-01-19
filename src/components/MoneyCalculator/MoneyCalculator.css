@@ -7,13 +7,13 @@
     '.       .       .'       auto
     '.       .       .'       auto
     '.       .       .'       auto
-    'point   .       enter'   auto
+    '.       zero    enter'   auto
     /1fr     1fr     1fr;
   place-items: center;
 }
 
 .money-calculator__enter,
-.money-calculator__point,
+.money-calculator__zero,
 .money-calculator__number {
   font-family: var(--font-number);
   font-size: 2rem;
@@ -28,6 +28,6 @@
   font-size: 1.3rem;
 }
 
-.money-calculator__point {
-  grid-area: point;
+.money-calculator__zero {
+  grid-area: zero;
 }

@@ -4,7 +4,7 @@ import Button from '../../ui/Button'
 import MoneyDisplay from '../MoneyDisplay'
 
 export default function MoneyCalculator() {
-  const buttons = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0]
+  const buttons = [7, 8, 9, 4, 5, 6, 1, 2, 3]
 
   return (
     <div className="money-calculator">
@@ -18,9 +18,6 @@ export default function MoneyCalculator() {
       >
         <i className="fas fa-check"></i>
       </Button>
-      <Button className="money-calculator__point">
-        .
-      </Button>
       {buttons.map((number) =>
         <Button
           key={number}
@@ -29,6 +26,9 @@ export default function MoneyCalculator() {
           {number}
         </Button>
       )}
+      <Button className="money-calculator__zero">
+        0
+      </Button>
     </div>
   )
 }
