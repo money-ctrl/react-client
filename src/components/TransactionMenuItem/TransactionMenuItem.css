@@ -1,5 +1,6 @@
 .transaction-menu-item {
-  padding: 16px;
+  position: relative;
+  padding: var(--space-s);
 
   transition-property: width, height, transform, opacity;
   transition-duration: .4s;
@@ -16,4 +17,27 @@
 
 .transaction-menu-item__title {
   width: 100%;
+}
+
+.transaction-menu-item__cancel {
+  position: absolute;
+  top: calc(-1* var(--space-s));
+  right: 0;
+  border-radius: 40px;
+  background-color: var(--accent-color);
+  padding:  var(--space-xs) var(--space-s);
+  color: white;
+  transform: translateY(-100%) translateX(200%);
+  opacity: 0;
+  transition-duration: .1s;
+  transition-timing-function: ease-out;
+  transition-property: transform, opacity;
+}
+
+.transaction-menu-item--is-expanded
+> .transaction-menu-item__cancel {
+  transform: translateY(-100%);
+  opacity: 1;
+  transition-duration: .3s, .6s;
+  transition-delay: .1s, .25s;
 }

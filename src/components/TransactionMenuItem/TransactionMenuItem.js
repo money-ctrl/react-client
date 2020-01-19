@@ -12,19 +12,28 @@ function TransactionMenuItem({ ...props }) {
     isExpanded && 'transaction-menu-item--is-expanded'
   ])
 
+  const Title = isExpanded ? 'div' : 'button'
+
   return (
     <Card
-      tag={isExpanded ? 'div' : 'button'}
-      onClick={() => setExpanded(!isExpanded)}
+      tag='div'
       className={classes}
       {...props}
     >
-      <div className="transaction-menu-item__title">
+      <button
+        className="transaction-menu-item__cancel"
+        onClick={() => setExpanded(false)}
+      >
+        Cancel
+      </button>
+      <Title
+        className="transaction-menu-item__title"
+        onClick={() => setExpanded(true)}
+      >
         menu item
-      </div>
+      </Title>
       {isExpanded && <div
         className="transaction-menu-item__content"
-        hidden={!isExpanded}
       >
         <MoneyCalculator />
       </div>}
