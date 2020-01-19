@@ -8,8 +8,9 @@
 
 .transaction-menu-item--is-expanded {
   position: fixed;
-  left: 0;
-  top: 0;
+  bottom: var(--space-xs);
+  right: var(--space-xs);
+  left: var(--space-xs);
   z-index: 2;
 }
 

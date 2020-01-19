@@ -69,4 +69,6 @@ body {
   --primary-color: #c789aa;
   --secondary-color-hsl: 344, 100%, 73.7%;
   --secondary-color: #ff799d;
+
+  --space-xs: 4px;
 }
