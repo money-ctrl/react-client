@@ -21,7 +21,7 @@ export default function MoneyCalculator() {
       {buttons.map((number) =>
         <Button
           key={number}
-          className="money-calculator__button"
+          className="money-calculator__number"
         >
           {number}
         </Button>
