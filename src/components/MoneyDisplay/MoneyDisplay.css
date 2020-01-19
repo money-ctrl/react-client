@@ -12,9 +12,10 @@
 }
 
 .money-display__value {
+  font-family: var(--font-number);
   color: var(--accent-color);
   font-size: 2.2em;
-  font-weight: bold;
+  font-weight: 600;
   letter-spacing: .09em;
 }
 
@@ -25,7 +26,7 @@
 .money-display__value::after {
   color: hsla(0, 0%, 10%, .25);
   content: '$';
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .money-display--monocromatic > .money-display__value::after {
