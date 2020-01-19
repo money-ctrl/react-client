@@ -8,12 +8,11 @@ import classNames from 'classnames'
 class DashboardPage extends React.Component {
   render() {
     return (
-      <div className={classNames('dashboard-page', this.props.classNames)}
-    >
+      <div className={classNames('dashboard-page', this.props.classNames)}>
         <Title title="Dashboard" />
         <MoneyDisplay
           label="Total Balance"
-          monocromatic={true}
+          monochromatic={true}
           size={1.5}
           value={2099}
         />

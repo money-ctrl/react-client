@@ -1,24 +1,30 @@
 import './MoneyDisplay.css'
 import React from 'react'
+import PropTypes from 'prop-types'
 
-class MoneyDisplay extends React.Component {
-  render() {
-    let blockClasses = "money-display"
-    if (this.props.monocromatic) {
-      blockClasses += " money-display--monocromatic"
-    }
-
-    return (
-      <div className={blockClasses} style={{fontSize:`${this.props.size}rem`}}>
-        <div className="money-display__label">
-          {this.props.label}
-        </div>
-        <span className="money-display__value">
-          {this.props.value.toLocaleString()}
-        </span>
-      </div>
-    )
+function MoneyDisplay({ size, label, value, monochromatic }) {
+  let blockClasses = 'money-display'
+  if (monochromatic) {
+    blockClasses += ' money-display--monocromatic'
   }
+
+  return (
+    <div className={blockClasses} style={{fontSize:`${size}rem`}}>
+      <div className="money-display__label">
+        {label}
+      </div>
+      <span className="money-display__value">
+        {value.toLocaleString()}
+      </span>
+    </div>
+  )
+}
+
+MoneyDisplay.propTypes = {
+  label: PropTypes.string,
+  monochromatic: PropTypes.bool,
+  size: PropTypes.number,
+  value: PropTypes.number.isRequired,
 }
 
 export default MoneyDisplay
