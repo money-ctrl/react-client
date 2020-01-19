@@ -14,7 +14,8 @@ function TransactionMenuItem({ ...props }) {
 
   const Title = isExpanded ? 'div' : 'button'
 
-  return (
+  return (<>
+    {isExpanded && <div className="event-capture" />}
     <Card
       tag='div'
       className={classes}
@@ -38,7 +39,7 @@ function TransactionMenuItem({ ...props }) {
         <MoneyCalculator />
       </div>}
     </Card>
-  )
+  </>)
 }
 
 export default TransactionMenuItem

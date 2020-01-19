@@ -41,3 +41,11 @@
   transition-duration: .3s, .6s;
   transition-delay: .1s, .25s;
 }
+
+.event-capture {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
