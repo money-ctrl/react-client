@@ -1,4 +1,4 @@
-import './MenuItemIncome.css'
+import './MenuItemTransfer.css'
 import React from 'react'
 import MenuItemBase from '../MenuItemBase'
 import Icon from '../../ui/Icon'
@@ -7,8 +7,8 @@ function MenuItemIncome() {
   return (
     <MenuItemBase
       slotTitle={( <>
-        Income
-        <Icon name="plus"/>
+        Transfer
+        <Icon name="chevron-right"/>
       </>)}
     />
   )

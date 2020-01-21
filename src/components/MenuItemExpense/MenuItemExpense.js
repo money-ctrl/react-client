@@ -1,4 +1,4 @@
-import './MenuItemIncome.css'
+import './MenuItemExpense.css'
 import React from 'react'
 import MenuItemBase from '../MenuItemBase'
 import Icon from '../../ui/Icon'
@@ -6,9 +6,9 @@ import Icon from '../../ui/Icon'
 function MenuItemIncome() {
   return (
     <MenuItemBase
-      slotTitle={( <>
-        Income
-        <Icon name="plus"/>
+      slotTitle={(<>
+        Expense
+        <Icon name="minus"/>
       </>)}
     />
   )
