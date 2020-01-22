@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 function MenuItemBase({
   slotTitle,
   onSubmit = () => {},
-  ...props
+  style,
 }) {
   const [isExpanded, setExpanded] = useState(false)
 
@@ -24,7 +24,7 @@ function MenuItemBase({
     <Card
       tag='div'
       className={classes}
-      {...props}
+      style={style}
     >
       <button
         className="transaction-menu-item__cancel"
@@ -52,6 +52,7 @@ function MenuItemBase({
 MenuItemBase.propTypes = {
   slotTitle: PropTypes.any,
   onSubmit: PropTypes.func,
+  style: PropTypes.any,
 }
 
 export default MenuItemBase
