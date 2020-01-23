@@ -2,7 +2,7 @@
   "name": "react-money-ctrl",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://money-ctrl.github.io/react-client",
+  "homepage": "https://ctrlmoney.web.app/",
   "dependencies": {
     "classnames": "^2.2.6",
     "eslint-plugin-react": "^7.18.0",
@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
