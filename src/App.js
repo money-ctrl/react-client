@@ -1,35 +1,25 @@
 import './App.css'
 import Background from './layout/Background'
 import DashboardPage from './page/DashboardPage'
-import React from 'react'
+import React, { useState } from 'react'
 import Toolbar from './components/Toolbar'
 import classNames from 'classnames'
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
+function App() {
+  const [isMenuOpen, setMenuOpen] = useState(false)
 
-    this.state = {isMenuOpen:false}
-  }
+  const pageClass = classNames(
+    'page',
+    isMenuOpen && 'page--menu-is-open'
+  )
 
-  render() {
-    const pageClass = classNames(
-      'page',
-      this.state.isMenuOpen && 'page--menu-is-open'
-    )
-
-    return (
-      <div className="App">
-        <Background />
-        <DashboardPage
-          classNames={pageClass}
-        />
-        <Toolbar
-          onMenuOpen={(e) => this.setState({isMenuOpen:e})}
-        />
-      </div>
-    )
-  }
+  return (
+    <div className="App">
+      <Background />
+      <DashboardPage classNames={pageClass} />
+      <Toolbar onMenuOpen={setMenuOpen} />
+    </div>
+  )
 }
 
 export default App
