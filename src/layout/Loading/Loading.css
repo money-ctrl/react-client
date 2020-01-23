@@ -1,6 +1,6 @@
 .loading {
   width: 100%;
-  height: fill-available;
+  height: stretch;
   position: relative;
 }
 
