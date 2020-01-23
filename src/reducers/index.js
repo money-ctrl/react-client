@@ -1,5 +1,7 @@
 const initialState = {
   totalMoneyAvailable: 120.25,
+
+  isLogged: null,
 }
 
 export default function(state = initialState, action) {
