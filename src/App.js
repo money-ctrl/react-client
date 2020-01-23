@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Background />
-      <DashboardPage classNames={pageClass} />
+      <DashboardPage className={pageClass} />
       <Toolbar onMenuOpen={setMenuOpen} />
     </div>
   )
