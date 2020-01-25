@@ -1,12 +1,10 @@
-const initialState = {
-  totalMoneyAvailable: 120.25,
+import { combineReducers } from 'redux'
+import money from './money'
+import user from './user'
 
-  isLogged: null,
-}
+const store = combineReducers({
+  money,
+  user,
+})
 
-export default function(state = initialState, action) {
-  switch (action.type) {
-  default:
-    return state
-  }
-}
+export default store

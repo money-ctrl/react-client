@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
 function DashboardPage({ className }) {
-  const totalMoneyAvailable = useSelector(state => state.totalMoneyAvailable)
+  const totalMoneyAvailable = useSelector(state => state.money.totalMoneyAvailable)
 
   return (
     <div className={classNames('dashboard-page', className)}>
