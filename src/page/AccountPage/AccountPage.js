@@ -1,13 +1,17 @@
 import './AccountPage.css'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import Button from '../../ui/Button'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import { userLogout } from '../../actions'
 
 function AccountPage({ className }) {
+  const dispatch = useDispatch()
+
   return (
     <div className={classnames('account-page', className)}>
-      <Button>
+      <Button onClick={() => dispatch(userLogout())}>
         Sign Out
       </Button>
 
