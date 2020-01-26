@@ -19,7 +19,7 @@ function ToolbarLayout({ items = [] }) {
       alt={item.alt}
       height="30px"
       width="30px"
-      className={activeIndex !== index ? 'toolbar__item--inactive' : ''}
+      className={activeIndex !== index ? 'toolbar-layout__item--inactive' : ''}
       tabIndex="0"
       role="button"
       onClick={() => setActiveIndex(index)}
@@ -29,13 +29,15 @@ function ToolbarLayout({ items = [] }) {
   const { page: SelectedTab } = items.filter((_item, index) => index === activeIndex)[0]
 
   return (<>
-    <SelectedTab className={classNames('page', isMenuOpen && 'page--menu-is-open')} />
+    <div className="toolbar-layout__tab-container">
+      <SelectedTab className={classNames('toolbar-layout__page', isMenuOpen && 'toolbar-layout__page--menu-is-open')} />
+    </div>
 
-    <Card className={classNames('toolbar', isMenuOpen && 'toolbar--menu-is-open')}>
+    <Card className={classNames('toolbar-layout__toolbar', isMenuOpen && 'toolbar-layout__toolbar--menu-is-open')}>
       {menu}
 
       <ActionButton
-        className="toolbar__action-button"
+        className="toolbar-layout__action-button"
         onMenuOpen={setMenuOpen}
       >
         <MenuItemIncome />

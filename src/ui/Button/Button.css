@@ -1,16 +1,27 @@
 .button {
   display: flex;
   place-content: center;
-
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  padding: var(--space-s);
+  border-radius: 50px;
+  background-color: var(--color-neutral-white);
+  box-shadow: 0 10px 16px -2px hsla(var(--color-neutral-gray-hsl), .5);
 
   text-align: center;
 }
 
 .button:active {
-  box-shadow: 0 4px 8px -2px hsl(var(--color-neutral-gray-hsl), .5) inset;
+  box-shadow: 0 4px 8px -2px hsla(var(--color-neutral-gray-hsl), .5) inset;
+}
+
+.button--round {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.button--ghost {
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .button--primary {

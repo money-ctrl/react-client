@@ -1,0 +1,17 @@
+.account-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: var(--space-l);
+  color: var(--color-neutral-white);
+}
+
+.account-page__menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-page__footer {
+  text-align: center;
+}

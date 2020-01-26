@@ -1,12 +1,3 @@
 .app {
   height: 100%;
 }
-
-.page {
-  transition: opacity .3s;
-  will-change: opacity;
-}
-
-.page--menu-is-open {
-  opacity: .3;
-}

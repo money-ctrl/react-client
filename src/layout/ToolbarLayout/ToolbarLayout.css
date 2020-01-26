@@ -1,9 +1,32 @@
-.toolbar {
+.toolbar-layout__tab-container {
+  --scroll-padding: calc(70px + var(--space-s));
+
+  height: 100%;
+  padding-bottom: var(--scroll-padding);
+  overflow-y: scroll;
+}
+
+.toolbar-layout__tab-container > * {
+  margin-bottom: var(--sroll-padding);
+}
+
+.toolbar-layout__page {
+  transition: opacity .3s;
+  will-change: opacity;
+  min-height: 100%;
+}
+
+.toolbar-layout__page--menu-is-open {
+  opacity: .3;
+}
+
+.toolbar-layout__toolbar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
 
+  backdrop-filter: blur(5px);
   background-color: hsla(0, 0%, 100%, 0.5);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -20,24 +43,24 @@
   will-change: background-color;
 }
 
-.toolbar > :not(.toolbar__action-button) {
+.toolbar-layout__toolbar > :not(.toolbar-layout__action-button) {
   transition: opacity .3s;
   will-change: opacity;
 }
 
-.toolbar--menu-is-open {
+.toolbar-layout__toolbar--menu-is-open {
   background-color: hsla(0, 0%, 100%, 0.2);
 }
 
-.toolbar--menu-is-open > :not(.toolbar__action-button) {
+.toolbar-layout__toolbar--menu-is-open > :not(.toolbar-layout__action-button) {
   opacity: 0.3;
 }
 
-.toolbar__item--inactive {
+.toolbar-layout__item--inactive {
   filter: contrast(0) opacity(0.5);
 }
 
-.toolbar__action-button {
+.toolbar-layout__action-button {
   position: relative;
   top: -16px;
 

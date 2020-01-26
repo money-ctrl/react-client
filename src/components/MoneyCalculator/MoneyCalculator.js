@@ -20,13 +20,16 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
         }}
       />
       <Button
-        className="money-calculator__enter"
+        type="round"
         variant="primary"
+        className="money-calculator__enter"
         onClick={() => onSubmit(value/100)}
       >
         <i className="fas fa-check"></i>
       </Button>
       <Button
+        type="round"
+        variant="ghost"
         className="money-calculator__back"
         onClick={() => setValue(Math.floor(value / 10))}
       >
@@ -35,6 +38,8 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
       {buttons.map((number) =>
         <Button
           key={number}
+          type="round"
+          variant="ghost"
           className="money-calculator__number"
           onClick={() => setValue(value * 10 + number)}
         >
