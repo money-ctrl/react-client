@@ -2,7 +2,7 @@ import './LoginPage.css'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Title from '../../ui/Title'
-import Loading from '../../layout/Loading'
+import Loading from '../../ui/Loading'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {
