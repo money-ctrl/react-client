@@ -10,8 +10,7 @@ import PropTypes from 'prop-types'
 
 function ToolbarLayout({ items = [] }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
-
-  const activeIndex = 0
+  const [activeIndex, setActiveIndex] = useState(0)
 
   const menu = items.map((item, index) =>
     <img
@@ -21,6 +20,9 @@ function ToolbarLayout({ items = [] }) {
       height="30px"
       width="30px"
       className={activeIndex !== index ? 'toolbar__item--inactive' : ''}
+      tabIndex="0"
+      role="button"
+      onClick={() => setActiveIndex(index)}
     />
   )
 

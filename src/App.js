@@ -1,6 +1,7 @@
 import './App.css'
 import Background from './layout/Background'
 import DashboardPage from './page/DashboardPage'
+import AccountPage from './page/AccountPage'
 import React from 'react'
 import ToolbarLayout from './layout/ToolbarLayout'
 import LoginPage from './page/LoginPage'
@@ -31,7 +32,7 @@ function App() {
           {
             alt: 'account',
             src: SVGHome,
-            page: DashboardPage,
+            page: AccountPage,
           },
         ]} />
       </> : <>
