@@ -2,9 +2,9 @@ import { combineReducers } from 'redux'
 import money from './money'
 import user from './user'
 
-const store = combineReducers({
+const rootReducer = combineReducers({
   money,
   user,
 })
 
-export default store
+export default rootReducer
