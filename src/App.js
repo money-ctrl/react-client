@@ -10,29 +10,30 @@ import { useSelector } from 'react-redux'
 
 function App() {
   const [isMenuOpen, setMenuOpen] = useState(false)
-  const isLogged = useSelector(state => state.isLogged)
+  const isLogged = useSelector(state => state.user.isLogged)
 
   const pageClass = classNames(
     'page',
     isMenuOpen && 'page--menu-is-open'
   )
-  let Page
+
+  let content
 
   if (isLogged === true) {
-    Page = <>
+    content = <>
       <DashboardPage className={pageClass} />
       <Toolbar onMenuOpen={setMenuOpen} />
     </>
   } else if (isLogged === false) {
-    Page = <LoginPage />
+    content = <LoginPage />
   } else {
-    Page = <Loading />
+    content = <Loading />
   }
 
   return (
     <div className="app">
       <Background />
-      {Page}
+      {content}
     </div>
   )
 }
