@@ -1,31 +1,43 @@
 import './LoginPage.css'
 import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Title from '../../ui/Title'
+import Loading from '../../layout/Loading'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {
   firebase,
   ui as firebaseUI,
+  uiConfig,
 } from '../../services/firebase'
+import { userLogin } from '../../actions'
 
 function LoginPage({ className }) {
-  useEffect(() => {
-    if (!firebaseUI.isPendingRedirect()) return
+  const dispatch = useDispatch()
 
-    firebaseUI.start('#firebaseui-auth-container', {
-      signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      ],
-      tosUrl: 'www.example.com',
-      privacyPolicyUrl: 'www.example.com',
+  useEffect(() => {
+    if (firebaseUI.isPendingRedirect()) {
+      firebaseUI.start('#firebaseui-auth-container', uiConfig)
+    }
+
+    firebase.auth().onAuthStateChanged((user) => {
+      dispatch(userLogin({ info:user }))
+    }, (error) => {
+      console.error(error) // eslint-disable-line no-console
     })
   })
 
+  const isLogged = useSelector(state => state.user.isLogged)
+
   return (
     <div className={classNames('login-page', className)}>
-      <Title title="Login" />
+      { isLogged === null ? <>
+        <Loading />
+      </> : <>
+        <Title title="Login" />
 
-      <div id="firebaseui-auth-container" />
+        <div id="firebaseui-auth-container" />
+      </>}
     </div>
   )
 }

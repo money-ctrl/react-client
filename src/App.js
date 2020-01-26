@@ -3,7 +3,6 @@ import Background from './layout/Background'
 import DashboardPage from './page/DashboardPage'
 import React, { useState } from 'react'
 import Toolbar from './components/Toolbar'
-import Loading from './layout/Loading'
 import LoginPage from './page/LoginPage'
 import classNames from 'classnames'
 import { useSelector } from 'react-redux'
@@ -24,15 +23,14 @@ function App() {
       <DashboardPage className={pageClass} />
       <Toolbar onMenuOpen={setMenuOpen} />
     </>
-  } else if (isLogged === false) {
-    content = <LoginPage />
   } else {
-    content = <Loading />
+    content = <LoginPage className={pageClass} />
   }
 
   return (
     <div className="app">
       <Background />
+
       {content}
     </div>
   )

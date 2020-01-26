@@ -8,10 +8,19 @@ const app = firebase.initializeApp(firebaseConfig)
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth())
 
+const uiConfig = {
+  privacyPolicyUrl: 'www.example.com',
+  tosUrl: 'www.example.com',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  ],
+}
+
 export default app
 export {
   firebase,
   firebaseui,
   app,
   ui,
+  uiConfig,
 }
