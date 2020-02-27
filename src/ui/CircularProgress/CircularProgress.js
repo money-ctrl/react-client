@@ -6,7 +6,7 @@ class CircularProgress extends React.Component {
   render() {
     const percentage = this.props.percentage || 50
 
-    const circleRadius = 220;
+    const circleRadius = 220
     const circleLength = Math.PI*(circleRadius*2)
     const x = ((100-percentage)/100)*circleLength
 

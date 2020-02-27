@@ -1,2 +1,2 @@
-export const USER_LOGIN = Symbol()
-export const USER_LOGOUT = Symbol()
+export const USER_LOGIN = 'USER_LOGIN'
+export const USER_LOGOUT = 'USER_LOGOUT'

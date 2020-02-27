@@ -77,7 +77,7 @@ class Background extends React.Component {
           width,
         }}
       />
-    );
+    )
 
     return (
       <div className="background">
