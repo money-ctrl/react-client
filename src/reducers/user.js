@@ -6,6 +6,9 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
+  // eslint-disable-next-line no-console
+  console.log('[updade(user)]', action)
+
   switch (action.type) {
     case types.USER_LOGIN:
       return {
