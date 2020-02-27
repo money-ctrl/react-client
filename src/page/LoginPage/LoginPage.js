@@ -16,15 +16,13 @@ function LoginPage({ className }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (firebaseUI.isPendingRedirect()) {
-      firebaseUI.start('#firebaseui-auth-container', uiConfig)
-    }
-
     firebase.auth().onAuthStateChanged((user) => {
-      dispatch(userLogin({ info:user }))
+      dispatch(userLogin(user))
     }, (error) => {
       console.error(error) // eslint-disable-line no-console
     })
+
+    firebaseUI.start('#firebaseui-auth-container', uiConfig)
   })
 
   const isLogged = useSelector(state => state.user.isLogged)
