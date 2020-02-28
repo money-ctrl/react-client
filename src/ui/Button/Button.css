@@ -29,3 +29,7 @@
   box-shadow: 0 10px 16px -2px var(--secondary-color);
   color: white;
 }
+
+.button--block {
+  width: 100%;
+}
