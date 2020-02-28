@@ -15,3 +15,18 @@
 .account-page__footer {
   text-align: center;
 }
+
+.account-page__user {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  margin-bottom: var(--space-m);
+}
+
+.account-page__user-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-bottom: var(--space-xs);
+}

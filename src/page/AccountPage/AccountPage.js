@@ -1,6 +1,6 @@
 import './AccountPage.css'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Title from '../../ui/Title'
 import Button from '../../ui/Button'
 import classnames from 'classnames'
@@ -9,11 +9,24 @@ import { userLogout } from '../../actions'
 
 function AccountPage({ className }) {
   const dispatch = useDispatch()
+  const user = useSelector(({user}) => user.info)
 
   return (
     <div className={classnames('account-page', className)}>
       <div>
         <Title title="Account" />
+
+        <div className="account-page__user">
+          <img
+            src={user.photoURL}
+            alt={`${user.displayName}'s profile image`}
+            className="account-page__user-photo"
+          />
+
+          <strong>
+            {user.displayName}
+          </strong>
+        </div>
 
         <Button
           behavior="block"
