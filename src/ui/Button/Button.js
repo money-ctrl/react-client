@@ -3,14 +3,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-function Button({ className, variant, type, behavior, onClick, children }) {
+function Button({
+  variant = 'default',
+  type = 'default',
+  behavior = 'default',
+  className,
+  onClick,
+  children,
+}) {
   return (
     <button
       className={classnames([
         'button',
-        variant && `button--${variant}`,
-        type && `button--${type}`,
-        behavior && `button--${behavior}`,
+        variant !== 'default' && `button--${variant}`,
+        type !== 'default' && `button--${type}`,
+        behavior !== 'default' && `button--${behavior}`,
         className,
       ])}
       onClick={onClick}
@@ -24,13 +31,16 @@ Button.propTypes = {
   children: PropTypes.any,
   className: PropTypes.string,
   behavior: PropTypes.oneOf([
+    'default',
     'block',
   ]),
   variant: PropTypes.oneOf([
+    'default',
     'ghost',
     'primary',
   ]),
   type: PropTypes.oneOf([
+    'default',
     'round',
   ]),
   onClick: PropTypes.func,
