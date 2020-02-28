@@ -3,7 +3,7 @@ import {
   firebase,
 } from '../services/firebase'
 
-export const userLogin = (info) => ({ type: types.USER_LOGIN, info })
+export const userLogin = (info) => ({ type: types.USER_UPDATE, info })
 
 export const userLogout = () => async () => {
   await firebase.auth().signOut()

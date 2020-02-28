@@ -7,7 +7,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case types.USER_LOGIN:
+    case types.USER_UPDATE:
       return {
         ...state,
         info: action.info || {},
