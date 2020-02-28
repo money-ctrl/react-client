@@ -1,5 +1,5 @@
 const initialState = {
-  totalMoneyAvailable: 120.25,
+  totalMoneyAvailable: 0,
 }
 
 export default function(state = initialState, action) {
