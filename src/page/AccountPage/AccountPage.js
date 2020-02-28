@@ -19,7 +19,7 @@ function AccountPage({ className }) {
         <div className="account-page__user">
           <img
             src={user.photoURL}
-            alt={`${user.displayName}'s profile image`}
+            alt={`${user.displayName}'s profile`}
             className="account-page__user-photo"
           />
 
