@@ -1,6 +1,7 @@
 import './AccountPage.css'
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import Title from '../../ui/Title'
 import Button from '../../ui/Button'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
@@ -11,9 +12,16 @@ function AccountPage({ className }) {
 
   return (
     <div className={classnames('account-page', className)}>
-      <Button onClick={() => dispatch(userLogout())}>
-        Sign Out
-      </Button>
+      <div>
+        <Title title="Account" />
+
+        <Button
+          behavior="block"
+          onClick={() => dispatch(userLogout())}
+        >
+          Sign Out
+        </Button>
+      </div>
 
       <footer className="account-page__footer">
         Icons made by
