@@ -6,14 +6,17 @@ import Button from '../../ui/Button'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { userLogout } from '../../actions'
+import { useLocalStorage } from '../../hooks/useLocalStorage'
 
 function AccountPage({ className }) {
   const dispatch = useDispatch()
   const user = useSelector(({user}) => user.info)
 
+  const [isOfflineModeEnabled, setOfflineMode] = useLocalStorage('offlineMode', false)
+
   return (
     <div className={classnames('account-page', className)}>
-      <div>
+      <div className="account-page__menu">
         <Title title="Account" />
 
         <div className="account-page__user">
@@ -27,6 +30,14 @@ function AccountPage({ className }) {
             {user.displayName}
           </strong>
         </div>
+
+        <Button
+          behavior="block"
+          variant={isOfflineModeEnabled ? 'primary' : 'default'}
+          onClick={() => setOfflineMode(!isOfflineModeEnabled)}
+        >
+          {isOfflineModeEnabled ? 'Disable' : 'Enable'} off-line mode
+        </Button>
 
         <Button
           behavior="block"

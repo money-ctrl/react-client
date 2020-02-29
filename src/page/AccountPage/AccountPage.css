@@ -16,12 +16,18 @@
   text-align: center;
 }
 
+.account-page__menu {
+  display: grid;
+  grid-row-gap: var(--space-s);
+}
+
 .account-page__user {
   display: flex;
   align-items: center;
   flex-direction: column;
 
-  margin-bottom: var(--space-m);
+  margin-top: calc(var(--space-s) * -1);
+  margin-bottom: var(--space-s);
 }
 
 .account-page__user-photo {
