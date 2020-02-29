@@ -9,3 +9,5 @@ export const userLogout = () => async () => {
   await firebase.auth().signOut()
     .catch(console.error) // eslint-disable-line no-console
 }
+
+export const moneyAssign = (payload) => ({ type: types.MONEY_ASSIGN, payload })
