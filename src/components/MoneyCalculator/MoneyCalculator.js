@@ -19,6 +19,17 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
           maximumFractionDigits: 2,
         }}
       />
+      {buttons.map((number) =>
+        <Button
+          key={number}
+          type="round"
+          variant="ghost"
+          className="money-calculator__number"
+          onClick={() => setValue(value * 10 + number)}
+        >
+          {number}
+        </Button>
+      )}
       <Button
         type="round"
         variant="primary"
@@ -35,17 +46,6 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
       >
         <i className="fas fa-backspace"></i>
       </Button>
-      {buttons.map((number) =>
-        <Button
-          key={number}
-          type="round"
-          variant="ghost"
-          className="money-calculator__number"
-          onClick={() => setValue(value * 10 + number)}
-        >
-          {number}
-        </Button>
-      )}
     </div>
   )
 }
