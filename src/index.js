@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
-const store = createStore(reducer, {}, applyMiddleware(ReduxThunk))
+const store = createStore(reducer, applyMiddleware(ReduxThunk))
 
 render(
   <Provider store={store}>
