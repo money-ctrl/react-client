@@ -23,7 +23,7 @@ function DashboardPage({ className }) {
       })
 
     return unsubscribe
-  }, [])
+  })
 
   return (
     <div className={classNames('dashboard-page', className)}>
