@@ -1,19 +1,42 @@
 import * as types from '../constants'
 
 const initialState = {
-  isLogged: null,
   info: {},
+  isLogged: null,
+  status: 'unknown'||'new'||'initialized',
 }
 
 export default function(state = initialState, action) {
-  switch (action.type) {
-    case types.USER_UPDATE:
-      return {
-        ...state,
-        info: action.info || {},
-        isLogged: action.info ? !action.info.isAnonymous : false,
-      }
-    default:
-      return state
+  // eslint-disable-next-line no-console
+  console.log('store:', action)
+
+  if (types.USER_UPDATE === action.type) {
+    return userUpdate(state, action)
+  } else if (types.USER_STATUS === action.type) {
+    return {
+      ...state,
+      status: action.status,
+    }
+  }
+
+  return state
+}
+
+function userUpdate(state, action) {
+  const { info } = action
+
+  if (!info) {
+    return {
+      ...state,
+      info: {},
+      isLogged: false,
+      status: 'unknown',
+    }
+  }
+
+  return {
+    ...state,
+    info,
+    isLogged: !info.isAnonymous,
   }
 }

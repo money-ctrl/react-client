@@ -1,13 +1,36 @@
 import * as types from '../constants'
 import {
-  firebase,
-} from '../services/firebase'
+  database,
+  userLogout as _userLogout,
+} from '../services/backend'
+import { initialState as initialDatabasePayload } from '../reducers/money'
 
-export const userLogin = (info) => ({ type: types.USER_UPDATE, info })
 
-export const userLogout = () => async () => {
-  await firebase.auth().signOut()
-    .catch(console.error) // eslint-disable-line no-console
+export const userLogin = (info) => async (dispatch, getState) => {
+  dispatch({ type: types.USER_UPDATE, info })
+
+  if (!info) return
+
+  const { user } = getState()
+
+  if (user.status !== 'unknown') return
+
+  dispatch({ type: types.USER_STATUS, status: 'new' })
+
+  const doc = await database.collection('users').doc(info.uid).get()
+
+  if (!doc.exists) {
+    database.collection('users')
+      .doc(info.uid)
+      .set(initialDatabasePayload)
+  }
+
+  dispatch({ type: types.USER_STATUS, status: 'initialized' })
 }
 
-export const moneyAssign = (payload) => ({ type: types.MONEY_ASSIGN, payload })
+export const userLogout = () => _userLogout
+
+export const moneyAssign = (payload) => ({
+  type: types.MONEY_ASSIGN,
+  payload: payload || {},
+})

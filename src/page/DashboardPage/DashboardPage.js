@@ -1,14 +1,29 @@
 import './DashboardPage.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Title from '../../ui/Title'
 import MoneyDisplay from '../../components/MoneyDisplay'
 import CategoriesCarousel from '../../components/CategoriesCarousel'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { moneyAssign } from '../../actions'
+import { database } from '../../services/backend'
 
 function DashboardPage({ className }) {
-  const totalMoneyAvailable = useSelector(state => state.money.totalMoneyAvailable)
+  const dispatch = useDispatch()
+
+  const totalMoney = useSelector(state => state.money.total)
+
+  const userUId = useSelector(state => state.user.info.uid)
+  useEffect(() => {
+    const unsubscribe = database.collection('users')
+      .doc(userUId)
+      .onSnapshot((doc) => {
+        dispatch(moneyAssign(doc.data()))
+      })
+
+    return unsubscribe
+  }, [])
 
   return (
     <div className={classNames('dashboard-page', className)}>
@@ -17,7 +32,7 @@ function DashboardPage({ className }) {
         label="Total Balance"
         monochromatic={true}
         size={1.5}
-        value={totalMoneyAvailable}
+        value={totalMoney}
         formatOptions={{ maximumFractionDigits: 0 }}
       />
       <CategoriesCarousel

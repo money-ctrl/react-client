@@ -1,8 +1,13 @@
 import * as types from '../constants'
 
-const initialState = {
-  totalMoneyAvailable: 0,
-}
+export const initialState = Object.freeze({
+  total: 0,
+  moneySources: {
+    main: {
+      amount: 0,
+    },
+  }
+})
 
 export default function(state = initialState, action) {
   switch (action.type) {

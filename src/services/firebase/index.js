@@ -16,11 +16,14 @@ const uiConfig = {
   ],
 }
 
+const db = firebase.firestore()
+
 export default app
 export {
+  app,
+  db,
   firebase,
   firebaseui,
-  app,
   ui,
   uiConfig,
 }
