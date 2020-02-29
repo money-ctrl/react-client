@@ -1,17 +1,14 @@
-import './MenuItemTransfer.css'
 import React from 'react'
 import MenuItemBase from '../MenuItemBase'
-import Icon from '../../ui/Icon'
 import PropTypes from 'prop-types'
 
 function MenuItemTransfer({style}) {
   return (
     <MenuItemBase
       style={style}
-      slotTitle={( <>
-        Transfer
-        <Icon name="chevron-right"/>
-      </>)}
+      title="Transfer"
+      icon="chevron-right"
+      iconColors={['#f8efff', '#9a73e4']}
     />
   )
 }

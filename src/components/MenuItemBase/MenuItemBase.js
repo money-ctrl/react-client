@@ -4,17 +4,20 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import MoneyCalculator from '../MoneyCalculator'
 import PropTypes from 'prop-types'
+import Icon from '../../ui/Icon'
 
 function MenuItemBase({
-  slotTitle,
+  title,
+  icon,
+  iconColors = [],
   onSubmit = () => {},
   style,
 }) {
   const [isExpanded, setExpanded] = useState(false)
 
   const classes = classnames([
-    'transaction-menu-item',
-    isExpanded && 'transaction-menu-item--is-expanded'
+    'menu-item-base',
+    isExpanded && 'menu-item-base--is-expanded'
   ])
 
   const Title = isExpanded ? 'div' : 'button'
@@ -27,19 +30,34 @@ function MenuItemBase({
       style={style}
     >
       <button
-        className="transaction-menu-item__cancel"
+        className="menu-item-base__cancel"
         onClick={() => setExpanded(false)}
       >
         Cancel
       </button>
       <Title
-        className="transaction-menu-item__title"
         onClick={() => setExpanded(true)}
+        className={classnames(
+          'menu-item-base__title',
+          isExpanded && 'menu-item-base__title--is-expanded'
+        )}
       >
-        {slotTitle}
+        <span>
+          {title}
+        </span>
+
+        <div
+          className="menu-item-base__title-icon"
+          style={{
+            'background-color': iconColors[0],
+            'color': iconColors[1],
+          }}
+        >
+          <Icon name={icon} />
+        </div>
       </Title>
       {isExpanded && <div
-        className="transaction-menu-item__content"
+        className="menu-item-base__content"
       >
         <MoneyCalculator
           onSubmit={onSubmit}
@@ -50,7 +68,9 @@ function MenuItemBase({
 }
 
 MenuItemBase.propTypes = {
-  slotTitle: PropTypes.any,
+  title: PropTypes.string,
+  icon: PropTypes.string,
+  iconColors: PropTypes.arrayOf(PropTypes.string),
   onSubmit: PropTypes.func,
   style: PropTypes.any,
 }

@@ -1,4 +1,4 @@
-.transaction-menu-item {
+.menu-item-base {
   position: relative;
   padding: var(--space-s);
 
@@ -7,7 +7,7 @@
   will-change: width, height, transform, opacity;
 }
 
-.transaction-menu-item--is-expanded {
+.menu-item-base--is-expanded {
   position: fixed;
   bottom: var(--space-xxs);
   right: var(--space-xxs);
@@ -15,11 +15,32 @@
   z-index: 2;
 }
 
-.transaction-menu-item__title {
+.menu-item-base__title {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.transaction-menu-item__cancel {
+.menu-item-base__title--is-expanded {
+  width: 35%;
+}
+
+.menu-item-base__title-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: var(--space-xxs);
+
+  border-radius: 50%;
+  width: 1.6em;
+  height: 1.6em;
+}
+
+.menu-item-base__cancel {
   position: absolute;
   top: calc(-1* var(--space-s));
   right: 0;
@@ -34,8 +55,8 @@
   transition-property: transform, opacity;
 }
 
-.transaction-menu-item--is-expanded
-> .transaction-menu-item__cancel {
+.menu-item-base--is-expanded
+> .menu-item-base__cancel {
   transform: translateY(-100%);
   opacity: 1;
   transition-duration: .3s, .6s;
