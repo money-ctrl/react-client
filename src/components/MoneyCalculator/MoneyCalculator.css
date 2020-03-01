@@ -19,31 +19,31 @@
 }
 
 .money-calculator > *:nth-child(1) {
-  animation-delay: 0s;
+  animation-delay: .2s;
 }
 
 .money-calculator > *:nth-child(2),
 .money-calculator > *:nth-child(3),
 .money-calculator > *:nth-child(4) {
-  animation-delay: .1s;
+  animation-delay: .3s;
 }
 
 .money-calculator > *:nth-child(5),
 .money-calculator > *:nth-child(6),
 .money-calculator > *:nth-child(7) {
-  animation-delay: .2s;
+  animation-delay: .4s;
 }
 
 .money-calculator > *:nth-child(8),
 .money-calculator > *:nth-child(9),
 .money-calculator > *:nth-child(10) {
-  animation-delay: .3s;
+  animation-delay: .5s;
 }
 
 .money-calculator > *:nth-child(11),
 .money-calculator > *:nth-child(12),
 .money-calculator > *:nth-child(13) {
-  animation-delay: .4s;
+  animation-delay: .6s;
 }
 
 .money-calculator__enter,
