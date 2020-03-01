@@ -2,17 +2,9 @@
   position: relative;
   padding: var(--space-s);
 
-  transition-property: width, height, transform, opacity;
-  transition-duration: .4s;
+  transition-property: width, height, transform, opacity, top, left, right, bottom;
+  transition-duration: .3s;
   will-change: width, height, transform, opacity;
-}
-
-.menu-item-base--is-expanded {
-  position: fixed;
-  bottom: var(--space-xxs);
-  right: var(--space-xxs);
-  left: var(--space-xxs);
-  z-index: 2;
 }
 
 .menu-item-base__title {
@@ -22,6 +14,7 @@
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  animation: anti-squeeze .3s forwards;
 }
 
 .menu-item-base__title--is-expanded {
@@ -31,6 +24,11 @@
 @keyframes squeeze {
   from { width: 100%; }
   to { width: 7em; }
+}
+
+@keyframes anti-squeeze {
+  from { width: 7em; }
+  to { width: 100%; }
 }
 
 .menu-item-base__title-icon {
