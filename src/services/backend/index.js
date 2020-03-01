@@ -1,10 +1,10 @@
 import {
-  db as database,
+  db,
   firebase
 } from '../firebase'
 
 export const enablePersistence = () => {
-  database.enablePersistence()
+  db.enablePersistence()
     .catch((error) => {
       if (error.code === 'failed-precondition') {
         alert(
@@ -23,6 +23,8 @@ export const userLogout = async () => {
     .catch(console.error) // eslint-disable-line no-console
 }
 
-export {
-  database,
+export const database = () => {
+  const userUId = firebase.auth().currentUser.uid
+
+  return db.collection('users').doc(userUId)
 }

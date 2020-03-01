@@ -17,12 +17,10 @@ export const userLogin = (info) => async (dispatch, getState) => {
 
   dispatch({ type: types.USER_STATUS, status: 'new' })
 
-  const doc = await database.collection('users').doc(info.uid).get()
+  const doc = await database().get()
 
   if (!doc.exists) {
-    database.collection('users')
-      .doc(info.uid)
-      .set(initialDatabasePayload)
+    database().set(initialDatabasePayload)
   }
 
   dispatch({ type: types.USER_STATUS, status: 'initialized' })

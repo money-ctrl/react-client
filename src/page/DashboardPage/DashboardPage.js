@@ -14,10 +14,8 @@ function DashboardPage({ className }) {
 
   const totalMoney = useSelector(state => state.money.total)
 
-  const userUId = useSelector(state => state.user.info.uid)
   useEffect(() => {
-    const unsubscribe = database.collection('users')
-      .doc(userUId)
+    const unsubscribe = database()
       .onSnapshot((doc) => {
         dispatch(moneyAssign(doc.data()))
       })
