@@ -7,6 +7,9 @@
   box-shadow: 0 10px 16px -2px hsla(var(--color-neutral-gray-hsl), .5);
 
   text-align: center;
+
+  transition: all .3s ease;
+  transition-property: background-color, color, box-shadow;
 }
 
 .button:active {
