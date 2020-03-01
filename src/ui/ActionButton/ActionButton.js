@@ -17,7 +17,7 @@ class ActionButton extends React.Component {
 
   addAnimationDelay(children) {
     return React.Children.map(children, (child, index) => React.cloneElement(child, {
-      style: {animationDelay: `${index * 0.1}s`},
+      style: {animationDelay: `${(index + 1) * 0.1}s`},
     }))
   }
 
