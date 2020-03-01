@@ -53,7 +53,7 @@ function MenuItemBase({
       entering: { ...exited, zIndex: 2 },
       entered,
     })
-  }, [cardRef.current])
+  }, [cardTransitions.exited])
 
   return (<>
     {isExpanded && <div className="event-capture" />}
