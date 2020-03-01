@@ -7,18 +7,12 @@ import SVGPlus from '../../assets/plus.svg'
 class ActionButton extends React.Component {
   constructor(props) {
     super(props)
-    this.openMenu = this.openMenu.bind(this)
+    this.onClick = this.onClick.bind(this)
     this.addAnimationDelay = this.addAnimationDelay.bind(this)
-
-    this.state = {isMenuOpen:false}
   }
 
-  openMenu() {
-    this.setState(({isMenuOpen}) => {
-      this.props.onMenuOpen(!isMenuOpen)
-
-      return {isMenuOpen: !isMenuOpen}
-    })
+  onClick() {
+    this.props.onClick()
   }
 
   addAnimationDelay(children) {
@@ -28,29 +22,25 @@ class ActionButton extends React.Component {
   }
 
   render() {
-    const {
-      isMenuOpen,
-    } = this.state
-
     return (
       <div className={classNames('action-button', this.props.className)}>
         <div
-          className={classNames(isMenuOpen && 'action-button__overlay')}
-          onClick={this.openMenu}
+          className={classNames(this.props.isMenuOpen && 'action-button__overlay')}
+          onClick={this.onClick}
         />
         <div
-          aria-hidden={!isMenuOpen}
-          className={`action-button__menu ${isMenuOpen ? 'action-button__menu--is-open' : ''}`}
+          aria-hidden={!this.props.isMenuOpen}
+          className={`action-button__menu ${this.props.isMenuOpen ? 'action-button__menu--is-open' : ''}`}
         >
           {this.addAnimationDelay(this.props.children)}
         </div>
         <Card
           tag="button"
           className="action-button__button"
-          onClick={this.openMenu}
+          onClick={this.onClick}
         >
           <img
-            className={`action-button__icon ${isMenuOpen ? 'action-button__icon--is-open' : ''}`}
+            className={`action-button__icon ${this.props.isMenuOpen ? 'action-button__icon--is-open' : ''}`}
             src={SVGPlus}
             alt="transaction"
             height="30px"

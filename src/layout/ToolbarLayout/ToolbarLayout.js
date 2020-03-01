@@ -38,11 +38,12 @@ function ToolbarLayout({ items = [] }) {
 
       <ActionButton
         className="toolbar-layout__action-button"
-        onMenuOpen={setMenuOpen}
+        isMenuOpen={isMenuOpen}
+        onClick={() => setMenuOpen(!isMenuOpen)}
       >
-        <MenuItemIncome />
-        <MenuItemExpense />
-        <MenuItemTransfer />
+        <MenuItemIncome onSubmit={() => setMenuOpen(false)} />
+        <MenuItemExpense onSubmit={() => setMenuOpen(false)} />
+        <MenuItemTransfer onSubmit={() => setMenuOpen(false)} />
       </ActionButton>
     </Card>
   </>)

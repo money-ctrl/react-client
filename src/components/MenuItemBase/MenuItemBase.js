@@ -111,7 +111,10 @@ function MenuItemBase({
             className="menu-item-base__content"
           >
             <MoneyCalculator
-              onSubmit={onSubmit}
+              onSubmit={(amount) => {
+                setExpanded(false)
+                onSubmit(amount)
+              }}
             />
           </div>}
         </Card>
