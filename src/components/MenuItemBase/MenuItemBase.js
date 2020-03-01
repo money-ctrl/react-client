@@ -23,40 +23,35 @@ function MenuItemBase({
   useEffect(() => {
     if (cardTransitions.exited) return
 
-    const boundings = cardRef.current.getBoundingClientRect()
+    const {
+      right,
+      bottom,
+      height,
+      left,
+    } = cardRef.current.getBoundingClientRect()
+
+    const exited = {
+      position: 'fixed',
+      height: `${height}px`,
+      right: `${window.innerWidth - right}px`,
+      bottom: `${window.innerHeight - bottom}px`,
+      left: `${left}px`,
+    }
+
+    const entered = {
+      position: 'fixed',
+      height: '500px',
+      bottom: 'var(--space-xxs)',
+      right: 'var(--space-xxs)',
+      left: 'var(--space-xxs)',
+      zIndex: 2,
+    }
 
     setCardTransitions({
-      exiting: {
-        position: 'fixed',
-        height: '500px',
-        bottom: 'var(--space-xxs)',
-        right: 'var(--space-xxs)',
-        left: 'var(--space-xxs)',
-        zIndex: 2,
-      },
-      exited: {
-        position: 'fixed',
-        height: `${boundings.height}px`,
-        right: `${window.innerWidth - boundings.right}px`,
-        bottom: `${window.innerHeight - boundings.bottom}px`,
-        left: `${boundings.left}px`,
-      },
-      entering: {
-        position: 'fixed',
-        height: `${boundings.height}px`,
-        right: `${window.innerWidth - boundings.right}px`,
-        bottom: `${window.innerHeight - boundings.bottom}px`,
-        left: `${boundings.left}px`,
-        zIndex: 2,
-      },
-      entered: {
-        position: 'fixed',
-        height: '500px',
-        bottom: 'var(--space-xxs)',
-        right: 'var(--space-xxs)',
-        left: 'var(--space-xxs)',
-        zIndex: 2,
-      },
+      exited,
+      exiting: entered,
+      entering: { ...exited, zIndex: 2 },
+      entered,
     })
   }, [cardRef.current])
 
