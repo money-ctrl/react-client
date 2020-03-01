@@ -1,26 +1,32 @@
 import './Card.css'
 import React from 'react'
+import PropTypes from 'prop-types'
 
-class Card extends React.Component {
-  render() {
-    const {
-      children,
-      className,
-      tag,
-      ...attrs
-    } = this.props
+function Card({
+  reference,
+  children,
+  className,
+  tag,
+  ...attrs
+}) {
+  const Tag = tag || 'div'
 
-    const Tag = tag || 'div'
+  return (
+    <Tag
+      ref={reference}
+      className={`card ${className}`}
+      {...attrs}
+    >
+      {children}
+    </Tag>
+  )
+}
 
-    return (
-      <Tag
-        className={`card ${className}`}
-        {...attrs}
-      >
-        {children}
-      </Tag>
-    )
-  }
+Card.propTypes = {
+  reference: PropTypes.any,
+  children: PropTypes.any,
+  className: PropTypes.any,
+  tag: PropTypes.string,
 }
 
 export default Card
