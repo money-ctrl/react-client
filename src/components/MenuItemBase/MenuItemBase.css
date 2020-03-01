@@ -25,7 +25,12 @@
 }
 
 .menu-item-base__title--is-expanded {
-  width: 35%;
+  animation: squeeze .3s forwards;
+}
+
+@keyframes squeeze {
+  from { width: 100%; }
+  to { width: 7em; }
 }
 
 .menu-item-base__title-icon {
