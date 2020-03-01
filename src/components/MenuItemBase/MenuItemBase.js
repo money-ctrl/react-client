@@ -49,8 +49,8 @@ function MenuItemBase({
         <div
           className="menu-item-base__title-icon"
           style={{
-            'background-color': iconColors[0],
-            'color': iconColors[1],
+            backgroundColor: iconColors[0],
+            color: iconColors[1],
           }}
         >
           <Icon name={icon} />
