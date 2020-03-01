@@ -15,19 +15,17 @@ function MenuItemBase({
 }) {
   const [isExpanded, setExpanded] = useState(false)
 
-  const classes = classnames([
-    'menu-item-base',
-    isExpanded && 'menu-item-base--is-expanded'
-  ])
-
   const Title = isExpanded ? 'div' : 'button'
 
   return (<>
     {isExpanded && <div className="event-capture" />}
     <Card
       tag='div'
-      className={classes}
       style={style}
+      className={classnames([
+        'menu-item-base',
+        isExpanded && 'menu-item-base--is-expanded'
+      ])}
     >
       <button
         className="menu-item-base__cancel"
