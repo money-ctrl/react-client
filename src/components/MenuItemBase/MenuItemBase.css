@@ -2,9 +2,9 @@
   position: relative;
   padding: var(--space-s);
 
-  transition-property: width, height, transform, opacity, top, left, right, bottom;
+  transition-property: height, transform, opacity, left, right, bottom;
   transition-duration: .3s;
-  will-change: width, height, transform, opacity;
+  will-change: height, transform, opacity, left, right, bottom;
 }
 
 .menu-item-base__title {
