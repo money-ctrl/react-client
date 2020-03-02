@@ -15,6 +15,8 @@ import { userLogin } from '../../actions'
 function LoginPage({ className }) {
   const dispatch = useDispatch()
 
+  const isLogged = useSelector(state => state.user.isLogged)
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       dispatch(userLogin(user))
@@ -22,10 +24,10 @@ function LoginPage({ className }) {
       console.error(error) // eslint-disable-line no-console
     })
 
-    firebaseUI.start('#firebaseui-auth-container', uiConfig)
-  }, [dispatch])
-
-  const isLogged = useSelector(state => state.user.isLogged)
+    if (isLogged !== null){
+      firebaseUI.start('#firebaseui-auth-container', uiConfig)
+    }
+  }, [dispatch, isLogged])
 
   return (
     <div className={classNames('login-page', className)}>
