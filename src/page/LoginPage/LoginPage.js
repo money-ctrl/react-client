@@ -23,7 +23,7 @@ function LoginPage({ className }) {
     })
 
     firebaseUI.start('#firebaseui-auth-container', uiConfig)
-  })
+  }, [dispatch])
 
   const isLogged = useSelector(state => state.user.isLogged)
 
