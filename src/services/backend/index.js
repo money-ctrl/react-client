@@ -30,39 +30,46 @@ export const database = () => {
 }
 
 export const addTransaction = async ({ income }) => {
-  const lastTransactionQuery = await database().collection('transactions')
-    .orderBy('createdAt', 'desc')
-    .limit(1)
-    .get()
+  try {
+    let lastTransactionQuery
+    lastTransactionQuery = await database().collection('transactions')
+      .orderBy('createdAt', 'desc')
+      .limit(1)
+      .get()
 
-  let [lastTransaction] = lastTransactionQuery.docs
-  const isFirstTransaction = !lastTransaction
+    let [lastTransaction] = lastTransactionQuery.docs
+    const isFirstTransaction = !lastTransaction
 
-  lastTransaction = isFirstTransaction
-    ? {}
-    : lastTransaction.data()
+    lastTransaction = isFirstTransaction
+      ? {}
+      : lastTransaction.data()
 
-  const totalBefore = (lastTransaction.totalBefore + lastTransaction.amount) || 0
+    const totalBefore = (lastTransaction.totalBefore + lastTransaction.amount) || 0
 
-  const createPayload = ({ amount, sender, recipient }) => ({
-    createdAt: new Date(),
-    totalBefore: totalBefore || 0,
-    sender,
-    recipient,
-    amount,
-    verified: isFirstTransaction, // the root is thrust worthy
-  })
-
-  if (income) {
-    const payload = createPayload({
-      ...income,
-      sender: 'reason:salary',
-      recipient: 'moneySource:main',
+    const createPayload = ({ amount, sender, recipient }) => ({
+      createdAt: new Date(),
+      totalBefore: totalBefore || 0,
+      sender,
+      recipient,
+      amount,
+      verified: isFirstTransaction, // the root is thrust worthy
     })
 
-    database().collection('transactions').doc().set(payload)
-    database().update({
-      total: payload.amount + payload.totalBefore,
-    })
+    if (income) {
+      const payload = createPayload({
+        ...income,
+        sender: 'reason:salary',
+        recipient: 'moneySource:main',
+      })
+
+      await database().collection('transactions').doc().set(payload)
+      return database().update({
+        total: payload.amount + payload.totalBefore,
+      })
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error)
+    alert(error)
   }
 }
