@@ -28,3 +28,37 @@ export const database = () => {
 
   return db.collection('users').doc(userUId)
 }
+
+export const addTransaction = async ({ income }) => {
+  const lastTransactionQuery = await database().collection('transactions')
+    .orderBy('createdAt', 'desc')
+    .limit(1)
+    .get()
+
+  let [lastTransaction] = lastTransactionQuery.docs
+  lastTransaction = lastTransaction ? lastTransaction.data() : {}
+
+  const totalBefore = (lastTransaction.totalBefore + lastTransaction.amount) || 0
+
+  const createPayload = ({ amount, sender, recipient }) => ({
+    createdAt: new Date(),
+    totalBefore: totalBefore || 0,
+    sender,
+    recipient,
+    amount,
+    verified: (totalBefore === 0), // it means it is the root, and it is thrust worthy
+  })
+
+  if (income) {
+    const payload = createPayload({
+      ...income,
+      sender: 'reason:salary',
+      recipient: 'moneySource:main',
+    })
+
+    database().collection('transactions').doc().set(payload)
+    database().update({
+      total: payload.amount + payload.totalBefore,
+    })
+  }
+}

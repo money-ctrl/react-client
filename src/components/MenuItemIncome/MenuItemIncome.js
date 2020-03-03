@@ -1,7 +1,7 @@
 import React from 'react'
 import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
-import { database } from '../../services/backend'
+import { addTransaction } from '../../services/backend'
 
 function MenuItemIncome({
   style,
@@ -9,8 +9,8 @@ function MenuItemIncome({
 }) {
 
   const onMoneySubmit = (amount) => {
-    database().set({
-      total: amount,
+    addTransaction({
+      income: { amount },
     })
 
     onSubmit()
