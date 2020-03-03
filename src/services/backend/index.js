@@ -36,7 +36,11 @@ export const addTransaction = async ({ income }) => {
     .get()
 
   let [lastTransaction] = lastTransactionQuery.docs
-  lastTransaction = lastTransaction ? lastTransaction.data() : {}
+  const isFirstTransaction = !lastTransaction
+
+  lastTransaction = isFirstTransaction
+    ? {}
+    : lastTransaction.data()
 
   const totalBefore = (lastTransaction.totalBefore + lastTransaction.amount) || 0
 
@@ -46,7 +50,7 @@ export const addTransaction = async ({ income }) => {
     sender,
     recipient,
     amount,
-    verified: (totalBefore === 0), // it means it is the root, and it is thrust worthy
+    verified: isFirstTransaction, // the root is thrust worthy
   })
 
   if (income) {
