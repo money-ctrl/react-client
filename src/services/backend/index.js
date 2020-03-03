@@ -62,8 +62,8 @@ export const addTransaction = async ({ income }) => {
         recipient: 'moneySource:main',
       })
 
-      await database().collection('transactions').doc().set(payload)
-      return database().update({
+      database().collection('transactions').doc().set(payload)
+      database().update({
         total: payload.amount + payload.totalBefore,
       })
     }
