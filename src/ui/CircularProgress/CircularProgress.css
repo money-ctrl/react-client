@@ -1,6 +1,6 @@
 .circular-progress {
   background-color: var(--accent-color);
-  padding: 16px;
+  padding: var(--space-s);
   width: 80px;
   height: 80px;
 }

@@ -1,0 +1,36 @@
+.add-category-card {
+  border: dashed 2px hsla(0deg, 0%, 100%, 40%);
+  background-color: transparent;
+  margin-top: 60px;
+  padding: 24px;
+}
+
+.add-category-card__progress {
+  border: dashed 2px hsla(0deg, 0%, 100%, 40%);
+  background-color: transparent;
+  transform: translateY(-48px);
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-s);
+  position: relative;
+}
+
+.add-category-card__progress::after,
+.add-category-card__progress::before {
+  position: absolute;
+  border: solid 2px hsl(0deg, 0%, 90%);
+  border-radius: 2px;
+  display: block;
+  content: '';
+}
+
+.add-category-card__progress::before {
+  height: 30px;
+}
+
+.add-category-card__progress::after {
+  width: 30px;
+}

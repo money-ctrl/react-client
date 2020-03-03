@@ -1,0 +1,8 @@
+.category-card {
+  margin-top: 60px;
+  padding: 24px;
+}
+
+.category-card__progress {
+  transform: translateY(-48px);
+}
