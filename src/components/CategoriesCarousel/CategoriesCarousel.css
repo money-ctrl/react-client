@@ -1,0 +1,15 @@
+.categories-carousel {
+  position: relative;
+}
+
+.categories-carousel__card-container {
+  overflow: hidden;
+
+  transition: .3s ease;
+  transition-property: transform, width, height, clip-path;
+}
+
+.categories-carousel__card {
+  transition: .3s ease;
+  transition-property: transform, width, height, clip-path;
+}

@@ -3,13 +3,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-function Carousel({ nativeRef, className, children }) {
+function Carousel({ nativeRefWrapper, nativeRef, className, children }) {
   return (
     <div
-      ref={nativeRef}
+      ref={nativeRefWrapper}
       className={classNames('carousel', className)}
     >
-      <div className="carousel__slides">
+      <div
+        ref={nativeRef}
+        className="carousel__slides"
+      >
         {children}
       </div>
     </div>
@@ -17,6 +20,7 @@ function Carousel({ nativeRef, className, children }) {
 }
 
 Carousel.propTypes = {
+  nativeRefWrapper: PropTypes.any,
   nativeRef: PropTypes.any,
   className: PropTypes.any,
   children: PropTypes.any,
