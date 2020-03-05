@@ -4,7 +4,7 @@
   width: 200px;
   border: dashed 2px hsla(0deg, 0%, 100%, 40%);
   background-color: transparent;
-  margin-top: 60px;
+  margin-top: var(--space-m);
   padding: calc(var(--space-m) - var(--border-width));
 }
 

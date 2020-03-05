@@ -3,6 +3,7 @@
 }
 
 .categories-carousel__card-container {
+  margin-top: var(--space-l);
   overflow: hidden;
 
   transition: .3s ease;

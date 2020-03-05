@@ -23,7 +23,7 @@ function CategoriesCarousel({ className }) {
   const [hasClicked, setHasClicked] = useState(false)
 
   const onAddCardClick = (event) => {
-    const { x: carouselX, y: carouselY } = carousel.current.getBoundingClientRect()
+    const { x: carouselX, y: carouselY } = event.currentTarget.getBoundingClientRect()
     const { pageX, pageY } = event
 
     setContainerStyle({
