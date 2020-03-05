@@ -5,6 +5,6 @@
 .categories-carousel__card-container {
   margin-top: var(--space-l);
 
-  transition: clip-path .5s ease-in;
+  transition: clip-path .3s ease-in;
   will-change: clip-path;
 }
