@@ -4,19 +4,16 @@
   height: 100%;
   padding-bottom: var(--scroll-padding);
   overflow-y: scroll;
+
+  transition: opacity .3s;
+  will-change: opacity;
 }
 
 .toolbar-layout__tab-container > * {
   margin-bottom: var(--sroll-padding);
 }
 
-.toolbar-layout__page {
-  transition: opacity .3s;
-  will-change: opacity;
-  min-height: 100%;
-}
-
-.toolbar-layout__page--menu-is-open {
+.toolbar-layout__tab-container--menu-is-open {
   opacity: .3;
 }
 

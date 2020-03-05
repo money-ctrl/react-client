@@ -29,8 +29,11 @@ function ToolbarLayout({ items = [] }) {
   const { page: SelectedTab } = items.filter((_item, index) => index === activeIndex)[0]
 
   return (<>
-    <div className="toolbar-layout__tab-container">
-      <SelectedTab className={classNames('toolbar-layout__page', isMenuOpen && 'toolbar-layout__page--menu-is-open')} />
+    <div className={classNames(
+      'toolbar-layout__tab-container',
+      isMenuOpen && 'toolbar-layout__page--menu-is-open',
+    )}>
+      <SelectedTab />
     </div>
 
     <Card className={classNames('toolbar-layout__toolbar', isMenuOpen && 'toolbar-layout__toolbar--menu-is-open')}>
