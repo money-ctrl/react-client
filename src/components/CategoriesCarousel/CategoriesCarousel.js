@@ -9,10 +9,10 @@ import classnames from 'classnames'
 function CategoriesCarousel({ className }) {
   const carousel = useRef(null)
   const [containerStyle, setContainerStyle] = useState({
-    exited: {},
-    exiting: {},
     entering: {},
-    entered: {}
+    entered: {},
+    exiting: { position: 'absolute' },
+    exited: {},
   })
   const [hasClicked, setHasClicked] = useState(false)
 
@@ -23,6 +23,7 @@ function CategoriesCarousel({ className }) {
     const containerDiagonal = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2))
 
     setContainerStyle({
+      ...containerStyle,
       entering: {
         position: 'absolute',
         clipPath: `circle(0px at ${pageX - x}px ${pageY - y}px)`,
@@ -30,10 +31,6 @@ function CategoriesCarousel({ className }) {
       entered: {
         clipPath: `circle(${containerDiagonal}px at ${pageX - x}px ${pageY - y}px)`,
       },
-      exiting: {
-        position: 'absolute',
-      },
-      exited: {},
     })
     setHasClicked(!hasClicked)
   }
