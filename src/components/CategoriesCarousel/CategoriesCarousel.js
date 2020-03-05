@@ -44,7 +44,7 @@ function CategoriesCarousel({ className }) {
       <SwitchTransition mode="in-out">
         <Transition
           in={hasClicked}
-          timeout={300}
+          timeout={{ enter: 0, exit: 300 }}
           key={hasClicked ? 'add' : 'card'}
         >
           {state => (<>
