@@ -1,12 +1,15 @@
 .add-category-card {
+  --border-width: 2px;
+
+  width: 200px;
   border: dashed 2px hsla(0deg, 0%, 100%, 40%);
   background-color: transparent;
-  margin-top: 60px;
-  padding: 24px;
+  margin-top: var(--space-m);
+  padding: calc(var(--space-m) - var(--border-width));
 }
 
 .add-category-card__progress {
-  border: dashed 2px hsla(0deg, 0%, 100%, 40%);
+  border: dashed var(--border-width) hsla(0deg, 0%, 100%, 40%);
   background-color: transparent;
   transform: translateY(-48px);
   height: 80px;
@@ -14,14 +17,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--space-s);
+  padding: calc(var(--space-s) - (2 * var(--border-width)));
   position: relative;
 }
 
 .add-category-card__progress::after,
 .add-category-card__progress::before {
   position: absolute;
-  border: solid 2px hsl(0deg, 0%, 90%);
+  border: solid var(--border-width) hsl(0deg, 0%, 90%);
   border-radius: 2px;
   display: block;
   content: '';

@@ -1,0 +1,10 @@
+.categories-carousel {
+  position: relative;
+}
+
+.categories-carousel__card-container {
+  margin-top: var(--space-l);
+
+  transition: clip-path .5s ease-in;
+  will-change: clip-path;
+}

@@ -1,5 +1,6 @@
 .category-card {
-  margin-top: 60px;
+  width: 200px;
+  margin-top: var(--space-m);
   padding: 24px;
 }
 
