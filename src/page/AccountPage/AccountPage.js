@@ -7,12 +7,19 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { userLogout } from '../../actions'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
+import { useHistory } from 'react-router-dom'
 
 function AccountPage({ className }) {
   const dispatch = useDispatch()
   const user = useSelector(({user}) => user.info)
 
   const [isOfflineModeEnabled, setOfflineMode] = useLocalStorage('offlineMode', false)
+
+  const history = useHistory()
+  const logout = async () => {
+    await dispatch(userLogout())
+    history.push('/')
+  }
 
   return (
     <div className={classnames('account-page', className)}>
@@ -41,7 +48,7 @@ function AccountPage({ className }) {
 
         <Button
           behavior="block"
-          onClick={() => dispatch(userLogout())}
+          onClick={logout}
         >
           Sign Out
         </Button>

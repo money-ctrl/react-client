@@ -7,33 +7,34 @@ import MenuItemExpense from '../../components/MenuItemExpense'
 import MenuItemTransfer from '../../components/MenuItemTransfer'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
-function ToolbarLayout({ items = [] }) {
+function ToolbarLayout({ items = [], children }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
-  const [activeIndex, setActiveIndex] = useState(0)
 
-  const menu = items.map((item, index) =>
-    <img
+  const menu = items.map((item) =>
+    <NavLink
       key={item.alt}
-      src={item.src}
-      alt={item.alt}
-      height="30px"
-      width="30px"
-      className={activeIndex !== index ? 'toolbar-layout__item--inactive' : ''}
-      tabIndex="0"
-      role="button"
-      onClick={() => setActiveIndex(index)}
-    />
+      to={item.path}
+      className="toolbar-layout__item"
+      activeClassName="toolbar-layout__item--active"
+      exact
+    >
+      <img
+        src={item.src}
+        alt={item.alt}
+        height="30px"
+        width="30px"
+      />
+    </NavLink>
   )
-
-  const { page: SelectedTab } = items.filter((_item, index) => index === activeIndex)[0]
 
   return (<>
     <div className={classNames(
       'toolbar-layout__tab-container',
       isMenuOpen && 'toolbar-layout__page--menu-is-open',
     )}>
-      <SelectedTab />
+      {children}
     </div>
 
     <Card className={classNames('toolbar-layout__toolbar', isMenuOpen && 'toolbar-layout__toolbar--menu-is-open')}>
@@ -54,10 +55,11 @@ function ToolbarLayout({ items = [] }) {
 
 ToolbarLayout.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
-    alt: PropTypes.string,
-    src: PropTypes.string,
-    page: PropTypes.any.isRequired,
+    alt: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    path: PropTypes.any.isRequired,
   })),
+  children: PropTypes.any,
 }
 
 export default ToolbarLayout

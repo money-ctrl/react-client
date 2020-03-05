@@ -18,8 +18,8 @@ export const enablePersistence = () => {
     })
 }
 
-export const userLogout = async () => {
-  await firebase.auth().signOut()
+export const userLogout = () => {
+  return firebase.auth().signOut()
     .catch(console.error) // eslint-disable-line no-console
 }
 

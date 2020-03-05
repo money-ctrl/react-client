@@ -11,6 +11,11 @@ import SVGFeather from './assets/feather.svg'
 import SVGHome from './assets/home.svg'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { enablePersistence } from './services/backend'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom'
 
 function App() {
   const isLogged = useSelector(state => state.user.isLogged)
@@ -23,31 +28,39 @@ function App() {
   }, [isOfflineModeEnabled])
 
   return (
-    <div className="app">
-      <Background />
+    <Router>
+      <div className="app">
+        <Background />
 
-      {isLogged === true ? <>
-        <ToolbarLayout items={[
-          {
+        {isLogged === true ? <>
+          <ToolbarLayout items={[{
             alt: 'dashboard',
             src: SVGDashboard,
-            page: DashboardPage,
-          },
-          {
+            path: '/',
+          }, {
             alt: 'history',
             src: SVGFeather,
-            page: DashboardPage,
-          },
-          {
+            path: '/history',
+          }, {
             alt: 'account',
             src: SVGHome,
-            page: AccountPage,
-          },
-        ]} />
-      </> : <>
-        <LoginPage />
-      </>}
-    </div>
+            path: '/account',
+          }]}>
+            <Switch>
+              <Route exact path="/">
+                <DashboardPage />
+              </Route>
+
+              <Route path="/account">
+                <AccountPage />
+              </Route>
+            </Switch>
+          </ToolbarLayout>
+        </> : <>
+          <LoginPage />
+        </>}
+      </div>
+    </Router>
   )
 }
 

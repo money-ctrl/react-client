@@ -53,8 +53,12 @@
   opacity: 0.3;
 }
 
-.toolbar-layout__item--inactive {
+.toolbar-layout__item {
   filter: contrast(0) opacity(0.5);
+}
+
+.toolbar-layout__item--active {
+  filter: contrast(1) opacity(1);
 }
 
 .toolbar-layout__action-button {
