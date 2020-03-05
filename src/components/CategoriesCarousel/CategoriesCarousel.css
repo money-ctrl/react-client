@@ -6,5 +6,6 @@
   margin-top: var(--space-l);
 
   transition: clip-path .3s ease-in;
+  backface-visibility: hidden;
   will-change: clip-path;
 }
