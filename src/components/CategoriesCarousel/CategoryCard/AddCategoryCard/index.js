@@ -1,1 +1,1 @@
-export { default } from './AddCategoryCard'
+export { default } from './AddCategoryCardFacet'

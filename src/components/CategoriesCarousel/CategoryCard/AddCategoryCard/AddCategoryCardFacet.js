@@ -1,24 +1,24 @@
-import './CategoryCard.css'
-import Card from '../../../ui/Card'
-import CircularProgress from '../../../ui/CircularProgress'
-import MoneyDisplay from '../../MoneyDisplay'
+import './AddCategoryCardFacet.css'
+import Card from '../../../../ui/Card'
+import MoneyDisplay from '../../../MoneyDisplay'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-function CategoryCard({
+function AddCategoryCard({
   onClick = () => {},
   className,
   style = {},
 }) {
   return (
     <Card
-      className={classNames('category-card', className)}
+      className={classNames('add-category-card', className)}
       onClick={onClick}
       style={style}
     >
-      <CircularProgress className="category-card__progress" />
+      <Card className="add-category-card__progress" />
       <MoneyDisplay
+        monochromatic={true}
         label="Add Category"
         value={0}
       />
@@ -26,10 +26,10 @@ function CategoryCard({
   )
 }
 
-CategoryCard.propTypes = {
+AddCategoryCard.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.any,
   style: PropTypes.object,
 }
 
-export default CategoryCard
+export default AddCategoryCard
