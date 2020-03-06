@@ -63,9 +63,9 @@ export const addTransaction = async ({ income }) => {
       })
 
       database().collection('transactions').doc().set(payload)
-      database().update({
+      database().set({
         total: payload.amount + payload.totalBefore,
-      })
+      }, { merge: true })
     }
   } catch (error) {
     // eslint-disable-next-line no-console
