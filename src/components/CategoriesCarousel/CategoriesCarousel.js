@@ -5,6 +5,7 @@ import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import classnames from 'classnames'
+import { useHistory } from 'react-router-dom'
 
 function CategoriesCarousel({ className }) {
   const carousel = useRef(null)
@@ -35,6 +36,12 @@ function CategoriesCarousel({ className }) {
     setHasClicked(!hasClicked)
   }
 
+  const history = useHistory()
+  const transitionEndHandler = (done) => {
+    done()
+
+    history.push('/categories/new')
+  }
 
   return (
     <Carousel
@@ -46,6 +53,10 @@ function CategoriesCarousel({ className }) {
           in={hasClicked}
           timeout={{ enter: 0, exit: 300 }}
           key={hasClicked ? 'add' : 'card'}
+          addEndListener={(node, done) => {
+            // use the css transitionend event to mark the finish of a transition
+            node.addEventListener('transitionend', () => transitionEndHandler(done), false)
+          }}
         >
           {state => (<>
             <div

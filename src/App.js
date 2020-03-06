@@ -2,6 +2,7 @@ import './App.css'
 import Background from './layout/Background'
 import DashboardPage from './page/DashboardPage'
 import AccountPage from './page/AccountPage'
+import CategoriesPage from './page/CategoriesPage'
 import React, { useEffect } from 'react'
 import ToolbarLayout from './layout/ToolbarLayout'
 import LoginPage from './page/LoginPage'
@@ -45,6 +46,10 @@ function App() {
 
               <Route path="/account">
                 <AccountPage />
+              </Route>
+
+              <Route path="/categories">
+                <CategoriesPage />
               </Route>
             </Switch>
           </ToolbarLayout>
