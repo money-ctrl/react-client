@@ -33,19 +33,11 @@ function App() {
         <Background />
 
         {isLogged === true ? <>
-          <ToolbarLayout items={[{
-            alt: 'dashboard',
-            src: SVGDashboard,
-            path: '/',
-          }, {
-            alt: 'history',
-            src: SVGFeather,
-            path: '/history',
-          }, {
-            alt: 'account',
-            src: SVGHome,
-            path: '/account',
-          }]}>
+          <ToolbarLayout items={[
+            { alt: 'dashboard', src: SVGDashboard, path: '/'        },
+            { alt: 'history',   src: SVGFeather,   path: '/history' },
+            { alt: 'account',   src: SVGHome,      path: '/account' },
+          ]}>
             <Switch>
               <Route exact path="/">
                 <DashboardPage />
