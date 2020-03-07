@@ -35,6 +35,12 @@
   color: white;
 }
 
+.button--secondary {
+  background-color: var(--accent-color);
+  box-shadow: 0 10px 16px -2px hsla(var(--accent-color-hsl), 70%);
+  color: white;
+}
+
 .button--block {
   width: 100%;
 }

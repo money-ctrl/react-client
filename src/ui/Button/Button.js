@@ -37,6 +37,7 @@ Button.propTypes = {
   variant: PropTypes.oneOf([
     'default',
     'ghost',
+    'secondary',
     'primary',
   ]),
   type: PropTypes.oneOf([
