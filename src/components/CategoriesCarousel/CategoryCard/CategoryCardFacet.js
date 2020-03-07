@@ -10,6 +10,11 @@ function CategoryCard({
   onClick = () => {},
   className,
   style = {},
+  category: { name, limit, amount } = {
+    name: 'Add category',
+    limit: 0,
+    amount: 0,
+  },
 }) {
   return (
     <Card
@@ -17,10 +22,14 @@ function CategoryCard({
       onClick={onClick}
       style={style}
     >
-      <CircularProgress className="category-card__progress" />
+      <CircularProgress
+        className="category-card__progress"
+        percentage={amount / limit * 100}
+      />
+
       <MoneyDisplay
-        label="Add Category"
-        value={0}
+        label={name}
+        value={amount}
       />
     </Card>
   )
@@ -30,6 +39,11 @@ CategoryCard.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.any,
   style: PropTypes.object,
+  category: PropTypes.shape({
+    name: PropTypes.string,
+    limit: PropTypes.number,
+    amount: PropTypes.number,
+  }),
 }
 
 export default CategoryCard
