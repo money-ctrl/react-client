@@ -32,7 +32,7 @@ function ToolbarLayout({ items = [], children }) {
   return (<>
     <div className={classNames(
       'toolbar-layout__tab-container',
-      isMenuOpen && 'toolbar-layout__page--menu-is-open',
+      isMenuOpen && 'toolbar-layout__tab-container--menu-is-open',
     )}>
       {children}
     </div>
