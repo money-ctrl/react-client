@@ -1,7 +1,6 @@
 .money-calculator {
   padding: var(--space-l) var(--space-m);
   display: grid;
-  grid-row-gap: var(--space-m);
   grid-template:
     'display display display' auto
     '.       .       .'       auto
@@ -16,6 +15,10 @@
   animation-name: fade-up;
   animation-duration: .3s;
   animation-fill-mode: backwards;
+}
+
+.money-calculator > *:not(.money-calculator__display) {
+  padding: calc(var(--space-m) / 2);
 }
 
 .money-calculator > *:nth-child(1) {
