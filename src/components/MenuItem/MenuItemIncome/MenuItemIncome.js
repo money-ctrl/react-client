@@ -2,6 +2,7 @@ import React from 'react'
 import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
 import { addTransaction } from '../../../services/backend'
+import MoneyCalculator from '../../MoneyCalculator'
 
 function MenuItemIncome({
   style,
@@ -22,7 +23,16 @@ function MenuItemIncome({
       title="Income"
       icon="plus"
       iconColors={['#eff9f6', '#5bbaa4']}
-      onSubmit={onMoneySubmit}
+      pages={[
+        ({ setExpanded }) => (
+          <MoneyCalculator
+            onSubmit={(amount) => {
+              setExpanded(false)
+              onMoneySubmit(amount)
+            }}
+          />
+        ),
+      ]}
     />
   )
 }

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Transition } from 'react-transition-group'
 import classnames from 'classnames'
 import Card from '../../../ui/Card'
-import MoneyCalculator from '../../MoneyCalculator'
 import PropTypes from 'prop-types'
 import Icon from '../../../ui/Icon'
 
@@ -11,15 +10,15 @@ function MenuItemBase({
   title,
   icon,
   iconColors = [],
-  onSubmit = () => {},
   style,
+  pages = [],
 }) {
   const [isExpanded, setExpanded] = useState(false)
-  const [cardTransitions, setCardTransitions] = useState({})
-  const cardRef = useRef(null)
 
   const Title = isExpanded ? 'div' : 'button'
 
+  const [cardTransitions, setCardTransitions] = useState({})
+  const cardRef = useRef(null)
   useEffect(() => {
     if (cardTransitions.exited) return
 
@@ -54,6 +53,21 @@ function MenuItemBase({
       entered,
     })
   }, [cardTransitions.exited])
+
+  const [pageIndex, setPageIndex] = useState(0)
+  const nextStep = () => setPageIndex(pageIndex+1)
+  const previousStep = () => setPageIndex(pageIndex-1)
+  const displayCurrentPage = () => {
+    if (typeof pages[pageIndex] === 'function') {
+      return pages[pageIndex]({
+        setExpanded,
+        nextStep,
+        previousStep,
+      })
+    } else {
+      return pages[pageIndex]
+    }
+  }
 
   return (<>
     {isExpanded && <div className="event-capture" />}
@@ -105,12 +119,7 @@ function MenuItemBase({
           {isExpanded && <div
             className="menu-item-base__content"
           >
-            <MoneyCalculator
-              onSubmit={(amount) => {
-                setExpanded(false)
-                onSubmit(amount)
-              }}
-            />
+            {displayCurrentPage()}
           </div>}
         </Card>
       )}
@@ -122,8 +131,8 @@ MenuItemBase.propTypes = {
   title: PropTypes.string,
   icon: PropTypes.string,
   iconColors: PropTypes.arrayOf(PropTypes.string),
-  onSubmit: PropTypes.func,
   style: PropTypes.any,
+  pages: PropTypes.arrayOf(PropTypes.func),
 }
 
 export default MenuItemBase
