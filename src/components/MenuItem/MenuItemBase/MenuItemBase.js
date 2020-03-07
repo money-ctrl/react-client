@@ -1,11 +1,11 @@
 import './MenuItemBase.css'
-import Card from '../../ui/Card'
 import React, { useState, useEffect, useRef } from 'react'
 import { Transition } from 'react-transition-group'
 import classnames from 'classnames'
-import MoneyCalculator from '../MoneyCalculator'
+import Card from '../../../ui/Card'
+import MoneyCalculator from '../../MoneyCalculator'
 import PropTypes from 'prop-types'
-import Icon from '../../ui/Icon'
+import Icon from '../../../ui/Icon'
 
 function MenuItemBase({
   title,

@@ -2,9 +2,11 @@ import './ToolbarLayout.css'
 import ActionButton from '../../ui/ActionButton'
 import Card from '../../ui/Card'
 import React, { useState } from 'react'
-import MenuItemIncome from '../../components/MenuItemIncome'
-import MenuItemExpense from '../../components/MenuItemExpense'
-import MenuItemTransfer from '../../components/MenuItemTransfer'
+import {
+  MenuItemIncome,
+  MenuItemExpense,
+  MenuItemTransfer,
+} from '../../components/MenuItem'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
