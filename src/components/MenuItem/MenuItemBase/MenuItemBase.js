@@ -12,6 +12,7 @@ function MenuItemBase({
   iconColors = [],
   style,
   pages = [],
+  className,
 }) {
   const [isExpanded, setExpanded] = useState(false)
 
@@ -86,7 +87,8 @@ function MenuItemBase({
           }}
           className={classnames([
             'menu-item-base',
-            isExpanded && 'menu-item-base--is-expanded'
+            isExpanded && 'menu-item-base--is-expanded',
+            className,
           ])}
         >
           <button
@@ -133,6 +135,7 @@ MenuItemBase.propTypes = {
   iconColors: PropTypes.arrayOf(PropTypes.string),
   style: PropTypes.any,
   pages: PropTypes.arrayOf(PropTypes.func),
+  className: PropTypes.string,
 }
 
 export default MenuItemBase
