@@ -8,7 +8,7 @@ function CircularProgress({
   max = 100,
   value = 50,
 }) {
-  const percentage = value / max * 100
+  const percentage = (value / max * 100) || 0
 
   const circleRadius = 220
   const circleLength = Math.PI*(circleRadius*2)
