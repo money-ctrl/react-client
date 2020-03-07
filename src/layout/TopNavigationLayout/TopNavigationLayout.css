@@ -1,0 +1,19 @@
+.top-navigation-layout {
+  display: grid;
+  grid-gap: var(--space-l);
+  grid-template:
+    'toolbar' auto
+    'content' 1fr
+    / 1fr
+  ;
+  height: 100%;
+  padding: var(--space-l);
+}
+
+.top-navigation-layout__toolbar {
+  grid-area: toolbar;
+}
+
+.top-navigation-layout__content {
+  grid-area: content;
+}
