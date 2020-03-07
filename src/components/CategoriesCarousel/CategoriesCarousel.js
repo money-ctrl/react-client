@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import classnames from 'classnames'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function CategoriesCarousel({ className }) {
   const carousel = useRef(null)
@@ -43,11 +44,21 @@ function CategoriesCarousel({ className }) {
     history.push('/categories/new')
   }
 
+  const expenseCategories = useSelector(state => state.money.expenseCategories)
+
   return (
     <Carousel
       nativeRef={carousel}
       className={classnames('categories-carousel', className)}
     >
+      {expenseCategories.map(category => (
+        <CategoryCard
+          key={category.name}
+          className="categories-carousel__card"
+          category={category}
+        />
+      ))}
+
       <div className="categories-carousel__card-container">
         <SwitchTransition mode="in-out">
           <Transition
