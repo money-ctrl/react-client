@@ -60,14 +60,14 @@ function CategoriesCarousel({ className }) {
         >
           {state => (<>
             <div
-              className="categories-carousel__card-container"
+              className="categories-carousel__card"
               style={containerStyle[state]}
               onClick={onAddCardClick}
             >
               {!hasClicked ?
-                <AddCategoryCard className="categories-carousel__card" />
+                <AddCategoryCard />
                 :
-                <CategoryCard className="categories-carousel__card" />
+                <CategoryCard />
               }
             </div>
           </>)}

@@ -3,7 +3,7 @@
   margin-top: var(--space-l);
 }
 
-.categories-carousel__card-container {
+.categories-carousel__card {
   transition: clip-path .3s ease-in;
   backface-visibility: hidden;
   will-change: clip-path;
