@@ -1,6 +1,7 @@
 import * as types from '../constants'
 
 export const initialState = Object.freeze({
+  expenseCategories: [],
   total: 0,
   moneySources: {
     main: {
