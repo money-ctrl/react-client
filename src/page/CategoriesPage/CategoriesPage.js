@@ -1,10 +1,14 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import CategoriesNewPage from './CategoriesNewPage'
+import TopNavigationLayout from '../../layout/TopNavigationLayout'
+import { useHistory } from 'react-router-dom'
 
 function CategoriesPage() {
+  const history = useHistory()
+
   return (
-    <div>
+    <TopNavigationLayout onBackPress={history.goBack}>
       <p>
         cara, essa página não ta feita inda, sorry :(
       </p>
@@ -12,7 +16,7 @@ function CategoriesPage() {
       <Route path="/categories/new">
         <CategoriesNewPage />
       </Route>
-    </div>
+    </TopNavigationLayout>
   )
 }
 
