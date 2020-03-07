@@ -1,6 +1,9 @@
 .categories-carousel {
-  position: relative;
   margin-top: var(--space-l);
+}
+
+.categories-carousel__card-container {
+  position: relative;
 }
 
 .categories-carousel__card {

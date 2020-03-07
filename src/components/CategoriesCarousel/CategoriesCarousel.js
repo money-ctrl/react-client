@@ -48,31 +48,33 @@ function CategoriesCarousel({ className }) {
       nativeRef={carousel}
       className={classnames('categories-carousel', className)}
     >
-      <SwitchTransition mode="in-out">
-        <Transition
-          in={hasClicked}
-          timeout={{ enter: 0, exit: 300 }}
-          key={hasClicked ? 'add' : 'card'}
-          addEndListener={(node, done) => {
-            // use the css transitionend event to mark the finish of a transition
-            node.addEventListener('transitionend', () => transitionEndHandler(done), false)
-          }}
-        >
-          {state => (<>
-            <div
-              className="categories-carousel__card"
-              style={containerStyle[state]}
-              onClick={onAddCardClick}
-            >
-              {!hasClicked ?
-                <AddCategoryCard />
-                :
-                <CategoryCard />
-              }
-            </div>
-          </>)}
-        </Transition>
-      </SwitchTransition>
+      <div className="categories-carousel__card-container">
+        <SwitchTransition mode="in-out">
+          <Transition
+            in={hasClicked}
+            timeout={{ enter: 0, exit: 300 }}
+            key={hasClicked ? 'add' : 'card'}
+            addEndListener={(node, done) => {
+              // use the css transitionend event to mark the finish of a transition
+              node.addEventListener('transitionend', () => transitionEndHandler(done), false)
+            }}
+          >
+            {state => (<>
+              <div
+                className="categories-carousel__card"
+                style={containerStyle[state]}
+                onClick={onAddCardClick}
+              >
+                {!hasClicked ?
+                  <AddCategoryCard />
+                  :
+                  <CategoryCard />
+                }
+              </div>
+            </>)}
+          </Transition>
+        </SwitchTransition>
+      </div>
     </Carousel>
   )
 }
