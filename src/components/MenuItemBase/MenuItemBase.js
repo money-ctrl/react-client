@@ -79,7 +79,7 @@ function MenuItemBase({
             className="menu-item-base__cancel"
             onClick={() => setExpanded(false)}
           >
-        Cancel
+            Cancel
           </button>
           <Title
             onClick={() => setExpanded(true)}
