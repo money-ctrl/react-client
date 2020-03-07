@@ -24,7 +24,8 @@ function CategoryCard({
     >
       <CircularProgress
         className="category-card__progress"
-        percentage={amount / limit * 100}
+        max={limit}
+        value={amount}
       />
 
       <MoneyDisplay
