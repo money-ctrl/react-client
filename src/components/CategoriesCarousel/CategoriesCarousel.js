@@ -19,6 +19,8 @@ function CategoriesCarousel({ className }) {
   const [hasClicked, setHasClicked] = useState(false)
 
   const onAddCardClick = (event) => {
+    if (hasClicked) return
+
     const { x, y, width, height } = event.currentTarget.getBoundingClientRect()
     const { pageX, pageY } = event
 
@@ -34,7 +36,7 @@ function CategoriesCarousel({ className }) {
         clipPath: `circle(${containerDiagonal}px at ${pageX - x}px ${pageY - y}px)`,
       },
     })
-    setHasClicked(!hasClicked)
+    setHasClicked(true)
   }
 
   const history = useHistory()
