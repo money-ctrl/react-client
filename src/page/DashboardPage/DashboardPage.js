@@ -23,7 +23,7 @@ function DashboardPage({ className }) {
     const unsubscribeCategories = database().collection('expenseCategories')
       .onSnapshot((snapshot) => {
         dispatch(moneyAssign({
-          expenseCategories: snapshot.docs.map(doc => doc.data()),
+          expenseCategories: snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})),
         }))
       })
 

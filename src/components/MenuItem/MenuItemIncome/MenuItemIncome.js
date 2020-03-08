@@ -24,10 +24,10 @@ function MenuItemIncome({
       icon="plus"
       iconColors={['#eff9f6', '#5bbaa4']}
       pages={[
-        ({ setExpanded }) => (
+        ({ close }) => (
           <MoneyCalculator
             onSubmit={(amount) => {
-              setExpanded(false)
+              close()
               onMoneySubmit(amount)
             }}
           />

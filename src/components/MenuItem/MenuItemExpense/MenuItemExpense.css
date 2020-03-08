@@ -1,0 +1,13 @@
+.menu-item-expense {
+  --top-navigation-layout--padding: var(--space-s) var(--space-xs);
+}
+
+.menu-item-expense__menu-item {
+  display: grid;
+  grid-template:
+    'percent name' auto
+    /auto    1fr;
+  align-items: center;
+  grid-gap: var(--space-s);
+  margin-bottom: var(--space-m);
+}

@@ -61,7 +61,7 @@ function MenuItemBase({
   const displayCurrentPage = () => {
     if (typeof pages[pageIndex] === 'function') {
       return pages[pageIndex]({
-        setExpanded,
+        close: () => setExpanded(false),
         nextStep,
         previousStep,
       })
