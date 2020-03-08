@@ -69,8 +69,9 @@ export const addTransaction = async ({ income, expense }) => {
         }))
 
       database().collection('transactions').doc().set(payload)
+      const { total } = await database().get()
       database().set({
-        total: payload.amount + payload.totalBefore,
+        total: payload.amount + (total || 0),
       }, { merge: true })
     } else if (expense) {
       const payloadBase = {
@@ -84,8 +85,9 @@ export const addTransaction = async ({ income, expense }) => {
         .then(transaction => transaction.createPayload(payloadBase))
 
       database().collection('transactions').doc().set(transactionPayload)
+      const { total } = await database().get()
       database().set({
-        total: transactionPayload.totalBefore - transactionPayload.amount,
+        total: transactionPayload.totalBefore - (total || 0),
       }, { merge: true })
 
       const categoryPayload = await getLastTransaction({
@@ -95,16 +97,16 @@ export const addTransaction = async ({ income, expense }) => {
       })
         .then(transaction => transaction.createPayload(payloadBase))
 
-      database().collection('expenseCategories')
+      const category = database().collection('expenseCategories')
         .doc(expense.categoryId)
-        .collection('transactions')
+
+      category.collection('transactions')
         .doc()
         .set(categoryPayload)
-      database().collection('expenseCategories')
-        .doc(expense.categoryId)
-        .set({
-          amount: categoryPayload.amount + categoryPayload.totalBefore,
-        }, { merge: true })
+      const { amount } = await category.get()
+      category.set({
+        amount: categoryPayload.amount + (amount || 0),
+      }, { merge: true })
     }
   } catch (error) {
     // eslint-disable-next-line no-console
