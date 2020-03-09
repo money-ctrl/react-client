@@ -69,9 +69,9 @@ export const addTransaction = async ({ income, expense }) => {
         }))
 
       database().collection('transactions').doc().set(payload)
-      const { total } = await database().get()
+      const { total } = await database().get().then(docRef => docRef.data() || { total: 0 })
       database().set({
-        total: payload.amount + (total || 0),
+        total: total + payload.amount,
       }, { merge: true })
     } else if (expense) {
       const payloadBase = {
@@ -85,9 +85,9 @@ export const addTransaction = async ({ income, expense }) => {
         .then(transaction => transaction.createPayload(payloadBase))
 
       database().collection('transactions').doc().set(transactionPayload)
-      const { total } = await database().get()
+      const { total } = await database().get().then(docRef => docRef.data() || { total: 0 })
       database().set({
-        total: transactionPayload.totalBefore - (total || 0),
+        total: total - transactionPayload.amount,
       }, { merge: true })
 
       const categoryPayload = await getLastTransaction({
@@ -101,9 +101,9 @@ export const addTransaction = async ({ income, expense }) => {
         .doc(expense.categoryId)
 
       category.collection('transactions').doc().set(categoryPayload)
-      const { amount } = await category.get()
+      const { amount } = await category.get().then(docRef => docRef.data() || { amount: 0 })
       category.set({
-        amount: categoryPayload.amount + (amount || 0),
+        amount: amount + categoryPayload.amount,
       }, { merge: true })
     }
   } catch (error) {
