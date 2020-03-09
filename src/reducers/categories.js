@@ -1,17 +1,12 @@
 import * as types from '../constants'
 
 export const initialState = Object.freeze({
-  total: 0,
-  moneySources: {
-    main: {
-      amount: 0,
-    },
-  }
+  expenseCategories: [],
 })
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case types.MONEY_ASSIGN:
+    case types.CATEGORIES_ASSIGN:
       return {
         ...state,
         ...action.payload,

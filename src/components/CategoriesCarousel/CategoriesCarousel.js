@@ -46,7 +46,7 @@ function CategoriesCarousel({ className }) {
     history.push('/categories/new')
   }
 
-  const expenseCategories = useSelector(state => state.money.expenseCategories)
+  const expenseCategories = useSelector(state => state.categories.expenseCategories)
 
   return (
     <Carousel

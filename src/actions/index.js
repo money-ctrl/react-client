@@ -32,3 +32,8 @@ export const moneyAssign = (payload) => ({
   type: types.MONEY_ASSIGN,
   payload: payload || {},
 })
+
+export const categoriesAssign = (payload) => ({
+  type: types.CATEGORIES_ASSIGN,
+  payload: payload || {},
+})

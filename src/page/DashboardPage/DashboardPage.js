@@ -6,7 +6,7 @@ import CategoriesCarousel from '../../components/CategoriesCarousel'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
-import { moneyAssign } from '../../actions'
+import { moneyAssign, categoriesAssign } from '../../actions'
 import { database } from '../../services/backend'
 
 function DashboardPage({ className }) {
@@ -22,7 +22,7 @@ function DashboardPage({ className }) {
 
     const unsubscribeCategories = database().collection('expenseCategories')
       .onSnapshot((snapshot) => {
-        dispatch(moneyAssign({
+        dispatch(categoriesAssign({
           expenseCategories: snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})),
         }))
       })
