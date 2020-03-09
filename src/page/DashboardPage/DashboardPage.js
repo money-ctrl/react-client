@@ -40,8 +40,7 @@ function DashboardPage({ className }) {
         label="Total Balance"
         monochromatic={true}
         size={1.5}
-        value={totalMoney}
-        formatOptions={{ maximumFractionDigits: 0 }}
+        value={Math.floor(totalMoney)}
       />
       <CategoriesCarousel
         className="dashboard-page__categories"
