@@ -97,32 +97,33 @@ function MenuItemBase({
           >
             Cancel
           </button>
-          <Title
-            onClick={() => setExpanded(true)}
-            className={classnames(
-              'menu-item-base__title',
-              isExpanded && 'menu-item-base__title--is-expanded'
-            )}
-          >
-            <span>
-              {title}
-            </span>
-
-            <div
-              className="menu-item-base__title-icon"
-              style={{
-                backgroundColor: iconColors[0],
-                color: iconColors[1],
-              }}
+          <div className="menu-item-base__wrapper">
+            <Title
+              onClick={() => setExpanded(true)}
+              className={classnames(
+                'menu-item-base__title',
+                isExpanded && 'menu-item-base__title--is-expanded'
+              )}
             >
-              <Icon name={icon} />
-            </div>
-          </Title>
-          {isExpanded && <div
-            className="menu-item-base__content"
-          >
-            {displayCurrentPage()}
-          </div>}
+              <span>
+                {title}
+              </span>
+
+              <div
+                className="menu-item-base__title-icon"
+                style={{
+                  backgroundColor: iconColors[0],
+                  color: iconColors[1],
+                }}
+              >
+                <Icon name={icon} />
+              </div>
+            </Title>
+
+            {isExpanded && <div>
+              {displayCurrentPage()}
+            </div>}
+          </div>
         </Card>
       )}
     </Transition>
