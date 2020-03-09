@@ -58,12 +58,13 @@ function MenuItemBase({
   const [pageIndex, setPageIndex] = useState(0)
   const nextStep = () => setPageIndex(pageIndex+1)
   const previousStep = () => setPageIndex(pageIndex-1)
+  const close = () => {setExpanded(false);setPageIndex(0)}
   const displayCurrentPage = () => {
     if (typeof pages[pageIndex] === 'function') {
       return pages[pageIndex]({
-        close: () => setExpanded(false),
         nextStep,
         previousStep,
+        close,
       })
     } else {
       return pages[pageIndex]
