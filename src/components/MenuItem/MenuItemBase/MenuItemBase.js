@@ -76,7 +76,6 @@ function MenuItemBase({
     <Transition
       in={isExpanded}
       timeout={0}
-      classNames="menu-item-base--is-expanded"
     >
       {state => (
         <Card
