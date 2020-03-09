@@ -40,14 +40,14 @@ export const addTransaction = async ({ income, expense }) => {
     const isFirstTransaction = !lastTransaction
 
     lastTransaction = isFirstTransaction
-      ? {}
+      ? { totalBefore: 0, amount: 0 }
       : lastTransaction.data()
 
-    const totalBefore = (lastTransaction.totalBefore + lastTransaction.amount) || 0
+    const totalBefore = lastTransaction.totalBefore + lastTransaction.amount
 
     const createPayload = ({ amount, sender, recipient }) => ({
       createdAt: new Date(),
-      totalBefore: totalBefore || 0,
+      totalBefore,
       sender,
       recipient,
       amount,
@@ -100,9 +100,7 @@ export const addTransaction = async ({ income, expense }) => {
       const category = database().collection('expenseCategories')
         .doc(expense.categoryId)
 
-      category.collection('transactions')
-        .doc()
-        .set(categoryPayload)
+      category.collection('transactions').doc().set(categoryPayload)
       const { amount } = await category.get()
       category.set({
         amount: categoryPayload.amount + (amount || 0),
