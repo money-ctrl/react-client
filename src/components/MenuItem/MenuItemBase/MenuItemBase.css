@@ -5,6 +5,8 @@
   transition-property: height, transform, opacity, left, right, bottom;
   transition-duration: .3s;
   will-change: height, transform, opacity, left, right, bottom;
+
+  overflow: visible scroll;
 }
 
 .menu-item-base__title {
