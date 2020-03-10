@@ -58,6 +58,7 @@ function CategoriesCarousel({ className }) {
           key={category.name}
           className="categories-carousel__card"
           category={category}
+          onClick={() => history.push(`/categories/${category.id}`)}
         />
       ))}
 
