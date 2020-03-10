@@ -46,14 +46,14 @@ function CategoriesCarousel({ className }) {
     history.push('/categories/new')
   }
 
-  const expenseCategories = useSelector(state => state.categories.expenseCategories)
+  const categories = useSelector(state => state.categories.list)
 
   return (
     <Carousel
       nativeRef={carousel}
       className={classnames('categories-carousel', className)}
     >
-      {expenseCategories.map(category => (
+      {categories.map(category => (
         <CategoryCard
           key={category.name}
           className="categories-carousel__card"

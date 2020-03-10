@@ -25,7 +25,7 @@ function MenuItemExpense({style, onSubmit}) {
     onSubmit()
   }
 
-  const categories = useSelector(state => state.categories.expenseCategories)
+  const categories = useSelector(state => state.categories.list)
 
   return (
     <MenuItemBase

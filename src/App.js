@@ -42,9 +42,9 @@ function App() {
 
     const unsubscribeCategories = database().collection('expenseCategories')
       .onSnapshot((snapshot) => {
-        dispatch(categoriesAssign({
-          expenseCategories: snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})),
-        }))
+        dispatch(categoriesAssign(snapshot.docs
+          .map(doc => ({id: doc.id, ...doc.data()}))
+        ))
       })
 
     return () => {

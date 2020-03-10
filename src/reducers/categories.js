@@ -1,7 +1,8 @@
 import * as types from '../constants'
 
 export const initialState = Object.freeze({
-  expenseCategories: [],
+  list: [],
+  ids: {},
 })
 
 export default function(state = initialState, action) {
@@ -9,7 +10,11 @@ export default function(state = initialState, action) {
     case types.CATEGORIES_ASSIGN:
       return {
         ...state,
-        ...action.payload,
+        list: action.payload,
+        ids: {
+          ...state.ids,
+          ...action.payload.reduce((acc, cur) => ({...acc,[cur.id]:cur}), {}),
+        }
       }
     default:
       return state

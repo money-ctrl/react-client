@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import MoneyDisplay from '../../components/MoneyDisplay'
 
 function LoginPage() {
-  const categories = useSelector(state => state.categories.expenseCategories)
+  const categories = useSelector(state => state.categories.list)
 
   const amountSum = categories.reduce((acc, cur) => acc + cur.amount, 0)
   const limitSum = categories.reduce((acc, cur) => acc + cur.limit, 0)
