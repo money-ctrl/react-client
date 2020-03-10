@@ -1,10 +1,11 @@
 :root {
   --top-navigation-layout--padding: var(--space-l);
+  --top-navigation-layout--gap: var(--space-l);
 }
 
 .top-navigation-layout {
   display: grid;
-  grid-gap: var(--space-l);
+  grid-gap: var(--top-navigation-layout--gap);
   grid-template:
     'toolbar' auto
     'content' 1fr
