@@ -74,7 +74,7 @@ function CategoriesCarousel({ className }) {
             }}
           >
             {state => (<>
-              <div
+              <button
                 className="categories-carousel__card"
                 style={containerStyle[state]}
                 onClick={onAddCardClick}
@@ -84,7 +84,7 @@ function CategoriesCarousel({ className }) {
                   :
                   <CategoryCard />
                 }
-              </div>
+              </button>
             </>)}
           </Transition>
         </SwitchTransition>
