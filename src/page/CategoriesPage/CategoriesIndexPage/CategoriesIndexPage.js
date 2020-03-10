@@ -1,8 +1,11 @@
+import './CategoriesIndexPage.css'
 import React from 'react'
 import Title from '../../../ui/Title'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loading from '../../../ui/Loading'
+import Card from '../../../ui/Card'
+import MoneyDisplay from '../../../components/MoneyDisplay'
 
 function CategoriesPageNew() {
   const { categoryId } = useParams()
@@ -12,6 +15,19 @@ function CategoriesPageNew() {
 
   return (<>
     <Title title={category.name} />
+
+    <Card className="categories-index-page__card">
+      <MoneyDisplay
+        value={category.amount}
+      />
+
+      <div className="categories-index-page__slash">/</div>
+
+      <MoneyDisplay
+        value={category.limit}
+        size={.5}
+      />
+    </Card>
 
     <div>
       current

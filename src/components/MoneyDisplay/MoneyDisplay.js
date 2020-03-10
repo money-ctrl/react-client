@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-function MoneyDisplay({ size, label, value, monochromatic, formatOptions, className }) {
+function MoneyDisplay({ size = 1, label, value, monochromatic, formatOptions, className }) {
   const classes = classnames([
     'money-display',
     monochromatic && 'money-display--monocromatic',

@@ -1,0 +1,12 @@
+.categories-index-page__card {
+  display: flex;
+  align-items: baseline;
+  padding: var(--space-m);
+}
+
+.categories-index-page__slash {
+  font-size: 1.6rem;
+  font-family: var(--font-number);
+  margin-left: auto;
+  margin-right: var(--space-xxs);
+}
