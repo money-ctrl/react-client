@@ -8,6 +8,7 @@ import classNames from 'classnames'
 
 function CategoryCard({
   onClick = () => {},
+  tabIndex = -1,
   className,
   style = {},
   category: { name, limit, amount } = {
@@ -21,6 +22,7 @@ function CategoryCard({
       className={classNames('category-card', className)}
       onClick={onClick}
       style={style}
+      tabIndex={tabIndex}
     >
       <CircularProgress
         className="category-card__progress"
@@ -38,6 +40,7 @@ function CategoryCard({
 
 CategoryCard.propTypes = {
   onClick: PropTypes.func,
+  tabIndex: PropTypes.number,
   className: PropTypes.any,
   style: PropTypes.object,
   category: PropTypes.shape({
