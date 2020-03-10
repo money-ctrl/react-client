@@ -55,10 +55,11 @@ function MenuItemBase({
     })
   }, [cardTransitions.exited])
 
+  const close = () => {setExpanded(false);setPageIndex(0)}
+
   const [pageIndex, setPageIndex] = useState(0)
   const nextStep = () => setPageIndex(pageIndex+1)
   const previousStep = () => setPageIndex(pageIndex-1)
-  const close = () => {setExpanded(false);setPageIndex(0)}
   const displayCurrentPage = () => {
     if (typeof pages[pageIndex] === 'function') {
       return pages[pageIndex]({
@@ -93,7 +94,7 @@ function MenuItemBase({
         >
           <button
             className="menu-item-base__cancel"
-            onClick={() => setExpanded(false)}
+            onClick={close}
           >
             Cancel
           </button>
