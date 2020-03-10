@@ -2,16 +2,34 @@ import './HistoryPage.css'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import MoneyDisplay from '../../components/MoneyDisplay'
 
 function LoginPage() {
   const categories = useSelector(state => state.categories.expenseCategories)
+
+  const amountSum = categories.reduce((acc, cur) => acc + cur.amount, 0)
   const limitSum = categories.reduce((acc, cur) => acc + cur.limit, 0)
 
+  const totalMoney = useSelector(state => state.money.total)
+
+
   return (
-    <div>
-      history, yeah
-      the total money you spent was:<br />
-      {limitSum}
+    <div className="history-page">
+      <MoneyDisplay
+        label="Total available"
+        monochromatic={true}
+        value={totalMoney}
+      />
+      <MoneyDisplay
+        label="Total already spent"
+        monochromatic={true}
+        value={amountSum}
+      />
+      <MoneyDisplay
+        label="Total allocated in category's limits"
+        monochromatic={true}
+        value={limitSum}
+      />
     </div>
   )
 }
