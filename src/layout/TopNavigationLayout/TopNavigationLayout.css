@@ -1,6 +1,6 @@
 :root {
   --top-navigation-layout--padding: var(--space-l);
-  --top-navigation-layout--gap: var(--space-l);
+  --top-navigation-layout--gap: var(--space-s);
 }
 
 .top-navigation-layout {
