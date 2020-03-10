@@ -7,7 +7,7 @@ function TopNavigationLayout({ children, onBackPress }) {
   return (
     <div className="top-navigation-layout">
       <div className="top-navigation-layout__toolbar">
-        <Button variant="secondary" type="round" onClick={onBackPress}>
+        <Button variant="secondary" onClick={onBackPress}>
           <i className="fas fa-chevron-left"></i>
         </Button>
       </div>

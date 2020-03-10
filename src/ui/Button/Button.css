@@ -2,9 +2,10 @@
   display: flex;
   place-content: center;
   padding: var(--space-s);
-  border-radius: 50px;
+  border-radius: 16px;
   background-color: var(--color-neutral-white);
   box-shadow: 0 10px 16px -2px hsla(var(--color-neutral-gray-hsl), .5);
+  min-width: 48px; /*makes it be a square if text is not big enough*/
 
   text-align: center;
 
