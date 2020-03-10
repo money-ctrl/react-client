@@ -31,7 +31,7 @@ function CategoryCard({
 
       <MoneyDisplay
         label={name}
-        value={amount}
+        value={limit-amount}
       />
     </Card>
   )
