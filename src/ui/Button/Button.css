@@ -31,14 +31,14 @@
 }
 
 .button--primary {
-  background-color: var(--secondary-color);
-  box-shadow: 0 10px 16px -2px hsla(var(--secondary-color-hsl), 70%);
+  background-color: var(--color-primary-pure);
+  box-shadow: 0 10px 16px -2px hsla(var(--color-primary-pure-hsl), 70%);
   color: white;
 }
 
 .button--secondary {
-  background-color: var(--accent-color);
-  box-shadow: 0 10px 16px -2px hsla(var(--accent-color-hsl), 70%);
+  background-color: var(--color-secondary-pure);
+  box-shadow: 0 10px 16px -2px hsla(var(--color-secondary-pure-hsl), 70%);
   color: white;
 }
 
