@@ -10,6 +10,16 @@
   --color-neutral-gray: #666;
   --color-neutral-black: #000;
 
+  --color-primary-deep-hsl: 328, 36%, 66%;
+  --color-primary-deep: hsl(328, 36%, 66%);
+  --color-primary-pure-hsl: 344, 100%, 74%;
+  --color-primary-pure: hsl(344, 100%, 74%);
+  --color-secondary-deep-hsl: 265, 47%, 30%;
+  --color-secondary-deep: hsl(265, 47%, 30%);
+  --color-secondary-pure-hsl: 297, 52%, 21%;
+  --color-secondary-pure: hsl(297, 52%, 21%);
+
+  /*deprecated colors*/
   --accent-color-hsl: 265, 46.8%, 30.2%;
   --accent-color: #472971;
   --primary-color-hsl: 328, 35.6%, 65.9%;
