@@ -16,7 +16,7 @@ function Background() {
     velocity: Math.ceil(randomBetween({ max: 10 })),
   })))
 
-  const interval = 100
+  const interval = 10
 
   const moveItem = (item) => {
     const {left, top} = item
@@ -51,12 +51,14 @@ function Background() {
   }
 
   useEffect(() => {
-    const updateTimerId = setInterval(() => {
+    let animationHandler
+    let requestId = requestAnimationFrame(animationHandler = () => {
       setItems(items => items.map(moveItem))
-    }, interval)
+      requestId = requestAnimationFrame(animationHandler)
+    })
 
     return () => {
-      clearInterval(updateTimerId)
+      window.cancelAnimationFrame(requestId)
     }
   }, [])
 
