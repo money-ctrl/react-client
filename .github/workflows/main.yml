@@ -1,0 +1,55 @@
+name: deploy_to_firebase_hosting
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  deploy_to_firebase_hosting:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@master
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: build-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.11.1
+
+      - name: Create firebaseConfig.json
+        run: |
+          cat > ./src/services/firebase/firebaseConfig.json <<EOF
+          {
+            "apiKey": "${{ secrets.FIREBASE_API_KEY }}",
+            "authDomain": "${{ secrets.FIREBASE_AUTH_DOMAIN }}",
+            "databaseURL": "${{ secrets.FIREBASE_DATABASE_URL }}",
+            "projectId": "${{ secrets.FIREBASE_PROJECT_ID }}",
+            "storageBucket": "${{ secrets.FIREBASE_STORAGE_BUCKET }}",
+            "messagingSenderId": "${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}",
+            "appId": "${{ secrets.FIREBASE_APP_ID }}"
+          }
+          EOF
+
+      - name: Install dependencies
+        run: |
+          yarn
+
+      - name: Build project
+        run: |
+          yarn build
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@40e688f
+        with:
+          args: deploy
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
