@@ -1,7 +1,7 @@
 .category-card {
   width: 200px;
   margin-top: var(--space-m);
-  padding: 24px;
+  padding: var(--space-m);
 }
 
 .category-card__progress {
