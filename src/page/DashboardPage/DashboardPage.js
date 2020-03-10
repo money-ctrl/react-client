@@ -1,37 +1,14 @@
 import './DashboardPage.css'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Title from '../../ui/Title'
 import MoneyDisplay from '../../components/MoneyDisplay'
 import CategoriesCarousel from '../../components/CategoriesCarousel'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { useSelector, useDispatch } from 'react-redux'
-import { moneyAssign, categoriesAssign } from '../../actions'
-import { database } from '../../services/backend'
+import { useSelector } from 'react-redux'
 
 function DashboardPage({ className }) {
-  const dispatch = useDispatch()
-
   const totalMoney = useSelector(state => state.money.total)
-
-  useEffect(() => {
-    const unsubscribe = database()
-      .onSnapshot((doc) => {
-        dispatch(moneyAssign(doc.data()))
-      })
-
-    const unsubscribeCategories = database().collection('expenseCategories')
-      .onSnapshot((snapshot) => {
-        dispatch(categoriesAssign({
-          expenseCategories: snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})),
-        }))
-      })
-
-    return () => {
-      unsubscribe()
-      unsubscribeCategories()
-    }
-  }, [dispatch])
 
   return (
     <div className={classNames('dashboard-page', className)}>
