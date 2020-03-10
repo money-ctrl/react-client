@@ -3,6 +3,7 @@ import Background from './layout/Background'
 import DashboardPage from './page/DashboardPage'
 import AccountPage from './page/AccountPage'
 import CategoriesPage from './page/CategoriesPage'
+import HistoryPage from './page/HistoryPage'
 import React, { useEffect } from 'react'
 import ToolbarLayout from './layout/ToolbarLayout'
 import LoginPage from './page/LoginPage'
@@ -74,6 +75,10 @@ function App() {
 
               <Route path="/categories">
                 <CategoriesPage />
+              </Route>
+
+              <Route path="/history">
+                <HistoryPage />
               </Route>
             </Switch>
           </ToolbarLayout>
