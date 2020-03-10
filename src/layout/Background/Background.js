@@ -1,44 +1,28 @@
 import './Background.css'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-class Background extends React.Component {
-  constructor(props) {
-    super(props)
+function randomBetween({ min = 0, max = 1}) {
+  return Math.random() * (max - min) + min
+}
 
-    this.moveItem = this.moveItem.bind(this)
+function Background() {
+  const [items, setItems] = useState(Array.from({length:12}, (_value, id) => ({
+    id,
+    width: randomBetween({ min: 80, max: 150 }),
+    height: randomBetween({ min: 80, max: 150 }),
+    left: randomBetween({ max: window.innerWidth - 150 }),
+    top: randomBetween({ max: window.innerHeight - 150 }),
+    direction: Math.ceil(randomBetween({ max: 4 })),
+    velocity: Math.ceil(randomBetween({ max: 10 })),
+  })))
 
-    this.state = {
-      items: Array.from({length:12}, (_value, id) => ({
-        id,
-        width: Math.random() * (150 - 80) + 80,
-        height: Math.random() * (150 - 80) + 80,
-        left: Math.random() * (window.innerWidth - 150),
-        top: Math.random() * (window.innerHeight - 150),
-        direction: Math.ceil(Math.random() * 4),
-        velocity: Math.ceil(Math.random() * 10),
-      })),
-    }
-  }
+  const interval = 100
 
-  componentDidMount() {
-    this.interval = 100
-
-    this.updateTimerId = setInterval(() => {
-      this.setState(({items}) => ({
-        items: items.map(this.moveItem),
-      }))
-    }, this.interval)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.updateTimerId)
-  }
-
-  moveItem(item) {
+  const moveItem = (item) => {
     const {left, top} = item
 
     const newPosition = { left, top }
-    const velocity = item.velocity * (this.interval/1000)
+    const velocity = item.velocity * (interval/1000)
 
     switch(item.direction) {
       case 1://left
@@ -66,25 +50,31 @@ class Background extends React.Component {
     }
   }
 
-  render() {
-    const items = this.state.items.map(({top, left, height, width, id}) =>
-      <div
-        key={id}
-        className="background__item"
-        style={{
-          transform: `translate(${left}px, ${top}px)`,
-          height,
-          width,
-        }}
-      />
-    )
+  useEffect(() => {
+    const updateTimerId = setInterval(() => {
+      setItems(items => items.map(moveItem))
+    }, interval)
 
-    return (
-      <div className="background">
-        {items}
-      </div>
-    )
-  }
+    return () => {
+      clearInterval(updateTimerId)
+    }
+  }, [])
+
+  return (
+    <div className="background">
+      {items.map(({top, left, height, width, id}) =>
+        <div
+          key={id}
+          className="background__item"
+          style={{
+            transform: `translate(${left}px, ${top}px)`,
+            height,
+            width,
+          }}
+        />)
+      }
+    </div>
+  )
 }
 
 export default Background
