@@ -8,7 +8,7 @@ import Card from '../../../ui/Card'
 import MoneyDisplay from '../../../components/MoneyDisplay'
 import Overdrive from 'react-overdrive'
 
-function CategoriesPageNew() {
+function CategoriesIndexPage() {
   const { categoryId } = useParams()
   const category = useSelector(state => state.categories.ids[categoryId])
 
@@ -38,4 +38,4 @@ function CategoriesPageNew() {
   </>)
 }
 
-export default CategoriesPageNew
+export default CategoriesIndexPage
