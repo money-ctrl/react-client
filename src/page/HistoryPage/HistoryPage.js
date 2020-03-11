@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import MoneyDisplay from '../../components/MoneyDisplay'
 
-function LoginPage() {
+function HistoryPage() {
   const categories = useSelector(state => state.categories.list)
 
   const amountSum = categories.reduce((acc, cur) => acc + cur.amount, 0)
@@ -34,8 +34,8 @@ function LoginPage() {
   )
 }
 
-LoginPage.propTypes = {
+HistoryPage.propTypes = {
   className: PropTypes.any,
 }
 
-export default LoginPage
+export default HistoryPage
