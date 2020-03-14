@@ -8,6 +8,7 @@ import Card from '../../../ui/Card'
 import MoneyDisplay from '../../../components/MoneyDisplay'
 import Overdrive from 'react-overdrive'
 import TopNavigationLayout from '../../../layout/TopNavigationLayout'
+import { database } from '../../../services/backend'
 
 function CategoriesIndexPage() {
   const history = useHistory()
@@ -17,12 +18,26 @@ function CategoriesIndexPage() {
 
   if (!category) return <Loading/>
 
+  const editCategory = () => {
+    const newExpenseCategory = {
+      name: prompt('New category name', category.name),
+      limit: Number(prompt('What is the limit for this category', category.limit)),
+    }
+
+    if (!newExpenseCategory.name) return
+    if (!newExpenseCategory.limit) return
+
+    database().collection('expenseCategories')
+      .doc(categoryId)
+      .set(newExpenseCategory, {merge: true})
+  }
+
   return (<>
     <TopNavigationLayout
       onBackPress={history.goBack}
       actions={[{
         icon: 'cog',
-        onClick: () => {alert('uhuu')},
+        onClick: editCategory,
       }]}
     >
       <Title title={category.name} />
