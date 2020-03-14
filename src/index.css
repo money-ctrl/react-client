@@ -108,3 +108,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
+
+.m-s { margin: var(--space-s) }
+.m-m { margin: var(--space-m) }
+.m-l { margin: var(--space-l) }
+
+.mx-s { margin-left: var(--space-s); margin-right: var(--space-s) }
+.mx-m { margin-left: var(--space-m); margin-right: var(--space-m) }
+.mx-l { margin-left: var(--space-l); margin-right: var(--space-l) }
+
+.my-s { margin-top: var(--space-s); margin-bottom: var(--space-s) }
+.my-m { margin-top: var(--space-m); margin-bottom: var(--space-m) }
+.my-l { margin-top: var(--space-l); margin-bottom: var(--space-l) }
+
+.mt-s { margin-top: var(--space-s) }
+.mt-m { margin-top: var(--space-m) }
+.mt-l { margin-top: var(--space-l) }
+
+.mr-s { margin-right: var(--space-s) }
+.mr-m { margin-right: var(--space-m) }
+.mr-l { margin-right: var(--space-l) }
+
+.mb-s { margin-bottom: var(--space-s) }
+.mb-m { margin-bottom: var(--space-m) }
+.mb-l { margin-bottom: var(--space-l) }
+
+.ml-s { margin-left: var(--space-s) }
+.ml-m { margin-left: var(--space-m) }
+.ml-l { margin-left: var(--space-l) }
