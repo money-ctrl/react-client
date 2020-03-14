@@ -17,6 +17,15 @@
 
 .top-navigation-layout__toolbar {
   grid-area: toolbar;
+  display: flex;
+}
+
+.top-navigation-layout__toolbar > *:not(:first-child) {
+  margin-left: var(--space-s);
+}
+
+.top-navigation-layout__back {
+  margin-right: auto;
 }
 
 .top-navigation-layout__content {
