@@ -9,17 +9,13 @@ const ICONS = Object.freeze({
 })
 
 function Icon({name}) {
-
-
   return (
     <i className={ICONS[name] || `fas fa-${name}`} />
   )
 }
 
 Icon.propTypes = {
-  name: PropTypes
-    .oneOf(Object.keys(ICONS))
-    .isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 export default Icon
