@@ -12,7 +12,7 @@ function Icon({name}) {
 
 
   return (
-    <i className={ICONS[name]} />
+    <i className={ICONS[name] || `fas fa-${name}`} />
   )
 }
 
