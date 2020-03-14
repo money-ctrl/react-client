@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { database } from '../../../services/backend'
+import Button from '../../../ui/Button'
+import TopNavigationLayout from '../../../layout/TopNavigationLayout'
 
 function CategoriesPageNew() {
-  useEffect(() => {
+  const history = useHistory()
+
+  const addNewCategory = () => {
     const newExpenseCategory = {
       name: prompt('New category name'),
       limit: Number(prompt('What is the limit for this category')),
@@ -15,12 +20,14 @@ function CategoriesPageNew() {
     database().collection('expenseCategories')
       .doc()
       .set(newExpenseCategory)
-  }, [])
+  }
 
   return (
-    <div>
-      new
-    </div>
+    <TopNavigationLayout onBackPress={history.goBack}>
+      <Button onClick={addNewCategory} variant="primary" behavior="block">
+        Add new Category
+      </Button>
+    </TopNavigationLayout>
   )
 }
 
