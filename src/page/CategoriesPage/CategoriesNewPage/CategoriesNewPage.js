@@ -17,9 +17,11 @@ function CategoriesPageNew() {
     if (!newExpenseCategory.name) return
     if (!newExpenseCategory.limit) return
 
-    database().collection('expenseCategories')
-      .doc()
-      .set(newExpenseCategory)
+    const docRef = database().collection('expenseCategories').doc()
+
+    docRef.set(newExpenseCategory)
+
+    history.replace(`/categories/${docRef.id}`)
   }
 
   return (
