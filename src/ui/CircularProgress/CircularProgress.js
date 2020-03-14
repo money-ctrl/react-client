@@ -18,7 +18,7 @@ function CircularProgress({
     <Card className={`circular-progress ${className}`}>
       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="circular-progress__svg">
         <linearGradient id="progress" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"   stopColor="#f4bbac"/>
+          <stop offset="0%"   stopColor="#f7b7ab"/>
           <stop offset="100%" stopColor="#ff799d"/>
         </linearGradient>
 
