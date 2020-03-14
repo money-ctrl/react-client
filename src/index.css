@@ -14,10 +14,14 @@
   --color-primary-deep: hsl(328, 36%, 66%);
   --color-primary-pure-hsl: 344, 100%, 74%;
   --color-primary-pure: hsl(344, 100%, 74%);
+  --color-primary-clear-hsl: 9, 82%, 82%;
+  --color-primary-clear: hsl(9, 82%, 82%);
   --color-secondary-deep-hsl: 265, 47%, 30%;
   --color-secondary-deep: hsl(265, 47%, 30%);
   --color-secondary-pure-hsl: 297, 52%, 21%;
   --color-secondary-pure: hsl(297, 52%, 21%);
+  --color-secondary-clear-hsl: 293, 66%, 25%;
+  --color-secondary-clear: hsl(293, 66%, 25%);
 
   /*deprecated colors*/
   --accent-color-hsl: 265, 46.8%, 30.2%;
