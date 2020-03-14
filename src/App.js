@@ -41,6 +41,7 @@ function App() {
       })
 
     const unsubscribeCategories = database().collection('expenseCategories')
+      .where('visible', '==', true)
       .onSnapshot((snapshot) => {
         dispatch(categoriesAssign(snapshot.docs
           .map(doc => ({id: doc.id, ...doc.data()}))

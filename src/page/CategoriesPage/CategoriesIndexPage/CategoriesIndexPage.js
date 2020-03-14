@@ -32,10 +32,23 @@ function CategoriesIndexPage() {
       .set(newExpenseCategory, {merge: true})
   }
 
+  const deleteCategory = () => {
+    if (!window.confirm('Are you sure you want to delete this category?')) return
+
+    database().collection('expenseCategories')
+      .doc(categoryId)
+      .set({ visible: false }, {merge: true})
+
+    history.goBack()
+  }
+
   return (<>
     <TopNavigationLayout
       onBackPress={history.goBack}
       actions={[{
+        icon: 'trash',
+        onClick: deleteCategory,
+      }, {
         icon: 'cog',
         onClick: editCategory,
       }]}

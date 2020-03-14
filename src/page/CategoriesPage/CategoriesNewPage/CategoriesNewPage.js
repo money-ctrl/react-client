@@ -12,6 +12,7 @@ function CategoriesPageNew() {
       name: prompt('New category name'),
       limit: Number(prompt('What is the limit for this category')),
       amount: 0,
+      visible: true,
     }
 
     if (!newExpenseCategory.name) return
