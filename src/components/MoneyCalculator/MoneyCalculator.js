@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import Button from '../../ui/Button'
 import MoneyDisplay from '../MoneyDisplay'
 import PropTypes from 'prop-types'
+import Icon from '../../ui/Icon'
 
 function MoneyCalculator({ onSubmit = (() => {}) }) {
   const buttons = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0]
@@ -39,7 +40,7 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
           variant="primary"
           onClick={() => onSubmit(value/100)}
         >
-          <i className="fas fa-check"></i>
+          <Icon name="check" />
         </Button>
       </div>
 
@@ -49,7 +50,7 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
           variant="ghost"
           onClick={() => setValue(Math.floor(value / 10))}
         >
-          <i className="fas fa-backspace"></i>
+          <Icon name="backspace" />
         </Button>
       </div>
     </div>
