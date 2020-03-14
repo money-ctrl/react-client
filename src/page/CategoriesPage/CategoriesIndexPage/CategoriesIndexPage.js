@@ -70,8 +70,8 @@ function CategoriesIndexPage() {
         </Card>
       </Overdrive>
 
-      <div>
-      current
+      <div className="mt-l">
+        <Title tag="h2" title="Lastest spending" />
       </div>
     </TopNavigationLayout>
   </>)
