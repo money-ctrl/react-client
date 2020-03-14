@@ -6,12 +6,12 @@ import CategoriesIndexPage from './CategoriesIndexPage'
 
 function CategoriesPage() {
   return (<>
-    <Route path="/categories/:categoryId">
-      <CategoriesIndexPage />
-    </Route>
-
     <Route path="/categories/new">
       <CategoriesNewPage />
+    </Route>
+
+    <Route path="/categories/:categoryId">
+      <CategoriesIndexPage />
     </Route>
   </>)
 }
