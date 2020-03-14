@@ -1,13 +1,13 @@
 .title {
   color: #fdfcfc;
   font-weight: bold;
+  letter-spacing: .08em;
   margin-bottom: 0;
   margin-top: 0;
 }
 
 h1.title {
   font-size: 2rem;
-  letter-spacing: .08em;
 }
 
 h1.title::after {
@@ -20,4 +20,8 @@ h1.title::after {
   font-size: 0.7em;
   letter-spacing: initial;
   text-decoration: wavy underline hsla(var(--secondary-color-hsl), .65);
+}
+
+h2.title {
+  font-size: 1.35rem;
 }
