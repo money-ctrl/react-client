@@ -11,6 +11,11 @@
   height: 100%;
   padding: var(--space-s);
 
+  overflow: hidden;
+}
+
+.menu-item-base--is-expanded
+> .menu-item-base__wrapper {
   overflow: visible scroll;
 }
 
