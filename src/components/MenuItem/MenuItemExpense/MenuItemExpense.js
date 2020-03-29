@@ -1,4 +1,3 @@
-import './MenuItemExpense.css'
 import React, { useState } from 'react'
 import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
@@ -9,6 +8,7 @@ import { useSelector } from 'react-redux'
 import Button from '../../../ui/Button'
 import CircularProgress from '../../../ui/CircularProgress'
 import { useRouteMatch } from 'react-router-dom'
+import CategorySelector from '../../CategorySelector'
 
 function MenuItemExpense({style, onSubmit}) {
   const [amount, setAmount] = useState(0)
@@ -38,17 +38,10 @@ function MenuItemExpense({style, onSubmit}) {
       />
     ),
     ({ previousStep, close }) => (
-      <TopNavigationLayout onBackPress={previousStep}>
-        {categorylist.map((category) => (
-          <div key={category.id} className="menu-item-expense__menu-item">
-            <CircularProgress value={category.amount} max={category.limit} inverted={true} />
-
-            <Button onClick={() => onExpenseSubmit(category, close)}>
-              {category.name}
-            </Button>
-          </div>
-        ))}
-      </TopNavigationLayout>
+      <CategorySelector
+        onBackPress={previousStep}
+        onSubmit={category => onExpenseSubmit(category, close)}
+      />
     ),
   ]
 

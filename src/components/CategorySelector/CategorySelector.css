@@ -1,8 +1,8 @@
-.menu-item-expense {
+.category-selector {
   --top-navigation-layout--padding: var(--space-s) var(--space-xs);
 }
 
-.menu-item-expense__menu-item {
+.category-selector__item {
   display: grid;
   grid-template:
     'percent name' auto
