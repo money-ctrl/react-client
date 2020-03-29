@@ -3,10 +3,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../../ui/Button'
 import Icon from '../../ui/Icon'
+import classNames from 'classnames'
 
-function TopNavigationLayout({ children, onBackPress, actions = [], titleSlot }) {
+function TopNavigationLayout({ children, onBackPress, actions = [], titleSlot, className }) {
   return (
-    <div className="top-navigation-layout">
+    <div className={classNames('top-navigation-layout', className)}>
       <div className="top-navigation-layout__toolbar">
         <Button variant="secondary" onClick={onBackPress} className="top-navigation-layout__back">
           <Icon name="chevron-left" />
@@ -38,6 +39,7 @@ TopNavigationLayout.propTypes = {
     icon: PropTypes.string,
   })),
   titleSlot: PropTypes.any,
+  className: PropTypes.string,
 }
 
 export default TopNavigationLayout
