@@ -41,7 +41,7 @@ function MenuItemExpense({style, onSubmit}) {
       <TopNavigationLayout onBackPress={previousStep}>
         {categorylist.map((category) => (
           <div key={category.id} className="menu-item-expense__menu-item">
-            <CircularProgress value={category.amount} max={category.limit} />
+            <CircularProgress value={category.amount} max={category.limit} inverted={true} />
 
             <Button onClick={() => onExpenseSubmit(category, close)}>
               {category.name}

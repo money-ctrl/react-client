@@ -7,19 +7,34 @@ function CircularProgress({
   className,
   max = 100,
   value = 50,
+  inverted = false,
 }) {
-  const percentage = (value / max * 100) || 0
+  const isOffLimits = value > max
+
+  const style = isOffLimits ? 'danger' : 'default'
+
+  const _max = Math.max(max, value)
+  const _value = Math.min(max, value)
+
+  const percentage = (_value / _max) || 0
 
   const circleRadius = 220
   const circleLength = Math.PI*(circleRadius*2)
-  const x = ((100-percentage)/100)*circleLength
+  const filledLength = (inverted ? percentage : 100-percentage)*circleLength
+
+  const fill = filledLength * (isOffLimits ? -1 : 1)
 
   return (
     <Card className={`circular-progress ${className}`}>
       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="circular-progress__svg">
-        <linearGradient id="progress" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="default" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%"   stopColor="#f7b7ab"/>
-          <stop offset="100%" stopColor="#ff799d"/>
+          <stop offset="100%" stopColor="#ff7a9e"/>
+        </linearGradient>
+
+        <linearGradient id="danger" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stopColor="#f00"/>
+          <stop offset="70%" stopColor="#ff3333"/>
         </linearGradient>
 
         <circle
@@ -36,9 +51,9 @@ function CircularProgress({
           r={circleRadius}
           fill="transparent"
           strokeDasharray={circleLength}
-          strokeDashoffset={x}
+          strokeDashoffset={fill}
           strokeWidth="40"
-          stroke="url(#progress)"
+          stroke={`url(#${style})`}
         />
       </svg>
     </Card>
@@ -49,6 +64,7 @@ CircularProgress.propTypes = {
   className: PropTypes.string,
   max: PropTypes.number,
   value: PropTypes.number,
+  inverted: PropTypes.bool,
 }
 
 export default CircularProgress

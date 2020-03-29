@@ -27,6 +27,7 @@ function CategoryCard({
         className="category-card__progress"
         max={limit}
         value={amount}
+        inverted={true}
       />
 
       <MoneyDisplay
