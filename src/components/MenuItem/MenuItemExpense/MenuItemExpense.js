@@ -3,10 +3,7 @@ import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
 import { addTransaction } from '../../../services/backend'
 import MoneyCalculator from '../../MoneyCalculator'
-import TopNavigationLayout from '../../../layout/TopNavigationLayout'
 import { useSelector } from 'react-redux'
-import Button from '../../../ui/Button'
-import CircularProgress from '../../../ui/CircularProgress'
 import { useRouteMatch } from 'react-router-dom'
 import CategorySelector from '../../CategorySelector'
 
@@ -25,8 +22,6 @@ function MenuItemExpense({style, onSubmit}) {
     close()
     onSubmit()
   }
-
-  const categorylist = useSelector(state => state.categories.list)
 
   let pages = [
     ({ nextStep }) => (
