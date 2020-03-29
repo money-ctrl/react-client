@@ -5,18 +5,24 @@ import TopNavigationLayout from '../../layout/TopNavigationLayout'
 import { useSelector } from 'react-redux'
 import CircularProgress from '../../ui/CircularProgress'
 import Button from '../../ui/Button'
+import Title from '../../ui/Title'
 
 function CategorySelector({
   onBackPress = () => {},
   onSubmit = () => {},
+  title,
 }) {
   const categorylist = useSelector(state => state.categories.list)
 
   return (
     <TopNavigationLayout
-      onBackPress={onBackPress}
-      titleSlot={''}
       className="category-selector"
+      onBackPress={onBackPress}
+      titleSlot={title && (
+        <Title tag="strong" color="dark" className="category-selector__title">
+          {title}
+        </Title>
+      )}
     >
       {categorylist.map((category) => (
         <div key={category.id} className="category-selector__item">
@@ -34,6 +40,7 @@ function CategorySelector({
 CategorySelector.propTypes = {
   onBackPress: PropTypes.func,
   onSubmit: PropTypes.func,
+  title: PropTypes.string,
 }
 
 export default CategorySelector

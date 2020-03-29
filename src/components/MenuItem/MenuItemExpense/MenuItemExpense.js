@@ -41,6 +41,7 @@ function MenuItemExpense({style, onSubmit}) {
       <CategorySelector
         onBackPress={previousStep}
         onSubmit={category => onExpenseSubmit(category, close)}
+        title="Where to spend?"
       />
     ),
   ]

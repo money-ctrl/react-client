@@ -2,6 +2,11 @@
   --top-navigation-layout--padding: var(--space-s) var(--space-xs);
 }
 
+.category-selector__title {
+  display: block;
+  width: 100%;
+}
+
 .category-selector__item {
   display: grid;
   grid-template:
