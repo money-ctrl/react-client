@@ -11,9 +11,27 @@ function MenuItemIncome({
 
   const onMoneySubmit = (amount) => {
     addTransaction({
-      income: { amount },
+      type: 'income',
+      transactionNature: 'Nature not specified',
+      amount,
+      sender: {
+        type: 'reason',
+        name: 'Unknown',
+        id: 'unknown',
+      },
+      recipient: {
+        type: 'wallet',
+        name: 'Main wallet',
+        id: 'main',
+      },
     })
 
+    const amountDisplay = new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount)
+
+    alert(`Ok, ${amountDisplay}$ was successfully added to your total balance, you can check it on the Stats Page`)
     onSubmit()
   }
 

@@ -20,7 +20,10 @@ export const userLogin = (info) => async (dispatch, getState) => {
   const doc = await database().get()
 
   if (!doc.exists) {
-    database().set(initialDatabasePayload)
+    database().set({
+      version: 2,
+      initialDatabasePayload
+    })
   }
 
   dispatch({ type: types.USER_STATUS, status: 'initialized' })

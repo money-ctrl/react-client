@@ -1,22 +1,27 @@
-import './HistoryPage.css'
+import './StatsPage.css'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import MoneyDisplay from '../../components/MoneyDisplay'
+import Title from '../../ui/Title'
 
-function HistoryPage() {
+function StatsPage() {
   const categories = useSelector(state => state.categories.list)
 
   const amountSum = categories.reduce((acc, cur) => acc + cur.amount, 0)
-  const limitSum = categories.reduce((acc, cur) => acc + cur.limit, 0)
+  const allocatedSum = categories.reduce((acc, cur) => acc + cur.allocated, 0)
 
-  const totalMoney = useSelector(state => state.money.total)
+  const totalMoney = useSelector(state => state.money.amount)
 
 
   return (
     <div className="history-page">
+      <Title>
+        Stats
+      </Title>
+
       <MoneyDisplay
-        label="Total available"
+        label="Total balance"
         monochromatic={true}
         value={totalMoney}
       />
@@ -26,16 +31,16 @@ function HistoryPage() {
         value={amountSum}
       />
       <MoneyDisplay
-        label="Total allocated in category's limits"
+        label="Total allocated in categories"
         monochromatic={true}
-        value={limitSum}
+        value={allocatedSum}
       />
     </div>
   )
 }
 
-HistoryPage.propTypes = {
+StatsPage.propTypes = {
   className: PropTypes.any,
 }
 
-export default HistoryPage
+export default StatsPage

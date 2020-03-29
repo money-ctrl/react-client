@@ -10,9 +10,9 @@ function CategoryCard({
   onClick = () => {},
   className,
   style = {},
-  category: { name, limit, amount } = {
+  category: { name, allocated, amount } = {
     name: 'Add category',
-    limit: 0,
+    allocated: 0,
     amount: 0,
   },
 }) {
@@ -25,14 +25,13 @@ function CategoryCard({
     >
       <CircularProgress
         className="category-card__progress"
-        max={limit}
+        max={allocated}
         value={amount}
-        inverted={true}
       />
 
       <MoneyDisplay
         label={name}
-        value={limit-amount}
+        value={amount}
       />
     </Card>
   )
@@ -44,7 +43,7 @@ CategoryCard.propTypes = {
   style: PropTypes.object,
   category: PropTypes.shape({
     name: PropTypes.string,
-    limit: PropTypes.number,
+    allocated: PropTypes.number,
     amount: PropTypes.number,
   }),
 }

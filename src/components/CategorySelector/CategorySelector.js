@@ -26,7 +26,7 @@ function CategorySelector({
     >
       {categorylist.map((category) => (
         <div key={category.id} className="category-selector__item">
-          <CircularProgress value={category.amount} max={category.limit} inverted={true} />
+          <CircularProgress value={category.amount} max={category.allocated} />
 
           <Button onClick={() => onSubmit(category)}>
             {category.name}

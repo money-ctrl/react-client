@@ -10,13 +10,13 @@ function CategoriesPageNew() {
   const addNewCategory = () => {
     const newExpenseCategory = {
       name: prompt('New category name'),
-      limit: Number(prompt('What is the limit for this category')),
+      allocated: Number(prompt('What is the total amount you want to allocate for expenses in this category?')),
       amount: 0,
       visible: true,
     }
 
     if (!newExpenseCategory.name) return
-    if (!newExpenseCategory.limit) return
+    if (!newExpenseCategory.allocated) return
 
     const docRef = database().collection('expenseCategories').doc()
 

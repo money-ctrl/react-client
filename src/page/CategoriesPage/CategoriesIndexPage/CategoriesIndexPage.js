@@ -21,11 +21,11 @@ function CategoriesIndexPage() {
   const editCategory = () => {
     const newExpenseCategory = {
       name: prompt('New category name', category.name),
-      limit: Number(prompt('What is the limit for this category', category.limit)),
+      allocated: Number(prompt('What is the total amount you want to allocate for expenses in this category?', category.allocated)),
     }
 
     if (!newExpenseCategory.name) return
-    if (!newExpenseCategory.limit) return
+    if (!newExpenseCategory.allocated) return
 
     database().collection('expenseCategories')
       .doc(categoryId)
@@ -64,7 +64,7 @@ function CategoriesIndexPage() {
           <div className="categories-index-page__slash">/</div>
 
           <MoneyDisplay
-            value={category.limit}
+            value={category.allocated}
             size={.5}
           />
         </Card>

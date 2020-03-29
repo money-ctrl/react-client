@@ -7,7 +7,6 @@ function CircularProgress({
   className,
   max = 100,
   value = 50,
-  inverted = false,
 }) {
   const isOffLimits = value > max
 
@@ -20,7 +19,7 @@ function CircularProgress({
 
   const circleRadius = 220
   const circleLength = Math.PI*(circleRadius*2)
-  const filledLength = (inverted ? percentage : 100-percentage)*circleLength
+  const filledLength = (1-percentage)*circleLength
 
   const fill = filledLength * (isOffLimits ? -1 : 1)
 

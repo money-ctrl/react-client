@@ -10,12 +10,16 @@ import CategorySelector from '../../CategorySelector'
 function MenuItemExpense({style, onSubmit}) {
   const [amount, setAmount] = useState(0)
 
-  const onExpenseSubmit = ({ name, id }, close, value = 0) => {
+  const onExpenseSubmit = (sender, close, value = 0) => {
     addTransaction({
-      expense: {
-        amount: value || amount,
-        recipient: `category:${name}`,
-        categoryId: id,
+      type: 'expense',
+      transactionNature: 'Nature not specified',
+      amount: value || amount,
+      sender: {type: 'category', ...sender},
+      recipient: {
+        type: 'reason',
+        name: 'Unknown',
+        id: 'unknown',
       },
     })
 

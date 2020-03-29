@@ -11,7 +11,6 @@ function MenuItemTransfer({style}) {
 
   const onTransactionSubmit = ({ amount, sender, recipient }) => {
     addTransaction({
-      version: 2,
       type: 'transfer',
       amount,
       sender: {type: 'category', ...sender},

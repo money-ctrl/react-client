@@ -3,7 +3,7 @@ import Background from './layout/Background'
 import DashboardPage from './page/DashboardPage'
 import AccountPage from './page/AccountPage'
 import CategoriesPage from './page/CategoriesPage'
-import HistoryPage from './page/HistoryPage'
+import StatsPage from './page/StatsPage'
 import React, { useEffect } from 'react'
 import ToolbarLayout from './layout/ToolbarLayout'
 import LoginPage from './page/LoginPage'
@@ -18,7 +18,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
-import { database } from './services/backend'
+import { database, migrateUserData } from './services/backend'
 import { moneyAssign, categoriesAssign } from './actions'
 
 function App() {
@@ -34,6 +34,8 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     if (isLogged !== true) return
+
+    migrateUserData(database)
 
     const unsubscribe = database()
       .onSnapshot((doc) => {
@@ -62,7 +64,7 @@ function App() {
         {isLogged === true ? <>
           <ToolbarLayout items={[
             { alt: 'dashboard', src: SVGDashboard, path: '/'        },
-            { alt: 'history',   src: SVGFeather,   path: '/history' },
+            { alt: 'stats',     src: SVGFeather,   path: '/stats' },
             { alt: 'account',   src: SVGHome,      path: '/account' },
           ]}>
             <Switch>
@@ -78,8 +80,8 @@ function App() {
                 <CategoriesPage />
               </Route>
 
-              <Route path="/history">
-                <HistoryPage />
+              <Route path="/stats">
+                <StatsPage />
               </Route>
             </Switch>
           </ToolbarLayout>
