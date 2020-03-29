@@ -13,7 +13,9 @@ function TopNavigationLayout({ children, onBackPress, actions = [], titleSlot, c
           <Icon name="chevron-left" />
         </Button>
 
-        {titleSlot || actions.map(({ icon, onClick }) => (
+        {titleSlot}
+
+        {actions.map(({ icon, onClick }) => (
           <Button
             key={icon}
             variant="secondary"
