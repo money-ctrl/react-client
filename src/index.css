@@ -6,8 +6,10 @@
   --font-number: 'Comfortaa', var(--font-basis);
 
   --color-neutral-white: #fff;
+  --color-neutral-light: #fdfcfc;
   --color-neutral-gray-hsl: 0, 0%, 50%;
   --color-neutral-gray: #666;
+  --color-neutral-dark: #444;
   --color-neutral-black: #000;
 
   /* #c889aa */
@@ -28,6 +30,9 @@
   /* #60166a */
   --color-secondary-clear-hsl: 293, 66%, 25%;
   --color-secondary-clear: hsl(293, 66%, 25%);
+
+  --color-font-light: var(--color-neutral-light);
+  --color-font-dark: var(--color-neutral-dark);
 
   /*deprecated colors*/
   --accent-color-hsl: 265, 46.8%, 30.2%;

@@ -1,9 +1,13 @@
 .title {
-  color: #fdfcfc;
+  color: var(--color-font-light);
   font-weight: bold;
   letter-spacing: .08em;
   margin-bottom: 0;
   margin-top: 0;
+}
+
+.title--dark {
+  color: var(--color-font-dark);
 }
 
 h1.title {
@@ -24,4 +28,9 @@ h1.title::after {
 
 h2.title {
   font-size: 1.35rem;
+}
+
+strong.title {
+  font-size: 1.15rem;
+  font-weight: 600;
 }
