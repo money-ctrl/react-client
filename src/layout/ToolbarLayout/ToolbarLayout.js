@@ -48,8 +48,8 @@ function ToolbarLayout({ items = [], children }) {
         onClick={() => setMenuOpen(!isMenuOpen)}
       >
         <MenuItemIncome onSubmit={() => setMenuOpen(false)} />
-        <MenuItemExpense onSubmit={() => setMenuOpen(false)} />
         <MenuItemTransfer onSubmit={() => setMenuOpen(false)} />
+        <MenuItemExpense onSubmit={() => setMenuOpen(false)} />
       </ActionButton>
     </Card>
   </>)
