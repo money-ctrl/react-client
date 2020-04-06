@@ -3,8 +3,9 @@ import ActionButton from '../../ui/ActionButton'
 import Card from '../../ui/Card'
 import React, { useState } from 'react'
 import {
-  MenuItemIncome,
   MenuItemExpense,
+  MenuItemIncome,
+  MenuItemMore,
   MenuItemTransfer,
 } from '../../components/MenuItem'
 import classNames from 'classnames'
@@ -47,6 +48,7 @@ function ToolbarLayout({ items = [], children }) {
         isMenuOpen={isMenuOpen}
         onClick={() => setMenuOpen(!isMenuOpen)}
       >
+        <MenuItemMore onSubmit={() => setMenuOpen(false)} />
         <MenuItemIncome onSubmit={() => setMenuOpen(false)} />
         <MenuItemTransfer onSubmit={() => setMenuOpen(false)} />
         <MenuItemExpense onSubmit={() => setMenuOpen(false)} />
