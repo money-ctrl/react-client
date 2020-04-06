@@ -26,14 +26,14 @@ function StatsPage() {
         value={totalMoney}
       />
       <MoneyDisplay
-        label="Total already spent"
-        monochromatic={true}
-        value={amountSum}
-      />
-      <MoneyDisplay
         label="Total allocated in categories"
         monochromatic={true}
         value={allocatedSum}
+      />
+      <MoneyDisplay
+        label="Total left to spend (planned)"
+        monochromatic={true}
+        value={amountSum}
       />
     </div>
   )
