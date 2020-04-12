@@ -10,9 +10,8 @@
   text-align: center;
 
   transition:
-    background-color .2s ease-out,
-    color .2s ease-out,
-    box-shadow .05s ease-out;
+    background-color .1s ease-out,
+    color .1s ease-out;
 }
 
 .button:active {
