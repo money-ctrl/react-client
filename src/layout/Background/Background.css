@@ -24,3 +24,21 @@
 
   will-change: transform;
 }
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(calc((100vh)));
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(calc((100vw)));
+  }
+}
