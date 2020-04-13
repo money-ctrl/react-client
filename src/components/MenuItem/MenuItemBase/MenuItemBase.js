@@ -136,7 +136,7 @@ MenuItemBase.propTypes = {
   icon: PropTypes.string,
   iconColors: PropTypes.arrayOf(PropTypes.string),
   style: PropTypes.any,
-  pages: PropTypes.arrayOf(PropTypes.func),
+  pages: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
   className: PropTypes.string,
 }
 
