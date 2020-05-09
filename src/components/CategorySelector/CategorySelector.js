@@ -6,13 +6,16 @@ import { useSelector } from 'react-redux'
 import CircularProgress from '../../ui/CircularProgress'
 import Button from '../../ui/Button'
 import Title from '../../ui/Title'
+import { resourceIdentifier } from '../../services/backend'
 
 function CategorySelector({
   onBackPress = () => {},
   onSubmit = () => {},
+  blacklist = [],
   title,
 }) {
   const categorylist = useSelector(state => state.categories.list)
+    .filter(category => !blacklist.includes(resourceIdentifier(category)))
 
   return (
     <TopNavigationLayout
@@ -40,6 +43,7 @@ function CategorySelector({
 CategorySelector.propTypes = {
   onBackPress: PropTypes.func,
   onSubmit: PropTypes.func,
+  blacklist: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
 }
 

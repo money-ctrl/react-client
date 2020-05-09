@@ -3,7 +3,7 @@ import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
 import MoneyCalculator from '../../MoneyCalculator'
 import CategorySelector from '../../CategorySelector'
-import { addTransaction } from '../../../services/backend'
+import { addTransaction, resourceIdentifier } from '../../../services/backend'
 
 function MenuItemTransfer({style}) {
   const [amount, setAmount] = useState(0)
@@ -44,6 +44,7 @@ function MenuItemTransfer({style}) {
       <CategorySelector
         key="Where to deposit?"
         title="Where to deposit?"
+        blacklist={[resourceIdentifier(from)]}
         onBackPress={previousStep}
         onSubmit={(category) => {
           onTransactionSubmit({
