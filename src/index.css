@@ -147,3 +147,7 @@ body {
 .ml-s { margin-left: var(--space-s) }
 .ml-m { margin-left: var(--space-m) }
 .ml-l { margin-left: var(--space-l) }
+
+html.no-focus-outline :focus {
+  outline: none;
+}
