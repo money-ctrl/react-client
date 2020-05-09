@@ -21,17 +21,17 @@ function StatsPage() {
       </Title>
 
       <MoneyDisplay
-        label="Total balance"
+        label="Balance aside from cycle's budget"
         monochromatic={true}
         value={totalMoney}
       />
       <MoneyDisplay
-        label="Total allocated in categories"
+        label="Cycle's Total Budget"
         monochromatic={true}
         value={allocatedSum}
       />
       <MoneyDisplay
-        label="Total left to spend (planned)"
+        label="Cycle's Current Balance"
         monochromatic={true}
         value={amountSum}
       />
