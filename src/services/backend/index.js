@@ -31,11 +31,12 @@ export const database = () => {
   return db.collection('users').doc(userUId)
 }
 
+export const resourceIdentifier = ({type, id}) => `${type}:${id}`
+
 export async function addTransaction({ amount, sender, recipient, type, transactionNature }) {
   try {
     validateArguments(...arguments)
 
-    const resourceIdentifier = ({type, id}) => `${type}:${id}`
     const payload = {
       type,
       amount,
