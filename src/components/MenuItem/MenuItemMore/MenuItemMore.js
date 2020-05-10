@@ -30,10 +30,6 @@ function MenuItemTransfer({style}) {
           </Button>
 
           <Button isLoading={true}>
-            Add salary
-          </Button>
-
-          <Button isLoading={true}>
             Add budget to a category
           </Button>
         </div>
