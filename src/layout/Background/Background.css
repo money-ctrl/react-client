@@ -22,8 +22,6 @@
   width: 100px;
   border-radius: 20px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.01);
-
-  will-change: transform;
 }
 
 @keyframes slide-down {
