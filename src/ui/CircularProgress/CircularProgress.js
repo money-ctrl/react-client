@@ -8,7 +8,7 @@ function CircularProgress({
   max = 100,
   value = 50,
 }) {
-  const isOffLimits = value > max
+  const isOffLimits = value < 0
 
   const style = isOffLimits ? 'danger' : 'default'
 
@@ -21,7 +21,7 @@ function CircularProgress({
   const circleLength = Math.PI*(circleRadius*2)
   const filledLength = (1-percentage)*circleLength
 
-  const fill = filledLength * (isOffLimits ? -1 : 1)
+  const fill = filledLength * -1
 
   return (
     <Card className={`circular-progress ${className}`}>
