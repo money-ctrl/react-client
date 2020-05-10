@@ -114,3 +114,14 @@ function validateArguments({type, amount, sender, recipient}) {
   if (validateResourceIdentifierType(recipient))
     throw new Error(`Recipient with invalid type: ${recipient.type}`)
 }
+
+export function getLastestTransactions({ category, callback }) {
+  return database()
+    .collection('transactions')
+    .where('relatedParties', 'array-contains', resourceIdentifier(category))
+    .orderBy('createdAt', 'desc')
+    .limit(25)
+    .onSnapshot((snapshot) => {
+      callback(snapshot.docs.map(i => i.data()))
+    })
+}

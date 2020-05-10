@@ -10,3 +10,54 @@
   margin-left: auto;
   margin-right: var(--space-xxs);
 }
+
+.categories-index-page__spending-list {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: var(--space-xl);
+}
+
+.categories-index-page__spending-item {
+  color: var(--color-neutral-light);
+  display: grid;
+  grid-template:
+    'icon titl valu' auto
+    'icon desc desc' auto
+    'icon date date' auto
+    /auto 1fr auto;
+  grid-gap: var(--space-xxs) var(--space-s);
+}
+
+.categories-index-page__spending-icon {
+  grid-area: icon;
+  place-self: center;
+
+  background-color: var(--color-secondary-pure);
+
+  border-radius: 50%;
+  width: calc(var(--space-m) * 2.5);
+  height: calc(var(--space-m) * 2.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories-index-page__spending-title {
+  grid-area: titl;
+  font-weight: bold;
+}
+
+.categories-index-page__spending-desc,
+.categories-index-page__spending-created-at {
+  color: var(--color-neutral-light);
+  opacity: .7;
+}
+
+.categories-index-page__spending-desc {
+  grid-area: desc;
+}
+
+.categories-index-page__spending-created-at {
+  grid-area: date;
+}

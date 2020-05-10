@@ -1,20 +1,32 @@
 import './CategoriesIndexPage.css'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Title from '../../../ui/Title'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loading from '../../../ui/Loading'
 import Card from '../../../ui/Card'
+import Icon from '../../../ui/Icon'
 import MoneyDisplay from '../../../components/MoneyDisplay'
 import Overdrive from 'react-overdrive'
 import TopNavigationLayout from '../../../layout/TopNavigationLayout'
-import { database } from '../../../services/backend'
+import { database, getLastestTransactions } from '../../../services/backend'
 
 function CategoriesIndexPage() {
   const history = useHistory()
 
   const { categoryId } = useParams()
   const category = useSelector(state => state.categories.ids[categoryId])
+
+  const [transactions, setTransactions] = useState([])
+
+  useEffect(() => {
+    const unsubscribe = getLastestTransactions({
+      category: { ...category, type: 'category' },
+      callback: setTransactions,
+    })
+
+    return unsubscribe
+  }, [category])
 
   if (!category) return <Loading/>
 
@@ -71,10 +83,66 @@ function CategoriesIndexPage() {
       </Overdrive>
 
       <div className="mt-l">
-        <Title tag="h2" title="Lastest spending" />
+        <Title tag="h2" title="Lastest transactions" />
+
+        <ol className="categories-index-page__spending-list mt-s">
+          {transactions.map(transaction =>
+            <li
+              key={transaction.createdAt}
+              className="categories-index-page__spending-item"
+            >
+              <Icon
+                size="l"
+                className="categories-index-page__spending-icon"
+                {...iconType(transaction.type)}
+              />
+
+              <span className="categories-index-page__spending-title">
+                {transaction.displayData.sender} <Icon name="angle-double-right" /> {transaction.displayData.recipient}
+              </span>
+
+              <MoneyDisplay
+                size="xxs"
+                monochromatic={true}
+                value={transaction.amount}
+              />
+
+              <span className="categories-index-page__spending-desc">
+                {transaction.displayData.transactionNature}
+              </span>
+
+              <span className="categories-index-page__spending-created-at">
+                {getDateString(transaction.createdAt)}
+              </span>
+            </li>
+          )}
+        </ol>
       </div>
     </TopNavigationLayout>
   </>)
+}
+
+const getDateString = ({ seconds, nanoseconds }) => {
+  const milliseconds = seconds * 1000 + nanoseconds / 1000000
+
+  return new Date(milliseconds).toLocaleString()
+}
+
+const iconType = (type) => {
+  return {
+    'transfer': {
+      name: 'exchange-alt',
+      style: {
+        color: '#9a73e4',
+      },
+    },
+    'expense': {
+      name: 'shopping-cart',
+      style: {
+        color: '#da7a98',
+      },
+    },
+  }[type] || { name: 'question-circle', }
 }
 
 export default CategoriesIndexPage
