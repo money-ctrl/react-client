@@ -10,6 +10,10 @@ import MoneyDisplay from '../../../components/MoneyDisplay'
 import Overdrive from 'react-overdrive'
 import TopNavigationLayout from '../../../layout/TopNavigationLayout'
 import { database, getLastestTransactions } from '../../../services/backend'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 function CategoriesIndexPage() {
   const history = useHistory()
@@ -125,7 +129,7 @@ function CategoriesIndexPage() {
 const getDateString = ({ seconds, nanoseconds }) => {
   const milliseconds = seconds * 1000 + nanoseconds / 1000000
 
-  return new Date(milliseconds).toLocaleString()
+  return dayjs(milliseconds).fromNow()
 }
 
 const iconType = (type) => {
