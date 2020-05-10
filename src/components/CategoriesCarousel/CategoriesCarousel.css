@@ -9,5 +9,4 @@
 .categories-carousel__card {
   transition: clip-path .3s ease-in;
   backface-visibility: hidden;
-  will-change: clip-path;
 }

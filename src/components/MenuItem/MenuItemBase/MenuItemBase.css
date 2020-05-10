@@ -3,8 +3,6 @@
 
   transition-property: height, transform, opacity, left, right, bottom;
   transition-duration: .3s;
-  will-change: height, transform, opacity, left, right, bottom;
-  contain: layout size style;
 }
 
 .menu-item-base__wrapper {

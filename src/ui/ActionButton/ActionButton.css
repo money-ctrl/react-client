@@ -20,7 +20,6 @@
 
 .action-button__icon {
   transition: transform .4s;
-  will-change: transform;
 }
 
 .action-button__icon--is-open {
@@ -42,7 +41,6 @@
 
   visibility: hidden;
   animation: appear-after 0s .4s forwards;
-  contain: style size;
 }
 
 @keyframes appear-after {
@@ -56,7 +54,6 @@
 
 .action-button__menu > * {
   opacity: 0;
-  will-change: transform, opacity;
   animation: fade-down .2s backwards;
 }
 

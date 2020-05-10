@@ -6,7 +6,6 @@
   overflow-y: scroll;
 
   transition: opacity .3s;
-  will-change: opacity;
 }
 
 .toolbar-layout__tab-container > * {
@@ -37,12 +36,10 @@
   justify-items: center;
 
   transition: background-color .3s;
-  will-change: background-color;
 }
 
 .toolbar-layout__toolbar > :not(.toolbar-layout__action-button) {
   transition: opacity .3s;
-  will-change: opacity;
 }
 
 .toolbar-layout__toolbar--menu-is-open {
