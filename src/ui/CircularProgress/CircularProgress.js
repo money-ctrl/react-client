@@ -12,8 +12,8 @@ function CircularProgress({
 
   const style = isOffLimits ? 'danger' : 'default'
 
-  const _max = Math.max(max, value)
-  const _value = Math.min(max, value)
+  const _max = isOffLimits ? Math.abs(value) + max : max
+  const _value = value
 
   const percentage = (_value / _max) || 0
 
