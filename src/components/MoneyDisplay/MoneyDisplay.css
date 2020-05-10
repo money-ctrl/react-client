@@ -1,3 +1,15 @@
+.money-display--monocromatic > .money-display__label {
+  color: hsla(0, 0%, 100%, .5);
+}
+
+.money-display--monocromatic > .money-display__value {
+  color: hsl(0, 0%, 100%);
+}
+
+.money-display--monocromatic > .money-display__value::after {
+  color: hsla(0, 0%, 100%, .5);
+}
+
 .money-display__label {
   margin-bottom: .3em;
 
@@ -5,10 +17,6 @@
   font-size: .8em;
   font-weight: bold;
   letter-spacing: .09em;
-}
-
-.money-display--monocromatic > .money-display__label {
-  color: hsla(0, 0%, 100%, .5);
 }
 
 .money-display__value {
@@ -19,16 +27,8 @@
   letter-spacing: .09em;
 }
 
-.money-display--monocromatic > .money-display__value {
-  color: hsl(0, 0%, 100%);
-}
-
 .money-display__value::after {
   color: hsla(0, 0%, 10%, .25);
   content: '$';
   font-weight: 500;
-}
-
-.money-display--monocromatic > .money-display__value::after {
-  color: hsla(0, 0%, 100%, .5);
 }
