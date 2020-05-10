@@ -57,6 +57,14 @@
   --space-l: var(--size-l);
   --space-xl: var(--size-xl);
   --space-xxl: var(--size-xxl);
+
+  --border-radius-s: var(--size-xs);
+  --border-radius-m: var(--size-s);
+  --border-radius-l: var(--size-l);
+
+  --card-border-radius: var(--border-radius-m);
+
+  --button-border-radius: var(--border-radius-m);
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/

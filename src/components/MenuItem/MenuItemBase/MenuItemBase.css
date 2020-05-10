@@ -59,7 +59,7 @@
   position: absolute;
   top: calc(-1* var(--space-s));
   right: 0;
-  border-radius: 40px;
+  border-radius: var(--border-radius-l);
   background-color: var(--accent-color);
   padding:  var(--space-xs) var(--space-s);
   color: white;
