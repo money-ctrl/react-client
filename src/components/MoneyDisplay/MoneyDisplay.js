@@ -13,7 +13,11 @@ function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, forma
 
   const sizes = {
     xxs: 0.454545455,
+    xs: 0.75,
+    s: 0.85,
     m: 1,
+    l: 1.25,
+    xl: 1.75,
     xxl: 1.5,
   }
 
