@@ -3,10 +3,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-function MoneyDisplay({ size = 1, label, value, monochromatic, formatOptions, className }) {
+function MoneyDisplay({ size = 1, label, value, monochromatic, behavior, formatOptions, className }) {
   const classes = classnames([
     'money-display',
     monochromatic && 'money-display--monocromatic',
+    behavior && `money-display--${behavior}`,
     className
   ])
 
@@ -32,6 +33,10 @@ MoneyDisplay.propTypes = {
     maximumFractionDigits: PropTypes.number,
   }),
   className: PropTypes.string,
+  behavior: PropTypes.oneOf([
+    'inline',
+    'block',
+  ]),
 }
 
 export default MoneyDisplay

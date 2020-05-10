@@ -10,6 +10,10 @@
   color: hsla(0, 0%, 100%, .5);
 }
 
+.money-display--inline {
+  display: inline-block;
+}
+
 .money-display__label {
   margin-bottom: .3em;
 
