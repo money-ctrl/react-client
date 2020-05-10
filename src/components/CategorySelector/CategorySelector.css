@@ -11,8 +11,22 @@
   display: grid;
   grid-template:
     'percent name' auto
+    'percent mony' auto
     /auto    1fr;
   align-items: center;
   grid-gap: var(--space-s);
   margin-bottom: var(--space-m);
+}
+
+.category-selector__item-progress {
+  grid-area: percent;
+}
+
+.category-selector__item-submit {
+  grid-area: name;
+}
+
+.category-selector__item-money {
+  grid-area: mony;
+  text-align: center;
 }
