@@ -3,6 +3,7 @@
 
   transition-property: height, transform, opacity, left, right, bottom;
   transition-duration: .3s;
+  contain: layout;
 }
 
 .menu-item-base__wrapper {

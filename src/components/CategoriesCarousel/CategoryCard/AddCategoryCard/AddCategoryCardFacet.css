@@ -6,6 +6,7 @@
   background-color: transparent;
   margin-top: var(--space-m);
   padding: calc(var(--space-m) - var(--border-width));
+  contain: layout;
 }
 
 .add-category-card__progress {

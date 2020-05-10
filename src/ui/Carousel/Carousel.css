@@ -5,6 +5,7 @@
 
   -ms-overflow-style: none;
   scrollbar-width: none;
+  contain: paint layout;
 }
 
 .carousel::-webkit-scrollbar {

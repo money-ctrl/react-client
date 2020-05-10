@@ -2,6 +2,7 @@
   width: 200px;
   margin-top: var(--space-m);
   padding: var(--space-m);
+  contain: layout;
 }
 
 .category-card__progress {
