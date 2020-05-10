@@ -61,7 +61,7 @@ export async function addTransaction({ amount, sender, recipient, type, transact
         amount: previousAmount,
       } = await path(party.id).get().then(ref => ref.data() || {})
 
-      path(party.id).set({ amount: (previousAmount||0) + amount }, {merge:true})
+      return path(party.id).set({ amount: (previousAmount||0) + amount }, {merge:true})
     }
 
     const collections = {
@@ -69,19 +69,27 @@ export async function addTransaction({ amount, sender, recipient, type, transact
       'wallet': () => database(),
     }
 
+    const transactions = []
+
     if (['wallet', 'category'].includes(sender.type)) {
-      applyTransaction(collections[sender.type], {
-        partyType: 'sender',
-        party: sender,
-      })
+      transactions.push(
+        applyTransaction(collections[sender.type], {
+          partyType: 'sender',
+          party: sender,
+        })
+      )
     }
 
     if (['wallet', 'category'].includes(recipient.type)) {
-      applyTransaction(collections[recipient.type], {
-        partyType: 'recipient',
-        party: recipient,
-      })
+      transactions.push(
+        applyTransaction(collections[recipient.type], {
+          partyType: 'recipient',
+          party: recipient,
+        })
+      )
     }
+
+    return Promise.all(transactions)
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error)
