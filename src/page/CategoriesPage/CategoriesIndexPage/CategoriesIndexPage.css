@@ -39,9 +39,13 @@
   width: calc(var(--space-m) * 2.5);
   height: calc(var(--space-m) * 2.5);
 
-  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.categories-index-page__spending-icon.categories-index-page__spending-icon {
+  /* TODO: tricky to override fontawesome's /fa[slbd]/ classes */
+  display: flex;
 }
 
 .categories-index-page__spending-title {
