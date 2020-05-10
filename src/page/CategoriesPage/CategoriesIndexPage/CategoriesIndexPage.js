@@ -102,13 +102,17 @@ function CategoriesIndexPage() {
               />
 
               <span className="categories-index-page__spending-title">
-                {transaction.displayData.sender} <Icon name="angle-double-right" /> {transaction.displayData.recipient}
+                {transaction.displayData.recipient === category.name ? (<>
+                  {transaction.displayData.sender} <Icon name="angle-double-right" />
+                </>) : (<>
+                  <Icon name="angle-double-right" /> {transaction.displayData.recipient}
+                </>)}
               </span>
 
               <MoneyDisplay
                 size="xxs"
                 monochromatic={true}
-                value={transaction.amount}
+                value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
               />
 
               <span className="categories-index-page__spending-desc">
