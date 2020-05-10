@@ -42,6 +42,7 @@
 
   visibility: hidden;
   animation: appear-after 0s .4s forwards;
+  contain: style size;
 }
 
 @keyframes appear-after {
