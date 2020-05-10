@@ -16,7 +16,7 @@ function DashboardPage({ className }) {
       <MoneyDisplay
         label="Cycle's Balance"
         monochromatic={true}
-        size={1.5}
+        size='xxl'
         value={Math.floor(totalMoney)}
       />
       <CategoriesCarousel

@@ -65,7 +65,7 @@ function CategoriesIndexPage() {
 
           <MoneyDisplay
             value={category.allocated}
-            size={.5}
+            size="xxs"
           />
         </Card>
       </Overdrive>

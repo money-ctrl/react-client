@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-function MoneyDisplay({ size = 1, label, value, monochromatic, behavior, formatOptions, className }) {
+function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, formatOptions, className }) {
   const classes = classnames([
     'money-display',
     monochromatic && 'money-display--monocromatic',
@@ -11,8 +11,14 @@ function MoneyDisplay({ size = 1, label, value, monochromatic, behavior, formatO
     className
   ])
 
+  const sizes = {
+    xxs: 0.454545455,
+    m: 1,
+    xxl: 1.5,
+  }
+
   return (
-    <div className={classes} style={{fontSize:`${size}rem`}}>
+    <div className={classes} style={{fontSize:`${sizes[size]}rem`}}>
       <div className="money-display__label">
         {label}
       </div>
@@ -26,7 +32,11 @@ function MoneyDisplay({ size = 1, label, value, monochromatic, behavior, formatO
 MoneyDisplay.propTypes = {
   label: PropTypes.string,
   monochromatic: PropTypes.bool,
-  size: PropTypes.number,
+  size: PropTypes.oneOf([
+    'xxs',
+    'm',
+    'xxl',
+  ]),
   value: PropTypes.number.isRequired,
   formatOptions: PropTypes.shape({
     minimumFractionDigits: PropTypes.number,
