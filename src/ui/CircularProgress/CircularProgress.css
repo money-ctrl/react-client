@@ -22,6 +22,6 @@
   stroke-width: var(--size-xl);
 }
 
-.circular-progress__bar {
-  stroke: hsla(0, 0%, 100%, 0.4);
+.circular-progress__fill {
+  transition: stroke-dashoffset 2.5s;
 }

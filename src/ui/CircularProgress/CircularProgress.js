@@ -11,11 +11,17 @@ function CircularProgress({
   size,
 }) {
   const isOffLimits = value < 0
+  const isOverflowing = value > max
 
   const style = isOffLimits ? 'danger' : 'default'
 
-  const _max = isOffLimits ? Math.abs(value) + max : max
-  const _value = value
+  const _max = isOffLimits ? Math.abs(value) + max : Math.max(max, value)
+  const _value = Math.min(value, max)
+
+  console.log({
+    _value,
+    _max,
+  })
 
   const percentage = (_value / _max) || 0
 
@@ -38,14 +44,22 @@ function CircularProgress({
           <stop offset="70%" stopColor="#ff3333"/>
         </linearGradient>
 
+        <linearGradient id="overflow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="20%"   stopColor="#3bba74"/>
+          <stop offset="100%" stopColor="#4bba84"/>
+        </linearGradient>
+
         <circle
-          className="circular-progress__bar"
           cx="253"
           cy="253"
           r={circleRadius}
           fill="transparent"
+          style={{
+            stroke: !isOverflowing ? 'hsla(0, 0%, 100%, 0.4)' : 'url(#overflow)',
+          }}
         />
         <circle
+          className="circular-progress__fill"
           cx="253"
           cy="253"
           r={circleRadius}
@@ -53,6 +67,7 @@ function CircularProgress({
           strokeDasharray={circleLength}
           strokeDashoffset={fill}
           stroke={`url(#${style})`}
+          strokeLinecap={!isOverflowing ? 'round' : undefined}
         />
       </svg>
     </Card>
