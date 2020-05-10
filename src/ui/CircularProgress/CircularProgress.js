@@ -2,11 +2,13 @@ import './CircularProgress.css'
 import Card from '../Card'
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 function CircularProgress({
   className,
   max = 100,
   value = 50,
+  size,
 }) {
   const isOffLimits = value < 0
 
@@ -24,7 +26,7 @@ function CircularProgress({
   const fill = filledLength * -1
 
   return (
-    <Card className={`circular-progress ${className}`}>
+    <Card className={classNames('circular-progress', size && `circular-progress--${size}`, className)}>
       <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="circular-progress__svg">
         <linearGradient id="default" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%"   stopColor="#f7b7ab"/>
@@ -42,7 +44,6 @@ function CircularProgress({
           cy="253"
           r={circleRadius}
           fill="transparent"
-          strokeWidth="40"
         />
         <circle
           cx="253"
@@ -51,7 +52,6 @@ function CircularProgress({
           fill="transparent"
           strokeDasharray={circleLength}
           strokeDashoffset={fill}
-          strokeWidth="40"
           stroke={`url(#${style})`}
         />
       </svg>
@@ -64,6 +64,9 @@ CircularProgress.propTypes = {
   max: PropTypes.number,
   value: PropTypes.number,
   inverted: PropTypes.bool,
+  size: PropTypes.oneOf([
+    'small',
+  ]),
 }
 
 export default CircularProgress

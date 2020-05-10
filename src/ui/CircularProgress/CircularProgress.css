@@ -3,10 +3,23 @@
   padding: var(--space-s);
   width: 80px;
   height: 80px;
+  contain: strict;
+}
+
+.circular-progress--small {
+  padding: var(--space-xs);
+  width: 48px;
+  height: 48px;
 }
 
 .circular-progress__svg {
+  width: 100%;
+  height: 100%;
   transform: rotate(-90deg);
+}
+
+.circular-progress__svg > circle {
+  stroke-width: var(--size-xl);
 }
 
 .circular-progress__bar {

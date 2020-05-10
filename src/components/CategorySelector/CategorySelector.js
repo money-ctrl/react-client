@@ -29,7 +29,7 @@ function CategorySelector({
     >
       {categorylist.map((category) => (
         <div key={category.id} className="category-selector__item">
-          <CircularProgress value={category.amount} max={category.allocated} />
+          <CircularProgress value={category.amount} max={category.allocated} size="small" />
 
           <Button onClick={() => onSubmit(category)}>
             {category.name}
