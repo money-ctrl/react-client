@@ -1,0 +1,7 @@
+.menu-item-more__button-list {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: var(--space-m);
+
+  margin-top: var(--space-m);
+}

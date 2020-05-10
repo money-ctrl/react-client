@@ -1,19 +1,44 @@
-import React from 'react'
+import './MenuItemMore.css'
+import React, { useState } from 'react'
 import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
+import Button from '../../../ui/Button'
+import { resetCycle } from './resetCycle'
+import { useSelector } from 'react-redux'
 
 function MenuItemTransfer({style}) {
-  const pages = [
-    <div key="0">
-      This is a work in progress
+  const categories = useSelector(state => state.categories.list)
 
-      <div key="1">
-        Reset cycle
+  const [isLoading, setLoading] = useState(false)
+
+  const pages = [
+    ({ close }) => (
+      <div>
+        This is a work in progress
+
+        <div className="menu-item-more__button-list">
+          <Button
+            isLoading={isLoading}
+            onClick={async () => {
+              setLoading(true)
+              await resetCycle({categories})
+              setLoading(false)
+              close()
+            }}
+          >
+            Reset cycle
+          </Button>
+
+          <Button isLoading={true}>
+            Add salary
+          </Button>
+
+          <Button isLoading={true}>
+            Add budget to a category
+          </Button>
+        </div>
       </div>
-      <div key="2">
-        Add salary
-      </div>
-    </div>,
+    ),
   ]
 
   return (
