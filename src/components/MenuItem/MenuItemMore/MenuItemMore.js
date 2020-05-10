@@ -1,18 +1,22 @@
 import './MenuItemMore.css'
 import React, { useState } from 'react'
 import MenuItemBase from '../MenuItemBase'
-import PropTypes from 'prop-types'
+import MoneyCalculator from '../../MoneyCalculator'
+import CategorySelector from '../../CategorySelector'
 import Button from '../../../ui/Button'
+import PropTypes from 'prop-types'
 import { resetCycle } from './resetCycle'
+import { addBudgetToCategory } from './addBudgetToCategory'
 import { useSelector } from 'react-redux'
 
 function MenuItemTransfer({style}) {
   const categories = useSelector(state => state.categories.list)
 
   const [isLoading, setLoading] = useState(false)
+  const [amount, setAmount] = useState(0)
 
   const pages = [
-    ({ close }) => (
+    ({ close, nextStep }) => (
       <div className="menu-item-more__button-list">
         <Button
           isLoading={isLoading}
@@ -26,10 +30,28 @@ function MenuItemTransfer({style}) {
           Reset cycle
         </Button>
 
-        <Button isLoading={true}>
+        <Button onClick={nextStep}>
           Add budget to a category
         </Button>
       </div>
+    ),
+    ({ nextStep }) => (
+      <MoneyCalculator
+        onSubmit={(amount) => {
+          setAmount(amount)
+          nextStep()
+        }}
+      />
+    ),
+    ({ previousStep, close }) => (
+      <CategorySelector
+        title="Where to add budget?"
+        onBackPress={previousStep}
+        onSubmit={(category) => {
+          addBudgetToCategory({category, amount})
+          close()
+        }}
+      />
     ),
   ]
 
