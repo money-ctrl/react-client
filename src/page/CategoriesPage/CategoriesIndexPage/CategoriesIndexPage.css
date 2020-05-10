@@ -26,6 +26,7 @@
     'icon date date' auto
     /auto 1fr auto;
   grid-gap: var(--space-xxs) var(--space-s);
+  contain: paint layout;
 }
 
 .categories-index-page__spending-icon {
