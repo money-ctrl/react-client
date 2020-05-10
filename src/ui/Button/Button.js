@@ -7,6 +7,7 @@ function Button({
   variant = 'default',
   type = 'default',
   behavior = 'default',
+  isLoading = false,
   className,
   onClick,
   children,
@@ -21,6 +22,7 @@ function Button({
         className,
       ])}
       onClick={onClick}
+      disabled={isLoading}
     >
       {children}
     </button>
@@ -45,6 +47,7 @@ Button.propTypes = {
     'round',
   ]),
   onClick: PropTypes.func,
+  isLoading: PropTypes.bool,
 }
 
 export default Button
