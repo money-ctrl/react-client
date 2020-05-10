@@ -42,13 +42,21 @@
   --secondary-color-hsl: 344, 100%, 73.7%;
   --secondary-color: #ff799d;
 
-  --space-xxs: 4px;
-  --space-xs: 8px;
-  --space-s: 16px;
-  --space-m: 24px;
-  --space-l: 32px;
-  --space-xl: 48px;
-  --space-xxl: 64px;
+  --size-xxs: 4px;
+  --size-xs: 8px;
+  --size-s: 16px;
+  --size-m: 24px;
+  --size-l: 32px;
+  --size-xl: 48px;
+  --size-xxl: 64px;
+
+  --space-xxs: var(--size-xxs);
+  --space-xs: var(--size-xs);
+  --space-s: var(--size-s);
+  --space-m: var(--size-m);
+  --space-l: var(--size-l);
+  --space-xl: var(--size-xl);
+  --space-xxl: var(--size-xxl);
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/
