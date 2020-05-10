@@ -5,6 +5,7 @@
   "homepage": "https://ctrlmoney.web.app/",
   "dependencies": {
     "classnames": "^2.2.6",
+    "dayjs": "^1.8.26",
     "eslint-plugin-react": "^7.18.0",
     "firebase": "^7.7.0",
     "firebaseui": "^4.4.0",
