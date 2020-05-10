@@ -4,4 +4,16 @@
   grid-row-gap: var(--space-m);
 
   margin-top: var(--space-m);
+  animation: fade-up-menu-more .4s .2s backwards ease-out;
+}
+
+@keyframes fade-up-menu-more {
+  from {
+    opacity: 0;
+    transform: translateY(35%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -13,26 +13,22 @@ function MenuItemTransfer({style}) {
 
   const pages = [
     ({ close }) => (
-      <div>
-        This is a work in progress
+      <div className="menu-item-more__button-list">
+        <Button
+          isLoading={isLoading}
+          onClick={async () => {
+            setLoading(true)
+            await resetCycle({categories})
+            setLoading(false)
+            close()
+          }}
+        >
+          Reset cycle
+        </Button>
 
-        <div className="menu-item-more__button-list">
-          <Button
-            isLoading={isLoading}
-            onClick={async () => {
-              setLoading(true)
-              await resetCycle({categories})
-              setLoading(false)
-              close()
-            }}
-          >
-            Reset cycle
-          </Button>
-
-          <Button isLoading={true}>
-            Add budget to a category
-          </Button>
-        </div>
+        <Button isLoading={true}>
+          Add budget to a category
+        </Button>
       </div>
     ),
   ]
