@@ -18,11 +18,6 @@ function CircularProgress({
   const _max = isOffLimits ? Math.abs(value) + max : Math.max(max, value)
   const _value = Math.min(value, max)
 
-  console.log({
-    _value,
-    _max,
-  })
-
   const percentage = (_value / _max) || 0
 
   const circleRadius = 220
