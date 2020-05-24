@@ -1,6 +1,6 @@
 import './MenuItemBase.css'
 import React, { useState, useEffect, useRef } from 'react'
-import { Transition } from 'react-transition-group'
+import { Transition, CSSTransition, SwitchTransition } from 'react-transition-group'
 import classnames from 'classnames'
 import Card from '../../../ui/Card'
 import PropTypes from 'prop-types'
@@ -121,9 +121,15 @@ function MenuItemBase({
               </div>
             </Title>
 
-            {isExpanded && <div>
-              {displayCurrentPage()}
-            </div>}
+            {isExpanded && (
+              <SwitchTransition>
+                <CSSTransition key={pageIndex} classNames="slide-left" timeout={250}>
+                  <div>
+                    {displayCurrentPage()}
+                  </div>
+                </CSSTransition>
+              </SwitchTransition>
+            )}
           </div>
         </Card>
       )}

@@ -16,7 +16,7 @@
 
 .menu-item-base--is-expanded
 > .menu-item-base__wrapper {
-  overflow: visible scroll;
+  overflow-y: scroll;
 }
 
 .menu-item-base__title {
@@ -84,4 +84,23 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.slide-left-enter{
+  transform: translateX(100%);
+}
+.slide-left-exit{
+  transform: translateX(0%);
+}
+.slide-left-enter-active{
+  transform: translateX(0%);
+}
+.slide-left-exit-active{
+  transform: translateX(-100%);
+}
+.slide-left-enter-done,
+.slide-left-exit-done,
+.slide-left-enter-active,
+.slide-left-exit-active{
+  transition: transform 500ms;
 }
