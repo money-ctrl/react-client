@@ -15,6 +15,29 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 
+const getDateString = ({ seconds, nanoseconds }) => {
+  const milliseconds = seconds * 1000 + nanoseconds / 1000000
+
+  return dayjs(milliseconds).fromNow()
+}
+
+const iconType = (type) => {
+  return {
+    'transfer': {
+      name: 'exchange-alt',
+      style: {
+        color: '#9a73e4',
+      },
+    },
+    'expense': {
+      name: 'shopping-cart',
+      style: {
+        color: '#da7a98',
+      },
+    },
+  }[type] || { name: 'question-circle', }
+}
+
 function CategoriesIndexPage() {
   const history = useHistory()
 
@@ -136,29 +159,6 @@ function CategoriesIndexPage() {
       </div>
     </TopNavigationLayout>
   </>)
-}
-
-const getDateString = ({ seconds, nanoseconds }) => {
-  const milliseconds = seconds * 1000 + nanoseconds / 1000000
-
-  return dayjs(milliseconds).fromNow()
-}
-
-const iconType = (type) => {
-  return {
-    'transfer': {
-      name: 'exchange-alt',
-      style: {
-        color: '#9a73e4',
-      },
-    },
-    'expense': {
-      name: 'shopping-cart',
-      style: {
-        color: '#da7a98',
-      },
-    },
-  }[type] || { name: 'question-circle', }
 }
 
 export default CategoriesIndexPage
