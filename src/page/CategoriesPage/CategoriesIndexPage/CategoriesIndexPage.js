@@ -22,11 +22,17 @@ function CategoriesIndexPage() {
   const category = useSelector(state => state.categories.ids[categoryId])
 
   const [transactions, setTransactions] = useState([])
+  const [isLoadingTransactions, setLoadingTransactions] = useState(true)
 
   useEffect(() => {
+    if (!category) return
+
     const unsubscribe = getLastestTransactions({
       category: { ...category, type: 'category' },
-      callback: setTransactions,
+      callback: (transactions) => {
+        setTransactions(transactions)
+        setLoadingTransactions(false)
+      },
     })
 
     return unsubscribe
@@ -88,6 +94,8 @@ function CategoriesIndexPage() {
 
       <div className="mt-l">
         <Title tag="h2" title="Lastest transactions" />
+
+        {isLoadingTransactions && <Loading style={{ marginTop: '64px' }} />}
 
         <ol className="categories-index-page__spending-list mt-s">
           {transactions.map(transaction =>
