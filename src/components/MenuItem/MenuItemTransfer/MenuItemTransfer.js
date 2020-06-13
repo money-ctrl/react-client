@@ -15,7 +15,7 @@ function MenuItemTransfer({style}) {
       amount,
       sender: {type: 'category', ...sender},
       recipient: {type: 'category', ...recipient},
-      transactionNature: 'transference',
+      transactionNature: 'Transference',
     })
   }
 
