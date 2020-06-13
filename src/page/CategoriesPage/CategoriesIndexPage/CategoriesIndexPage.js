@@ -9,7 +9,7 @@ import Icon from '../../../ui/Icon'
 import MoneyDisplay from '../../../components/MoneyDisplay'
 import Overdrive from 'react-overdrive'
 import TopNavigationLayout from '../../../layout/TopNavigationLayout'
-import { database, getLastestTransactions } from '../../../services/backend'
+import { database, getLastestTransactions, setTransaction } from '../../../services/backend'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
@@ -36,6 +36,23 @@ const iconType = (type) => {
       },
     },
   }[type] || { name: 'question-circle', }
+}
+
+const editTransactionNature = (transaction) => {
+  const newTransactionNature = window.prompt('Edit transaction nature:', transaction.displayData.transactionNature)
+
+  if (!newTransactionNature) {
+    window.alert('A transaction nature is required, falling back to previous.')
+    return
+  }
+
+  setTransaction({
+    ...transaction,
+    displayData: {
+      ...transaction.displayData,
+      transactionNature: newTransactionNature,
+    },
+  })
 }
 
 function CategoriesIndexPage() {
@@ -146,9 +163,12 @@ function CategoriesIndexPage() {
                 value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
               />
 
-              <span className="categories-index-page__spending-desc">
+              <button
+                className="categories-index-page__spending-desc"
+                onClick={() => editTransactionNature(transaction)}
+              >
                 {transaction.displayData.transactionNature}
-              </span>
+              </button>
 
               <span className="categories-index-page__spending-created-at">
                 {getDateString(transaction.createdAt)}

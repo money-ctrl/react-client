@@ -122,6 +122,16 @@ export function getLastestTransactions({ category, callback }) {
     .orderBy('createdAt', 'desc')
     .limit(25)
     .onSnapshot((snapshot) => {
-      callback(snapshot.docs.map(i => i.data()))
+      callback(snapshot.docs.map(i => ({
+        ...i.data(),
+        id: i.id,
+      })))
     })
+}
+
+export function setTransaction({ id, ...transaction }) {
+  database()
+    .collection('transactions')
+    .doc(id)
+    .set(transaction, { merge: true })
 }
