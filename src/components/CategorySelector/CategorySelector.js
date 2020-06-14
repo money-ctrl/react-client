@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import CircularProgress from '../../ui/CircularProgress'
 import Button from '../../ui/Button'
 import Title from '../../ui/Title'
-import { resourceIdentifier } from '../../services/backend'
+import { resourceId } from '../../services/backend'
 import MoneyDisplay from '../MoneyDisplay'
 
 function CategorySelector({
@@ -16,7 +16,7 @@ function CategorySelector({
   title,
 }) {
   const categorylist = useSelector(state => state.categories.list)
-    .filter(category => !blacklist.includes(resourceIdentifier(category)))
+    .filter(category => !blacklist.includes(resourceId(category)))
 
   return (
     <TopNavigationLayout

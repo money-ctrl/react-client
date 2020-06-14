@@ -31,7 +31,7 @@ export const database = () => {
   return db.collection('users').doc(userUId)
 }
 
-export const resourceIdentifier = ({type, id}) => `${type}:${id}`
+export const resourceId = ({type, id}) => `${type}:${id}`
 
 export async function addTransaction({ amount, sender, recipient, type, transactionNature }) {
   try {
@@ -41,9 +41,9 @@ export async function addTransaction({ amount, sender, recipient, type, transact
       type,
       amount,
       createdAt: new Date(),
-      sender: resourceIdentifier(sender),
-      recipient: resourceIdentifier(recipient),
-      relatedParties: [resourceIdentifier(sender), resourceIdentifier(recipient)],
+      sender: resourceId(sender),
+      recipient: resourceId(recipient),
+      relatedParties: [resourceId(sender), resourceId(recipient)],
       displayData: {
         sender: sender.name,
         recipient: recipient.name,
@@ -118,7 +118,7 @@ function validateArguments({type, amount, sender, recipient}) {
 export function getLastestTransactions({ category, callback }) {
   return database()
     .collection('transactions')
-    .where('relatedParties', 'array-contains', resourceIdentifier(category))
+    .where('relatedParties', 'array-contains', resourceId(category))
     .orderBy('createdAt', 'desc')
     .limit(25)
     .onSnapshot((snapshot) => {
