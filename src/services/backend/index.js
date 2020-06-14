@@ -2,6 +2,7 @@ import {
   db,
   firebase
 } from '../firebase'
+import { resourceId } from '../../utils'
 
 export { default as migrateUserData } from './migrateUserData'
 
@@ -30,8 +31,6 @@ export const database = () => {
 
   return db.collection('users').doc(userUId)
 }
-
-export const resourceId = ({type, id}) => `${type}:${id}`
 
 export async function addTransaction({ amount, sender, recipient, type, transactionNature }) {
   try {

@@ -3,7 +3,8 @@ import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
 import MoneyCalculator from '../../MoneyCalculator'
 import CategorySelector from '../../CategorySelector'
-import { addTransaction, resourceId } from '../../../services/backend'
+import { addTransaction } from '../../../services/backend'
+import { resourceId } from '../../../utils'
 
 function MenuItemTransfer({style}) {
   const [amount, setAmount] = useState(0)

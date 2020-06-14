@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import CircularProgress from '../../ui/CircularProgress'
 import Button from '../../ui/Button'
 import Title from '../../ui/Title'
-import { resourceId } from '../../services/backend'
+import { resourceId } from '../../utils'
 import MoneyDisplay from '../MoneyDisplay'
 
 function CategorySelector({
