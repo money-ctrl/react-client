@@ -12,6 +12,7 @@ import TopNavigationLayout from '../../../layout/TopNavigationLayout'
 import { database, getLastestTransactions, setTransaction } from '../../../services/backend'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { getTypeIdFromResourceId } from '../../../utils'
 
 dayjs.extend(relativeTime)
 
@@ -21,21 +22,32 @@ const getDateString = ({ seconds, nanoseconds }) => {
   return dayjs(milliseconds).fromNow()
 }
 
-const iconType = (type) => {
+const iconType = ({ type, sender }) => {
+  const { type: subtype } = getTypeIdFromResourceId(sender)
   return {
     'transfer': {
-      name: 'exchange-alt',
-      style: {
-        color: '#9a73e4',
+      'wallet': {
+        name: 'wallet',
+        style: {
+          color: '#5bbaa4',
+        },
+      },
+      'category': {
+        name: 'exchange-alt',
+        style: {
+          color: '#9a73e4',
+        },
       },
     },
-    'expense': {
-      name: 'shopping-cart',
-      style: {
-        color: '#da7a98',
-      },
-    },
-  }[type] || { name: 'question-circle', }
+    'expense': new Proxy({}, {
+      get: () => ({
+        name: 'shopping-cart',
+        style: {
+          color: '#da7a98',
+        },
+      }),
+    }),
+  }[type][subtype] || { name: 'question-circle' }
 }
 
 const editTransactionNature = (transaction) => {
@@ -146,7 +158,7 @@ function CategoriesIndexPage() {
               <Icon
                 size="l"
                 className="categories-index-page__spending-icon"
-                {...iconType(transaction.type)}
+                {...iconType(transaction)}
               />
 
               <span className="categories-index-page__spending-title">
