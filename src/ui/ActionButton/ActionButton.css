@@ -31,9 +31,6 @@
   bottom: 100%;
   right: 0;
 
-  display: grid;
-  grid-gap: 16px;
-
   padding-bottom: 16px;
   min-width: 12rem;
 
@@ -55,6 +52,7 @@
 .action-button__menu > * {
   opacity: 0;
   animation: fade-down .2s backwards;
+  margin-top: var(--space-s);
 }
 
 .action-button__menu--is-open > * {
