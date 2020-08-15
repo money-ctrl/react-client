@@ -5,9 +5,8 @@ import MoneyCalculator from '../../MoneyCalculator'
 import CategorySelector from '../../CategorySelector'
 import Button from '../../../ui/Button'
 import PropTypes from 'prop-types'
-import { resetCycle } from './resetCycle'
-import { addBudgetToCategory } from './addBudgetToCategory'
 import { useSelector } from 'react-redux'
+import { resetCycle, addBudgetToCategory } from './actions'
 
 function MenuItemTransfer({style}) {
   const categories = useSelector(state => state.categories.list)
