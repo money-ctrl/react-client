@@ -134,3 +134,21 @@ export function setTransaction({ id, ...transaction }) {
     .doc(id)
     .set(transaction, { merge: true })
 }
+
+export function createSchedule({ repeatCount, sender, recipient, type, amount, transactionNature }) {
+  return database()
+    .collection('schedules')
+    .doc()
+    .set({
+      transactionPayload: {
+        type,
+        transactionNature,
+        amount,
+        sender,
+        recipient,
+      },
+      categoryId: sender.id,
+      repeatCount,
+      triggerType: 'manual',
+    })
+}

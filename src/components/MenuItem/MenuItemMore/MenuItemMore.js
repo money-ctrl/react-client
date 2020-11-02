@@ -6,12 +6,16 @@ import CategorySelector from '../../CategorySelector'
 import Button from '../../../ui/Button'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import { resetCycle, addBudgetToCategory } from './actions'
+import { resetCycle, addBudgetToCategory, schedulePayment } from './actions'
 
 const actionList = {
   addBudgetToCategory: {
     handler: addBudgetToCategory,
     label: 'Add budget to a category',
+  },
+  schedulePayment: {
+    handler: schedulePayment,
+    label: 'Add scheduled payment',
   },
 }
 
@@ -55,7 +59,14 @@ function MenuItemMore({style}) {
         title="Where to add budget?"
         onBackPress={previousStep}
         onSubmit={(category) => {
-          actionList[action].handler({ ...payload, category })
+          const transactionNature = window.prompt('Edit transition nature', 'Nature not specified')
+
+          actionList[action].handler({
+            ...payload,
+            category,
+            transactionNature,
+          })
+
           close()
         }}
       />
