@@ -6,6 +6,7 @@ import classnames from 'classnames'
 function Button({
   variant = 'default',
   type = 'default',
+  size = 'medium',
   behavior = 'default',
   isLoading = false,
   className,
@@ -19,6 +20,7 @@ function Button({
         variant !== 'default' && `button--${variant}`,
         type !== 'default' && `button--${type}`,
         behavior !== 'default' && `button--${behavior}`,
+        size !== 'medium' && `button--${size}`,
         className,
       ])}
       onClick={onClick}
@@ -45,6 +47,10 @@ Button.propTypes = {
   type: PropTypes.oneOf([
     'default',
     'round',
+  ]),
+  size: PropTypes.oneOf([
+    'small',
+    'medium',
   ]),
   onClick: PropTypes.func,
   isLoading: PropTypes.bool,

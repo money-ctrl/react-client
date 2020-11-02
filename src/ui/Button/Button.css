@@ -47,3 +47,11 @@
   width: 100%;
   contain: paint;
 }
+
+.button--small {
+  --button-border-radius: var(--border-radius-s);
+
+  padding: var(--space-xs);
+
+  min-width: 32px; /*makes it be a square if text is not big enough*/
+}
