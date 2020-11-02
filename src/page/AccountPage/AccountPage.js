@@ -48,13 +48,20 @@ function AccountPage({ className }) {
 
         <Button
           behavior="block"
+          onClick={() => history.push('/schedules')}
+        >
+          Scheduled transactions
+        </Button>
+
+        <Button
+          behavior="block"
           onClick={logout}
         >
           Sign Out
         </Button>
       </div>
 
-      <footer className="account-page__footer">
+      <footer className="account-page__footer mt-l">
         Icons made by
         <a href="https://www.flaticon.com/authors/pixel-perfect" data-what="toolbar icons" title="Pixel perfect">
           Pixel perfect
