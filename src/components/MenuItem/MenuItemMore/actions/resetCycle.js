@@ -1,4 +1,4 @@
-import { addTransaction } from '../../../../services/backend'
+import { addTransaction, scheduleTransactionToCategory } from '../../../../services/backend'
 
 export async function resetCycle({ categories }) {
   for (const category of categories) {
@@ -13,5 +13,7 @@ export async function resetCycle({ categories }) {
       recipient: {type: 'category', ...category},
       transactionNature: 'Cycle reset',
     })
+
+    scheduleTransactionToCategory({ category })
   }
 }

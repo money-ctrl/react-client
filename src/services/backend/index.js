@@ -152,3 +152,18 @@ export function createSchedule({ repeatCount, sender, recipient, type, amount, t
       triggerType: 'manual',
     })
 }
+
+export async function scheduleTransactionToCategory({ category }) {
+  const scheduleIds = await database()
+    .collection('schedules')
+    .where('categoryId', '==', category.id)
+    .get()
+    .then(query => query.docs.map(ref => ref.id))
+
+  return database()
+    .collection('expenseCategories')
+    .doc(category.id)
+    .set({
+      scheduled: scheduleIds,
+    }, { merge: true })
+}
