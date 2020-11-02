@@ -8,11 +8,17 @@ import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { resetCycle, addBudgetToCategory } from './actions'
 
+const actionList = {
+  addBudgetToCategory: {
+    handler: addBudgetToCategory,
+    label: 'Add budget to a category',
+  },
+}
+
 function MenuItemMore({style}) {
   const categories = useSelector(state => state.categories.list)
 
   const [isLoading, setLoading] = useState(false)
-  const [amount, setAmount] = useState(0)
 
   const pages = [
     ({ close, nextStep }) => (
@@ -29,25 +35,27 @@ function MenuItemMore({style}) {
           Reset cycle
         </Button>
 
-        <Button onClick={nextStep}>
-          Add budget to a category
-        </Button>
+        {Object.entries(actionList).map(([key, { label }]) => (
+          <Button
+            key={key}
+            onClick={()=>nextStep({ action: key })}
+          >
+            { label }
+          </Button>
+        ))}
       </div>
     ),
     ({ nextStep }) => (
       <MoneyCalculator
-        onSubmit={(amount) => {
-          setAmount(amount)
-          nextStep()
-        }}
+        onSubmit={(amount) => nextStep({ amount })}
       />
     ),
-    ({ previousStep, close }) => (
+    ({ previousStep, close, payload: { action, ...payload } }) => (
       <CategorySelector
         title="Where to add budget?"
         onBackPress={previousStep}
         onSubmit={(category) => {
-          addBudgetToCategory({category, amount})
+          actionList[action].handler({ ...payload, category })
           close()
         }}
       />
