@@ -32,6 +32,13 @@ export const database = () => {
   return db.collection('users').doc(userUId)
 }
 
+export function updateCategory(id, override) {
+  return database()
+    .collection('expenseCategories')
+    .doc(id)
+    .set(override, {merge: true})
+}
+
 export async function addTransaction({ amount, sender, recipient, type, transactionNature }) {
   try {
     validateArguments(...arguments)
@@ -158,7 +165,11 @@ export async function scheduleTransactionToCategory({ category }) {
     .collection('schedules')
     .where('categoryId', '==', category.id)
     .get()
-    .then(query => query.docs.map(ref => ref.id))
+    .then(query => query.docs
+      .map(ref => ({
+        id: ref.id,
+        ...ref.data(),
+      })))
 
   return database()
     .collection('expenseCategories')
