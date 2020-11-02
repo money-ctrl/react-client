@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { resetCycle, addBudgetToCategory } from './actions'
 
-function MenuItemTransfer({style}) {
+function MenuItemMore({style}) {
   const categories = useSelector(state => state.categories.list)
 
   const [isLoading, setLoading] = useState(false)
@@ -65,8 +65,8 @@ function MenuItemTransfer({style}) {
   )
 }
 
-MenuItemTransfer.propTypes = {
+MenuItemMore.propTypes = {
   style: PropTypes.any,
 }
 
-export default MenuItemTransfer
+export default MenuItemMore
