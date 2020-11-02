@@ -3,6 +3,7 @@ import Background from './layout/Background'
 import DashboardPage from './page/DashboardPage'
 import AccountPage from './page/AccountPage'
 import CategoriesPage from './page/CategoriesPage'
+import SchedulesPage from './page/SchedulesPage'
 import StatsPage from './page/StatsPage'
 import React, { useEffect } from 'react'
 import ToolbarLayout from './layout/ToolbarLayout'
@@ -82,6 +83,10 @@ function App() {
 
               <Route path="/stats">
                 <StatsPage />
+              </Route>
+
+              <Route path="/schedules">
+                <SchedulesPage />
               </Route>
             </Switch>
           </ToolbarLayout>

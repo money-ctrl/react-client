@@ -13,6 +13,7 @@ function CategoriesPageNew() {
       allocated: Number(prompt('What is the total amount you want to allocate for expenses in this category?')),
       amount: 0,
       visible: true,
+      scheduled: [],
     }
 
     if (!newExpenseCategory.name) return

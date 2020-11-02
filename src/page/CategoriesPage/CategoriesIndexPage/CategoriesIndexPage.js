@@ -1,18 +1,20 @@
 import './CategoriesIndexPage.css'
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import Title from '../../../ui/Title'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loading from '../../../ui/Loading'
 import Card from '../../../ui/Card'
 import Icon from '../../../ui/Icon'
+import Button from '../../../ui/Button'
 import MoneyDisplay from '../../../components/MoneyDisplay'
 import Overdrive from 'react-overdrive'
 import TopNavigationLayout from '../../../layout/TopNavigationLayout'
-import { database, getLastestTransactions, setTransaction } from '../../../services/backend'
+import { database, getLastestTransactions, setTransaction, addTransaction, updateCategory } from '../../../services/backend'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { getTypeIdFromResourceId } from '../../../utils'
+import { getTypeIdFromResourceId, resourceId } from '../../../utils'
 
 dayjs.extend(relativeTime)
 
@@ -145,52 +147,137 @@ function CategoriesIndexPage() {
       </Overdrive>
 
       <div className="mt-l">
-        <Title tag="h2" title="Lastest transactions" />
+        {category.scheduled && category.scheduled.length > 0
+            && <ScheduledTransactions {...{ category }} />}
 
-        {isLoadingTransactions && <Loading style={{ marginTop: '64px' }} />}
-
-        <ol className="categories-index-page__spending-list mt-s">
-          {transactions.map(transaction =>
-            <li
-              key={transaction.createdAt}
-              className="categories-index-page__spending-item"
-            >
-              <Icon
-                size="l"
-                className="categories-index-page__spending-icon"
-                {...iconType(transaction)}
-              />
-
-              <span className="categories-index-page__spending-title">
-                {transaction.displayData.recipient === category.name ? (<>
-                  {transaction.displayData.sender} <Icon name="angle-double-right" />
-                </>) : (<>
-                  <Icon name="angle-double-right" /> {transaction.displayData.recipient}
-                </>)}
-              </span>
-
-              <MoneyDisplay
-                size="xxs"
-                monochromatic={true}
-                value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
-              />
-
-              <button
-                className="categories-index-page__spending-desc"
-                onClick={() => editTransactionNature(transaction)}
-              >
-                {transaction.displayData.transactionNature}
-              </button>
-
-              <span className="categories-index-page__spending-created-at">
-                {getDateString(transaction.createdAt)}
-              </span>
-            </li>
-          )}
-        </ol>
+        <LastestTransactions {...{
+          transactions,
+          category,
+          isLoadingTransactions,
+        }} />
       </div>
     </TopNavigationLayout>
   </>)
+}
+
+function ScheduledTransactions({ category }) {
+  const commit = (id, transaction) => {
+    addTransaction(transaction)
+    updateCategory(category.id, {
+      scheduled: category.scheduled.filter(transaction => transaction.id !== id),
+    })
+  }
+
+  return (<>
+    <Title tag="h2" title="Scheduled transactions" />
+
+    <ul className="categories-index-page__spending-list mt-s mb-l">
+      {category.scheduled.map(({ id, transactionPayload: transaction}) => (
+        <li
+          key={id}
+          className="categories-index-page__spending-item"
+        >
+          <Icon
+            size="l"
+            className="categories-index-page__spending-icon"
+            {...iconType({ ...transaction, sender: resourceId(transaction.sender)})}
+          />
+
+          <span className="categories-index-page__spending-title">
+            {transaction.recipient.name === category.name ? (<>
+              {transaction.sender.name} <Icon name="angle-double-right" />
+            </>) : (<>
+              <Icon name="angle-double-right" /> {transaction.recipient.name}
+            </>)}
+          </span>
+
+          <MoneyDisplay
+            size="xxs"
+            monochromatic={true}
+            value={transaction.amount * (transaction.recipient.name === category.name ? 1 : -1)}
+          />
+
+          <span
+            className="categories-index-page__spending-desc"
+          >
+            {transaction.transactionNature}
+          </span>
+
+          <div className="categories-index-page__spending-action">
+            <Button size="small" onClick={() => commit(id, transaction)}>
+              commit
+            </Button>
+
+            <Button size="small" onClick={() => window.alert('sorry, not implemented yet')}>
+              <Icon name="ellipsis-v" aria-label="more" role="img" />
+            </Button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </>)
+}
+
+ScheduledTransactions.propTypes = {
+  category: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    scheduled: PropTypes.array,
+  }),
+}
+
+function LastestTransactions({ transactions, category, isLoadingTransactions}) {
+  return (<>
+    <Title tag="h2" title="Lastest transactions" />
+
+    {isLoadingTransactions && <Loading style={{ marginTop: '64px' }} />}
+
+    <ol className="categories-index-page__spending-list mt-s">
+      {transactions.map(transaction =>
+        <li
+          key={transaction.createdAt}
+          className="categories-index-page__spending-item"
+        >
+          <Icon
+            size="l"
+            className="categories-index-page__spending-icon"
+            {...iconType(transaction)}
+          />
+
+          <span className="categories-index-page__spending-title">
+            {transaction.displayData.recipient === category.name ? (<>
+              {transaction.displayData.sender} <Icon name="angle-double-right" />
+            </>) : (<>
+              <Icon name="angle-double-right" /> {transaction.displayData.recipient}
+            </>)}
+          </span>
+
+          <MoneyDisplay
+            size="xxs"
+            monochromatic={true}
+            value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
+          />
+
+          <button
+            className="categories-index-page__spending-desc"
+            onClick={() => editTransactionNature(transaction)}
+          >
+            {transaction.displayData.transactionNature}
+          </button>
+
+          <span className="categories-index-page__spending-created-at">
+            {getDateString(transaction.createdAt)}
+          </span>
+        </li>
+      )}
+    </ol>
+  </>)
+}
+
+LastestTransactions.propTypes = {
+  isLoadingTransactions: PropTypes.bool,
+  category: PropTypes.shape({ name: PropTypes.string }),
+  transactions: PropTypes.array,
 }
 
 export default CategoriesIndexPage

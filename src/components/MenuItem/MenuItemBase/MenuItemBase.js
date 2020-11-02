@@ -57,12 +57,19 @@ function MenuItemBase({
 
   const close = () => {setExpanded(false);setPageIndex(0)}
 
+  const [stepsPayload, setPagePayload] = useState({})
   const [pageIndex, setPageIndex] = useState(0)
-  const nextStep = () => setPageIndex(pageIndex+1)
+
   const previousStep = () => setPageIndex(pageIndex-1)
+  const nextStep = (payload) => {
+    setPagePayload({ ...stepsPayload, ...payload })
+    setPageIndex(pageIndex+1)
+  }
+
   const displayCurrentPage = () => {
     if (typeof pages[pageIndex] === 'function') {
       return pages[pageIndex]({
+        payload: stepsPayload,
         nextStep,
         previousStep,
         close,

@@ -10,12 +10,19 @@ function CategoryCard({
   onClick = () => {},
   className,
   style = {},
-  category: { name, allocated, amount } = {
+  category: { name, allocated, amount, scheduled } = {
     name: 'Add category',
     allocated: 0,
     amount: 0,
+    scheduled: [],
   },
 }) {
+  const futureDeductions = (scheduled || []).reduce((sum, current) => {
+    return sum + current.transactionPayload.amount
+  }, 0)
+
+  const value = amount - futureDeductions
+
   return (
     <Card
       tag="button"
@@ -26,12 +33,12 @@ function CategoryCard({
       <CircularProgress
         className="category-card__progress"
         max={allocated}
-        value={amount}
+        value={value}
       />
 
       <MoneyDisplay
         label={name}
-        value={amount}
+        value={value}
       />
     </Card>
   )
@@ -45,6 +52,7 @@ CategoryCard.propTypes = {
     name: PropTypes.string,
     allocated: PropTypes.number,
     amount: PropTypes.number,
+    scheduled: PropTypes.array,
   }),
 }
 

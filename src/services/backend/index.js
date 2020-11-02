@@ -32,6 +32,13 @@ export const database = () => {
   return db.collection('users').doc(userUId)
 }
 
+export function updateCategory(id, override) {
+  return database()
+    .collection('expenseCategories')
+    .doc(id)
+    .set(override, {merge: true})
+}
+
 export async function addTransaction({ amount, sender, recipient, type, transactionNature }) {
   try {
     validateArguments(...arguments)
@@ -133,4 +140,41 @@ export function setTransaction({ id, ...transaction }) {
     .collection('transactions')
     .doc(id)
     .set(transaction, { merge: true })
+}
+
+export function createSchedule({ repeatCount, sender, recipient, type, amount, transactionNature }) {
+  return database()
+    .collection('schedules')
+    .doc()
+    .set({
+      transactionPayload: {
+        type,
+        transactionNature,
+        amount,
+        sender,
+        recipient,
+      },
+      categoryId: sender.id,
+      repeatCount,
+      triggerType: 'manual',
+    })
+}
+
+export async function scheduleTransactionToCategory({ category }) {
+  const scheduleIds = await database()
+    .collection('schedules')
+    .where('categoryId', '==', category.id)
+    .get()
+    .then(query => query.docs
+      .map(ref => ({
+        id: ref.id,
+        ...ref.data(),
+      })))
+
+  return database()
+    .collection('expenseCategories')
+    .doc(category.id)
+    .set({
+      scheduled: scheduleIds,
+    }, { merge: true })
 }

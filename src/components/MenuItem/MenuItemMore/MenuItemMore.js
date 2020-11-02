@@ -6,13 +6,23 @@ import CategorySelector from '../../CategorySelector'
 import Button from '../../../ui/Button'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import { resetCycle, addBudgetToCategory } from './actions'
+import { resetCycle, addBudgetToCategory, schedulePayment } from './actions'
 
-function MenuItemTransfer({style}) {
+const actionList = {
+  addBudgetToCategory: {
+    handler: addBudgetToCategory,
+    label: 'Add budget to a category',
+  },
+  schedulePayment: {
+    handler: schedulePayment,
+    label: 'Add scheduled payment',
+  },
+}
+
+function MenuItemMore({style}) {
   const categories = useSelector(state => state.categories.list)
 
   const [isLoading, setLoading] = useState(false)
-  const [amount, setAmount] = useState(0)
 
   const pages = [
     ({ close, nextStep }) => (
@@ -29,25 +39,34 @@ function MenuItemTransfer({style}) {
           Reset cycle
         </Button>
 
-        <Button onClick={nextStep}>
-          Add budget to a category
-        </Button>
+        {Object.entries(actionList).map(([key, { label }]) => (
+          <Button
+            key={key}
+            onClick={()=>nextStep({ action: key })}
+          >
+            { label }
+          </Button>
+        ))}
       </div>
     ),
     ({ nextStep }) => (
       <MoneyCalculator
-        onSubmit={(amount) => {
-          setAmount(amount)
-          nextStep()
-        }}
+        onSubmit={(amount) => nextStep({ amount })}
       />
     ),
-    ({ previousStep, close }) => (
+    ({ previousStep, close, payload: { action, ...payload } }) => (
       <CategorySelector
         title="Where to add budget?"
         onBackPress={previousStep}
         onSubmit={(category) => {
-          addBudgetToCategory({category, amount})
+          const transactionNature = window.prompt('Edit transition nature', 'Nature not specified')
+
+          actionList[action].handler({
+            ...payload,
+            category,
+            transactionNature,
+          })
+
           close()
         }}
       />
@@ -65,8 +84,8 @@ function MenuItemTransfer({style}) {
   )
 }
 
-MenuItemTransfer.propTypes = {
+MenuItemMore.propTypes = {
   style: PropTypes.any,
 }
 
-export default MenuItemTransfer
+export default MenuItemMore

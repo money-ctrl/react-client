@@ -14,7 +14,7 @@
 .categories-index-page__spending-list {
   display: grid;
   grid-auto-flow: row;
-  grid-row-gap: var(--space-xl);
+  grid-row-gap: var(--space-m);
 }
 
 .categories-index-page__spending-item {
@@ -24,6 +24,7 @@
     'icon titl valu' auto
     'icon desc desc' auto
     'icon date date' auto
+    'icon acti acti' auto
     /auto 1fr auto;
   grid-gap: var(--space-xxs) var(--space-s);
   contain: paint layout;
@@ -65,4 +66,14 @@
 
 .categories-index-page__spending-created-at {
   grid-area: date;
+}
+
+.categories-index-page__spending-action {
+  grid-area: acti;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  grid-column-gap: var(--space-xs);
+  margin-right: auto;
+  margin-top: var(--space-xxs);
 }
