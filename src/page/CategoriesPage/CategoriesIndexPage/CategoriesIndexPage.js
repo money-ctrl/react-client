@@ -1,5 +1,6 @@
 import './CategoriesIndexPage.css'
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import Title from '../../../ui/Title'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -145,52 +146,68 @@ function CategoriesIndexPage() {
       </Overdrive>
 
       <div className="mt-l">
-        <Title tag="h2" title="Lastest transactions" />
-
-        {isLoadingTransactions && <Loading style={{ marginTop: '64px' }} />}
-
-        <ol className="categories-index-page__spending-list mt-s">
-          {transactions.map(transaction =>
-            <li
-              key={transaction.createdAt}
-              className="categories-index-page__spending-item"
-            >
-              <Icon
-                size="l"
-                className="categories-index-page__spending-icon"
-                {...iconType(transaction)}
-              />
-
-              <span className="categories-index-page__spending-title">
-                {transaction.displayData.recipient === category.name ? (<>
-                  {transaction.displayData.sender} <Icon name="angle-double-right" />
-                </>) : (<>
-                  <Icon name="angle-double-right" /> {transaction.displayData.recipient}
-                </>)}
-              </span>
-
-              <MoneyDisplay
-                size="xxs"
-                monochromatic={true}
-                value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
-              />
-
-              <button
-                className="categories-index-page__spending-desc"
-                onClick={() => editTransactionNature(transaction)}
-              >
-                {transaction.displayData.transactionNature}
-              </button>
-
-              <span className="categories-index-page__spending-created-at">
-                {getDateString(transaction.createdAt)}
-              </span>
-            </li>
-          )}
-        </ol>
+        <LastestTransactions {...{
+          transactions,
+          category,
+          isLoadingTransactions,
+        }} />
       </div>
     </TopNavigationLayout>
   </>)
+}
+
+function LastestTransactions({ transactions, category, isLoadingTransactions}) {
+  return (<>
+    <Title tag="h2" title="Lastest transactions" />
+
+    {isLoadingTransactions && <Loading style={{ marginTop: '64px' }} />}
+
+    <ol className="categories-index-page__spending-list mt-s">
+      {transactions.map(transaction =>
+        <li
+          key={transaction.createdAt}
+          className="categories-index-page__spending-item"
+        >
+          <Icon
+            size="l"
+            className="categories-index-page__spending-icon"
+            {...iconType(transaction)}
+          />
+
+          <span className="categories-index-page__spending-title">
+            {transaction.displayData.recipient === category.name ? (<>
+              {transaction.displayData.sender} <Icon name="angle-double-right" />
+            </>) : (<>
+              <Icon name="angle-double-right" /> {transaction.displayData.recipient}
+            </>)}
+          </span>
+
+          <MoneyDisplay
+            size="xxs"
+            monochromatic={true}
+            value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
+          />
+
+          <button
+            className="categories-index-page__spending-desc"
+            onClick={() => editTransactionNature(transaction)}
+          >
+            {transaction.displayData.transactionNature}
+          </button>
+
+          <span className="categories-index-page__spending-created-at">
+            {getDateString(transaction.createdAt)}
+          </span>
+        </li>
+      )}
+    </ol>
+  </>)
+}
+
+LastestTransactions.propTypes = {
+  isLoadingTransactions: PropTypes.bool,
+  category: PropTypes.shape({ name: PropTypes.string }),
+  transactions: PropTypes.array,
 }
 
 export default CategoriesIndexPage
