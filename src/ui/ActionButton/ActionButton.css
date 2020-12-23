@@ -37,7 +37,7 @@
   pointer-events: none;
 
   visibility: hidden;
-  animation: appear-after 0s .4s forwards;
+  animation: appear-after 0s .6s forwards;
 }
 
 @keyframes appear-after {
