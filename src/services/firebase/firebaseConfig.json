@@ -1,0 +1,9 @@
+{
+  "apiKey": "AIzaSyB2lXJudbaqAEqYg7DqWnlR_l3rCbYilcw",
+  "authDomain": "money-ctrl.firebaseapp.com",
+  "databaseURL": "https://money-ctrl.firebaseio.com",
+  "projectId": "money-ctrl",
+  "storageBucket": "money-ctrl.appspot.com",
+  "messagingSenderId": "73810509026",
+  "appId": "1:73810509026:web:ac85e80eb974b263f372bb"
+}
