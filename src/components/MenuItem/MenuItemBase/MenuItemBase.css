@@ -1,5 +1,7 @@
 .menu-item-base {
   position: relative;
+  max-width: 400px;
+  margin-left: auto;
 
   transition-property: height, transform, opacity, left, right, bottom;
   transition-duration: .3s;
