@@ -1,5 +1,5 @@
 import './CategoriesIndexPage.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import Title from '../../../ui/Title'
 import { useParams, useHistory } from 'react-router-dom'
@@ -76,21 +76,44 @@ function CategoriesIndexPage() {
   const category = useSelector(state => state.categories.ids[categoryId])
 
   const [transactions, setTransactions] = useState([])
+  const [limit, setLimit] = useState(25)
+  const [size, setSize] = useState(limit)
   const [isLoadingTransactions, setLoadingTransactions] = useState(true)
+  const shouldFetchMoreTransactions = size === limit
 
   useEffect(() => {
     if (!category) return
 
     const unsubscribe = getLastestTransactions({
+      limit,
       category: { ...category, type: 'category' },
-      callback: (transactions) => {
+      callback: (transactions, snapshotSize) => {
         setTransactions(transactions)
+        setSize(snapshotSize)
         setLoadingTransactions(false)
       },
     })
 
     return unsubscribe
-  }, [category])
+  }, [category, limit])
+  
+  const infinityLoader = useRef(null)
+  useEffect(() => {
+    const target = infinityLoader.current
+    const observer = new IntersectionObserver(([target]) => {
+      if (!target.isIntersecting) return
+      if (!shouldFetchMoreTransactions) return
+      setLimit((limit) => limit + 25)
+    }, { rootMargin: '-20px', threshold: 1.0 })
+    if (target) {
+      observer.observe(target)
+    }
+    return () => {
+      if (target) {
+        observer.unobserve(target) 
+      }
+    }
+  }, [isLoadingTransactions, shouldFetchMoreTransactions])
 
   if (!category) return <Loading/>
 
@@ -155,6 +178,11 @@ function CategoriesIndexPage() {
           category,
           isLoadingTransactions,
         }} />
+
+        {shouldFetchMoreTransactions && <div className="mt-s" ref={infinityLoader}>
+          <Loading size="m" />
+          <p className="categories-index-page__loading-text">Loading more transactions</p> 
+        </div>}
       </div>
     </TopNavigationLayout>
   </>)

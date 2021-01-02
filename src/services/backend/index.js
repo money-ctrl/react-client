@@ -121,17 +121,17 @@ function validateArguments({type, amount, sender, recipient}) {
     throw new Error(`Recipient with invalid type: ${recipient.type}`)
 }
 
-export function getLastestTransactions({ category, callback }) {
+export function getLastestTransactions({ category, callback, limit = 25 }) {
   return database()
     .collection('transactions')
     .where('relatedParties', 'array-contains', resourceId(category))
     .orderBy('createdAt', 'desc')
-    .limit(25)
+    .limit(limit)
     .onSnapshot((snapshot) => {
       callback(snapshot.docs.map(i => ({
         ...i.data(),
         id: i.id,
-      })))
+      })), snapshot.size)
     })
 }
 
