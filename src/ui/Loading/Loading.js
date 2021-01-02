@@ -13,7 +13,7 @@ function Loading({ style, size }) {
 }
 
 Loading.defaultProps = {
-    size: 'l',
+  size: 'l',
 }
 
 Loading.propTypes = {
