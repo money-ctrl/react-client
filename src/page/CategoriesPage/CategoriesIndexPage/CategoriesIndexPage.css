@@ -77,3 +77,9 @@
   margin-right: auto;
   margin-top: var(--space-xxs);
 }
+
+.categories-index-page__loading-text {
+  margin-top: var(--space-xs);
+  text-align: center;
+  color: var(--color-neutral-light);
+}
