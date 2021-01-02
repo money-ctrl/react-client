@@ -6,6 +6,8 @@ import Card from '../../../ui/Card'
 import PropTypes from 'prop-types'
 import Icon from '../../../ui/Icon'
 
+const sleep = (time) => new Promise((r) => setTimeout(r, time))
+
 function MenuItemBase({
   title,
   icon,
@@ -15,6 +17,7 @@ function MenuItemBase({
   className,
 }) {
   const [isExpanded, setExpanded] = useState(false)
+  const [preExpand, setPreExpand] = useState(false)
 
   const Title = isExpanded ? 'div' : 'button'
 
@@ -84,6 +87,7 @@ function MenuItemBase({
     <Transition
       in={isExpanded}
       timeout={0}
+      onExited={() => setPreExpand(false)}
     >
       {state => (
         <Card
@@ -95,6 +99,7 @@ function MenuItemBase({
           }}
           className={classnames([
             'menu-item-base',
+            preExpand && 'menu-item-base--about-to-expand',
             isExpanded && 'menu-item-base--is-expanded',
             className,
           ])}
@@ -107,7 +112,11 @@ function MenuItemBase({
           </button>
           <div className="menu-item-base__wrapper">
             <Title
-              onClick={() => setExpanded(true)}
+              onClick={async () => {
+                setPreExpand(true)
+                await sleep(100)
+                setExpanded(true)
+              }}
               className={classnames(
                 'menu-item-base__title',
                 isExpanded && 'menu-item-base__title--is-expanded'

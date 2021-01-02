@@ -8,6 +8,10 @@
   contain: layout;
 }
 
+.menu-item-base--about-to-expand {
+  will-change: height, transform, opacity, left, right, bottom;
+}
+
 .menu-item-base__wrapper {
   width: 100%;
   height: 100%;
