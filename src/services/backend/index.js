@@ -142,6 +142,19 @@ export function setTransaction({ id, ...transaction }) {
     .set(transaction, { merge: true })
 }
 
+function filterCategory(category) {
+  const allowed = [
+    'type',
+    'id',
+    'name',
+  ]
+
+  return Object.fromEntrie(
+    Object.entries(category)
+      .filter(([key]) => allowed.includes(key))
+  )
+}
+
 export function createSchedule({ repeatCount, sender, recipient, type, amount, transactionNature }) {
   return database()
     .collection('schedules')
@@ -151,8 +164,8 @@ export function createSchedule({ repeatCount, sender, recipient, type, amount, t
         type,
         transactionNature,
         amount,
-        sender,
-        recipient,
+        sender: filterCategory(sender),
+        recipient: filterCategory(recipient),
       },
       categoryId: sender.id,
       repeatCount,
