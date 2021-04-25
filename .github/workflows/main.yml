@@ -48,7 +48,7 @@ jobs:
           yarn build
 
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@40e688f
+        uses: w9jds/firebase-action@40e688fac5b1c50b60cf21282345e1b7f02f4bab
         with:
           args: deploy
         env:
