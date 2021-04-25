@@ -14,6 +14,7 @@ function AccountPage({ className }) {
   const user = useSelector(({user}) => user.info)
 
   const [isOfflineModeEnabled, setOfflineMode] = useLocalStorage('offlineMode', false)
+  const [isAnimatedBackgroundEnabled, setAnimatedBackground] = useLocalStorage('animatedBackground', false)
 
   const history = useHistory()
   const logout = async () => {
@@ -44,6 +45,14 @@ function AccountPage({ className }) {
           onClick={() => setOfflineMode(!isOfflineModeEnabled)}
         >
           {isOfflineModeEnabled ? 'Disable' : 'Enable'} off-line mode
+        </Button>
+
+        <Button
+          behavior="block"
+          variant={isAnimatedBackgroundEnabled ? 'primary' : 'default'}
+          onClick={() => setAnimatedBackground(!isAnimatedBackgroundEnabled)}
+        >
+          {isAnimatedBackgroundEnabled ? 'Disable' : 'Enable'} animated background.
         </Button>
 
         <Button

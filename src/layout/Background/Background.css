@@ -12,6 +12,10 @@
   contain: strict;
 }
 
+.background--paused-animation > .background__item {
+  animation-play-state: paused;
+}
+
 .background__item {
   position: absolute;
   top: 0;

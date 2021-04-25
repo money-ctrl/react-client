@@ -1,5 +1,7 @@
 import './Background.css'
 import React from 'react'
+import { useLocalStorage } from '../../hooks/useLocalStorage'
+import classnames from 'classnames'
 
 function randomBetween({ min = 0, max = 1} = {}) {
   return Math.random() * (max - min) + min
@@ -35,8 +37,13 @@ const items = Array.from({length:12}, (_value, index) => ({
 }))
 
 function Background() {
+  const [isAnimatedBackgroundEnabled] = useLocalStorage('animatedBackground', false)
+
   return (
-    <div className="background">
+    <div className={classnames([
+      'background',
+      !isAnimatedBackgroundEnabled && 'background--paused-animation'
+    ])}>
       {items.map(({style, id}) =>
         <div
           key={id}
