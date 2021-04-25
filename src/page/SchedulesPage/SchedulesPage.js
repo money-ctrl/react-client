@@ -6,7 +6,7 @@ function SchedulesPage() {
   return <TopNavigationLayout>
     <Title tag="h1" title="Schedules" />
 
-    hey, that's when I began to pray
+    hey, that&apos;s when I began to pray
   </TopNavigationLayout>
 }
 
