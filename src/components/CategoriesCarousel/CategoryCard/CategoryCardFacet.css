@@ -8,3 +8,8 @@
 .category-card__progress {
   transform: translateY(-48px);
 }
+
+.category-card__dept {
+  position: absolute;
+  transform: translateY(calc(-1 * (100% + var(--space-xs))));
+}

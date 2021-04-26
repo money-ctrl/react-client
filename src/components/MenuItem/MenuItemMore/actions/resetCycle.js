@@ -1,7 +1,9 @@
-import { addTransaction, scheduleTransactionToCategory } from '../../../../services/backend'
+import { addTransaction, scheduleTransactionToCategory, processDebt  } from '../../../../services/backend'
 
 export async function resetCycle({ categories }) {
   for (const category of categories) {
+    await processDebt(category)
+
     await addTransaction({
       type: 'transfer',
       amount: category.allocated,
@@ -17,3 +19,4 @@ export async function resetCycle({ categories }) {
     scheduleTransactionToCategory({ category })
   }
 }
+

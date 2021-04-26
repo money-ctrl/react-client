@@ -12,7 +12,7 @@ function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, forma
   ])
 
   const sizes = {
-    xxs: 0.454545455,
+    xxs: 0.5,
     xs: 0.75,
     s: 0.85,
     m: 1,
@@ -21,10 +21,20 @@ function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, forma
     xxl: 1.5,
   }
 
+  const labelMultiplier = {
+    xxs: 1.5,
+    xs: 1,
+    s: 1,
+    m: 1,
+    l: 1,
+    xl: 1,
+    xxl: 1,
+  }
+
   return (
     <div className={classes} style={{fontSize:`${sizes[size]}rem`}}>
       <div className="money-display__label">
-        {label}
+        <span style={{fontSize:`${labelMultiplier[size]}em`}}>{label}</span>
       </div>
       <span className="money-display__value">
         {new Intl.NumberFormat('en-US', formatOptions).format(value)}

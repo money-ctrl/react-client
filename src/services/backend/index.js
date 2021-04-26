@@ -39,6 +39,40 @@ export function updateCategory(id, override) {
     .set(override, {merge: true})
 }
 
+export function processDebt(category) {
+  const calculateNewBalance = (category) => {
+    const currentDebt = category.debt || 0
+
+    const isAmountNegative = category.amount < 0
+    const isDebtGreaterThanAvailableAmount = Math.abs(currentDebt) > category.amount
+    const canPayDebt = !isDebtGreaterThanAvailableAmount
+
+    if (isAmountNegative) {
+      return {
+        amount: 0,
+        debt: currentDebt + category.amount,
+      }
+    }
+    else if (isDebtGreaterThanAvailableAmount) {
+      return {
+        amount: 0,
+        debt: currentDebt + category.amount,
+      }
+    }
+    else if (canPayDebt) {
+      return {
+        amount: category.amount + currentDebt,
+        debt: 0,
+      }
+    }
+
+    // this should never be run, but just in case
+    return {}
+  }
+
+  return updateCategory(category.id, calculateNewBalance(category))
+}
+
 export async function addTransaction({ amount, sender, recipient, type, transactionNature }) {
   try {
     validateArguments(...arguments)

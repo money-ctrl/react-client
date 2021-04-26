@@ -10,9 +10,10 @@ function CategoryCard({
   onClick = () => {},
   className,
   style = {},
-  category: { name, allocated, amount, scheduled } = {
+  category: { name, allocated, amount, debt, scheduled } = {
     name: 'Add category',
     allocated: 0,
+    debt: 0,
     amount: 0,
     scheduled: [],
   },
@@ -35,6 +36,13 @@ function CategoryCard({
         max={allocated}
         value={value}
       />
+
+      {debt < 0 && <MoneyDisplay
+        className="category-card__dept"
+        label={'debt'}
+        value={debt}
+        size={'xxs'}
+      />}
 
       <MoneyDisplay
         label={name}
