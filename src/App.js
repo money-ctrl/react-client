@@ -20,7 +20,7 @@ import {
   Switch,
 } from 'react-router-dom'
 import { database, migrateUserData } from './services/backend'
-import { moneyAssign, categoriesAssign } from './actions'
+import { moneyAssign, categoriesAssign, schedulesAssign } from './actions'
 
 function App() {
   const isLogged = useSelector(state => state.user.isLogged)
@@ -51,9 +51,17 @@ function App() {
         ))
       })
 
+    const unsubscribeSchedule = database().collection('schedules')
+      .onSnapshot((snapshota) => {
+        dispatch(schedulesAssign(snapshota.docs
+          .map(doc => ({id: doc.id, ...doc.data()}))
+        ))
+      })
+
     return () => {
       unsubscribe()
       unsubscribeCategories()
+      unsubscribeSchedule()
     }
   }, [dispatch, isLogged])
 

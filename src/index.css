@@ -193,6 +193,62 @@ body {
 .ml-xl { margin-left: var(--space-xl) }
 .ml-xxl { margin-left: var(--space-xxl) }
 
+.p-xxs { padding: var(--space-xxs) }
+.p-xs { padding: var(--space-xs) }
+.p-s { padding: var(--space-s) }
+.p-m { padding: var(--space-m) }
+.p-l { padding: var(--space-l) }
+.p-xl { padding: var(--space-xl) }
+.p-xxl { padding: var(--space-xxl) }
+
+.px-xxs { padding-left: var(--space-xxs); padding-right: var(--space-xxs); }
+.px-xs { padding-left: var(--space-xs); padding-right: var(--space-xs); }
+.px-s { padding-left: var(--space-s); padding-right: var(--space-s) }
+.px-m { padding-left: var(--space-m); padding-right: var(--space-m) }
+.px-l { padding-left: var(--space-l); padding-right: var(--space-l) }
+.px-xl { padding-left: var(--space-xl); padding-right: var(--space-xl); }
+.px-xxl { padding-left: var(--space-xxl); padding-right: var(--space-xxl); }
+
+.py-xxs { padding-top: var(--space-xxs); padding-bottom: var(--space-xxs) }
+.py-xs { padding-top: var(--space-xs); padding-bottom: var(--space-xs) }
+.py-s { padding-top: var(--space-s); padding-bottom: var(--space-s) }
+.py-m { padding-top: var(--space-m); padding-bottom: var(--space-m) }
+.py-l { padding-top: var(--space-l); padding-bottom: var(--space-l) }
+.py-xl { padding-top: var(--space-xl); padding-bottom: var(--space-xl) }
+.py-xxl { padding-top: var(--space-xxl); padding-bottom: var(--space-xxl) }
+
+.pt-xxs { padding-top: var(--space-xxs) }
+.pt-xs { padding-top: var(--space-xs) }
+.pt-s { padding-top: var(--space-s) }
+.pt-m { padding-top: var(--space-m) }
+.pt-l { padding-top: var(--space-l) }
+.pt-xl { padding-top: var(--space-xl) }
+.pt-xxl { padding-top: var(--space-xxl) }
+
+.pr-xxs { padding-right: var(--space-xxs) }
+.pr-xs { padding-right: var(--space-xs) }
+.pr-s { padding-right: var(--space-s) }
+.pr-m { padding-right: var(--space-m) }
+.pr-l { padding-right: var(--space-l) }
+.pr-xl { padding-right: var(--space-xl) }
+.pr-xxl { padding-right: var(--space-xxl) }
+
+.pb-xxs { padding-bottom: var(--space-xxs) }
+.pb-xs { padding-bottom: var(--space-xs) }
+.pb-s { padding-bottom: var(--space-s) }
+.pb-m { padding-bottom: var(--space-m) }
+.pb-l { padding-bottom: var(--space-l) }
+.pb-xl { padding-bottom: var(--space-xl) }
+.pb-xxl { padding-bottom: var(--space-xxl) }
+
+.pl-xxs { padding-left: var(--space-xxs) }
+.pl-xs { padding-left: var(--space-xs) }
+.pl-s { padding-left: var(--space-s) }
+.pl-m { padding-left: var(--space-m) }
+.pl-l { padding-left: var(--space-l) }
+.pl-xl { padding-left: var(--space-xl) }
+.pl-xxl { padding-left: var(--space-xxl) }
+
 html.no-focus-outline :focus {
   outline: none;
 }

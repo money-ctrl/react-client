@@ -40,3 +40,8 @@ export const categoriesAssign = (payload) => ({
   type: types.CATEGORIES_ASSIGN,
   payload: payload || {},
 })
+
+export const schedulesAssign = (payload) => ({
+  type: types.SCHEDULES_ASSIGN,
+  payload: payload || {},
+})
