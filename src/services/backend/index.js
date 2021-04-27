@@ -225,3 +225,12 @@ export async function scheduleTransactionToCategory({ category }) {
       scheduled: scheduleIds,
     }, { merge: true })
 }
+
+export async function descheduleTransaction({ schedule }) {
+  return database()
+    .collection('expenseCategories')
+    .doc(schedule.categoryId)
+    .set({
+      scheduled: firebase.firestore.FieldValue.arrayRemove(schedule),
+    }, { merge: true })
+}

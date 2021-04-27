@@ -49,7 +49,10 @@ function ContextMenu({ onMenuOpen }) {
             <Button
               key={option.label}
               behavior="block"
-              onClick={option.onClick}
+              onClick={() => {
+                option.onClick()
+                closeMenu()
+              }}
             >
               {option.label}
             </Button>

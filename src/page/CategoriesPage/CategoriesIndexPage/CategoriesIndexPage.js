@@ -16,6 +16,7 @@ import { database, getLastestTransactions, setTransaction, addTransaction, updat
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { getTypeIdFromResourceId, resourceId } from '../../../utils'
+import { descheduleTransaction } from '../../../services/backend'
 
 dayjs.extend(relativeTime)
 
@@ -203,55 +204,62 @@ function ScheduledTransactions({ category }) {
     <Title tag="h2" title="Scheduled transactions" />
 
     <ul className="categories-index-page__spending-list mt-s mb-l">
-      {category.scheduled.map(({ id, transactionPayload: transaction}) => (
-        <li
-          key={id}
-          className="categories-index-page__spending-item"
-        >
-          <Icon
-            size="l"
-            className="categories-index-page__spending-icon"
-            {...iconType({ ...transaction, sender: resourceId(transaction.sender)})}
-          />
+      {category.scheduled.map((schedule) => {
+        const { id, transactionPayload: transaction} = schedule
 
-          <span className="categories-index-page__spending-title">
-            {transaction.recipient.name === category.name ? (<>
-              {transaction.sender.name} <Icon name="angle-double-right" />
-            </>) : (<>
-              <Icon name="angle-double-right" /> {transaction.recipient.name}
-            </>)}
-          </span>
-
-          <MoneyDisplay
-            size="xxs"
-            monochromatic={true}
-            value={transaction.amount * (transaction.recipient.name === category.name ? 1 : -1)}
-          />
-
-          <span
-            className="categories-index-page__spending-desc"
+        return (
+          <li
+            key={id}
+            className="categories-index-page__spending-item"
           >
-            {transaction.transactionNature}
-          </span>
+            <Icon
+              size="l"
+              className="categories-index-page__spending-icon"
+              {...iconType({ ...transaction, sender: resourceId(transaction.sender)})}
+            />
 
-          <div className="categories-index-page__spending-action">
-            <Button size="small" onClick={() => commit(id, transaction)}>
-              commit
-            </Button>
+            <span className="categories-index-page__spending-title">
+              {transaction.recipient.name === category.name ? (<>
+                {transaction.sender.name} <Icon name="angle-double-right" />
+              </>) : (<>
+                <Icon name="angle-double-right" /> {transaction.recipient.name}
+              </>)}
+            </span>
 
-            <Button
-              size="small"
-              onClick={() => dispatch(contextAssign({
-                optionList: [
-                  { label: 'not implemented yet' },
-                ],
-              }))}
+            <MoneyDisplay
+              size="xxs"
+              monochromatic={true}
+              value={transaction.amount * (transaction.recipient.name === category.name ? 1 : -1)}
+            />
+
+            <span
+              className="categories-index-page__spending-desc"
             >
-              <Icon name="ellipsis-v" aria-label="more" role="img" />
-            </Button>
-          </div>
-        </li>
-      ))}
+              {transaction.transactionNature}
+            </span>
+
+            <div className="categories-index-page__spending-action">
+              <Button size="small" onClick={() => commit(id, transaction)}>
+              commit
+              </Button>
+
+              <Button
+                size="small"
+                onClick={() => dispatch(contextAssign({
+                  optionList: [
+                    {
+                      label: 'Remove for this cycle',
+                      onClick: () => descheduleTransaction({ schedule }),
+                    },
+                  ],
+                }))}
+              >
+                <Icon name="ellipsis-v" aria-label="more" role="img" />
+              </Button>
+            </div>
+          </li>
+        )
+      })}
     </ul>
   </>)
 }
