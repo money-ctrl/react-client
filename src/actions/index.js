@@ -45,3 +45,8 @@ export const schedulesAssign = (payload) => ({
   type: types.SCHEDULES_ASSIGN,
   payload: payload || {},
 })
+
+export const contextAssign = (payload) => ({
+  type: types.CONTEXT_ASSIGN,
+  payload: payload || {},
+})

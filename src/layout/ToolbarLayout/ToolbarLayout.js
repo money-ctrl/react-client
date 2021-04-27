@@ -12,7 +12,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-function ToolbarLayout({ items = [], children }) {
+function ToolbarLayout({ items = [], children, requestLowOpacity = false }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
 
   const menu = items.map((item) =>
@@ -35,7 +35,7 @@ function ToolbarLayout({ items = [], children }) {
   return (<>
     <div className={classNames(
       'toolbar-layout__tab-container',
-      isMenuOpen && 'toolbar-layout__tab-container--menu-is-open',
+      (isMenuOpen || requestLowOpacity) && 'toolbar-layout__tab-container--menu-is-open',
     )}>
       {children}
     </div>
@@ -64,6 +64,7 @@ ToolbarLayout.propTypes = {
     path: PropTypes.any.isRequired,
   })),
   children: PropTypes.any,
+  requestLowOpacity: PropTypes.bool,
 }
 
 export default ToolbarLayout

@@ -3,7 +3,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import Title from '../../../ui/Title'
 import { useParams, useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { contextAssign } from '../../../actions'
 import Loading from '../../../ui/Loading'
 import Card from '../../../ui/Card'
 import Icon from '../../../ui/Icon'
@@ -96,7 +97,7 @@ function CategoriesIndexPage() {
 
     return unsubscribe
   }, [category, limit])
-  
+
   const infinityLoader = useRef(null)
   useEffect(() => {
     const target = infinityLoader.current
@@ -110,7 +111,7 @@ function CategoriesIndexPage() {
     }
     return () => {
       if (target) {
-        observer.unobserve(target) 
+        observer.unobserve(target)
       }
     }
   }, [isLoadingTransactions, shouldFetchMoreTransactions])
@@ -181,7 +182,7 @@ function CategoriesIndexPage() {
 
         {shouldFetchMoreTransactions && <div className="mt-s" ref={infinityLoader}>
           <Loading size="m" />
-          <p className="categories-index-page__loading-text">Loading more transactions</p> 
+          <p className="categories-index-page__loading-text">Loading more transactions</p>
         </div>}
       </div>
     </TopNavigationLayout>
@@ -189,6 +190,8 @@ function CategoriesIndexPage() {
 }
 
 function ScheduledTransactions({ category }) {
+  const dispatch = useDispatch()
+
   const commit = (id, transaction) => {
     addTransaction(transaction)
     updateCategory(category.id, {
@@ -236,7 +239,14 @@ function ScheduledTransactions({ category }) {
               commit
             </Button>
 
-            <Button size="small" onClick={() => window.alert('sorry, not implemented yet')}>
+            <Button
+              size="small"
+              onClick={() => dispatch(contextAssign({
+                optionList: [
+                  { label: 'not implemented yet' },
+                ],
+              }))}
+            >
               <Icon name="ellipsis-v" aria-label="more" role="img" />
             </Button>
           </div>

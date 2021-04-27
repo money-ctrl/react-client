@@ -5,7 +5,7 @@ import AccountPage from './page/AccountPage'
 import CategoriesPage from './page/CategoriesPage'
 import SchedulesPage from './page/SchedulesPage'
 import StatsPage from './page/StatsPage'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ToolbarLayout from './layout/ToolbarLayout'
 import LoginPage from './page/LoginPage'
 import { useSelector, useDispatch } from 'react-redux'
@@ -21,6 +21,7 @@ import {
 } from 'react-router-dom'
 import { database, migrateUserData } from './services/backend'
 import { moneyAssign, categoriesAssign, schedulesAssign } from './actions'
+import ContextMenu from './ui/ContextMenu'
 
 function App() {
   const isLogged = useSelector(state => state.user.isLogged)
@@ -65,17 +66,22 @@ function App() {
     }
   }, [dispatch, isLogged])
 
+  const [requestLowOpacity, setRequestLowOpacity] = useState(false)
+
   return (
     <Router>
       <div className="app">
         <Background />
 
         {isLogged === true ? <>
-          <ToolbarLayout items={[
-            { alt: 'dashboard', src: SVGDashboard, path: '/'        },
-            { alt: 'stats',     src: SVGFeather,   path: '/stats' },
-            { alt: 'account',   src: SVGHome,      path: '/account' },
-          ]}>
+          <ToolbarLayout
+            requestLowOpacity={requestLowOpacity}
+            items={[
+              { alt: 'dashboard', src: SVGDashboard, path: '/'        },
+              { alt: 'stats',     src: SVGFeather,   path: '/stats' },
+              { alt: 'account',   src: SVGHome,      path: '/account' },
+            ]}
+          >
             <Switch>
               <Route exact path="/">
                 <DashboardPage />
@@ -101,6 +107,8 @@ function App() {
         </> : <>
           <LoginPage />
         </>}
+
+        <ContextMenu onMenuOpen={setRequestLowOpacity} />
       </div>
     </Router>
   )
