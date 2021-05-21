@@ -1,6 +1,13 @@
 .divider {
+  --divider-color: hsla(var(--color-neutral-white-hsl), var(--transparency-normal));
+
   border: none;
   min-width: var(--size-xxxs);
   min-height: var(--size-xxxs);
-  background-color: hsla(var(--color-neutral-white-hsl), var(--transparency-normal));
+  background-color: var(--divider-color);
+  border-radius: var(--border-radius-m);
+}
+
+.divider--dark {
+  --divider-color: hsla(var(--color-neutral-black-hsl), var(--transparency-normal));
 }
