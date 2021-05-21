@@ -8,6 +8,7 @@ import Button from '../../ui/Button'
 import Title from '../../ui/Title'
 import { resourceId } from '../../utils'
 import MoneyDisplay from '../MoneyDisplay'
+import { categoryPresenter } from '../../services/category'
 
 function CategorySelector({
   onBackPress = () => {},
@@ -17,6 +18,7 @@ function CategorySelector({
 }) {
   const categorylist = useSelector(state => state.categories.list)
     .filter(category => !blacklist.includes(resourceId(category)))
+    .map(categoryPresenter)
 
   return (
     <TopNavigationLayout
@@ -31,7 +33,7 @@ function CategorySelector({
       {categorylist.map((category) => (
         <div key={category.id} className="category-selector__item">
           <CircularProgress
-            value={category.amount}
+            value={category.amountWithDeductions}
             max={category.allocated}
             className="category-selector__item-progress"
           />
@@ -42,7 +44,7 @@ function CategorySelector({
 
           <div className="category-selector__item-money">
             <MoneyDisplay
-              value={category.amount}
+              value={category.amountWithDeductions}
               size="xxs"
               behavior="inline"
             /> / <MoneyDisplay

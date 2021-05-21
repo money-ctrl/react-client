@@ -5,12 +5,13 @@ import MoneyDisplay from '../../MoneyDisplay'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { categoryPresenter } from '../../../services/category'
 
 function CategoryCard({
   onClick = () => {},
   className,
   style = {},
-  category: { name, allocated, amount, debt, scheduled } = {
+  category = {
     name: 'Add category',
     allocated: 0,
     debt: 0,
@@ -18,11 +19,7 @@ function CategoryCard({
     scheduled: [],
   },
 }) {
-  const futureDeductions = (scheduled || []).reduce((sum, current) => {
-    return sum + current.transactionPayload.amount
-  }, 0)
-
-  const value = amount - futureDeductions
+  const { name, allocated, debt, amountWithDeductions } = categoryPresenter(category)
 
   return (
     <Card
@@ -34,7 +31,7 @@ function CategoryCard({
       <CircularProgress
         className="category-card__progress"
         max={allocated}
-        value={value}
+        value={amountWithDeductions}
       />
 
       {debt < 0 && <MoneyDisplay
@@ -46,7 +43,7 @@ function CategoryCard({
 
       <MoneyDisplay
         label={name}
-        value={value}
+        value={amountWithDeductions}
       />
     </Card>
   )
