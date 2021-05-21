@@ -23,7 +23,7 @@ function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, forma
 
   const labelMultiplier = {
     xxs: 1.5,
-    xs: 1,
+    xs: 1.3,
     s: 1,
     m: 1,
     l: 1,
@@ -33,12 +33,13 @@ function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, forma
 
   return (
     <div className={classes} style={{fontSize:`${sizes[size]}rem`}}>
-      <div className="money-display__label">
+      {label && <div className="money-display__label">
         <span style={{fontSize:`${labelMultiplier[size]}em`}}>{label}</span>
-      </div>
-      <span className="money-display__value">
+      </div>}
+
+      <div className="money-display__value">
         {new Intl.NumberFormat('en-US', formatOptions).format(value)}
-      </span>
+      </div>
     </div>
   )
 }
