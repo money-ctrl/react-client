@@ -179,13 +179,20 @@ function CategoriesIndexPage() {
             />
           </div>
 
-          <Divider variant="dark" />
+          {(!!categoryTotalSchedules || (category.debt < 0))
+            && <Divider variant="dark" />}
 
-          <MoneyDisplay
-            label="Total allocated in scheduled payments"
+          {(!!categoryTotalSchedules) && <MoneyDisplay
+            label="total scheduled"
             value={categoryTotalSchedules}
             size="xs"
-          />
+          />}
+
+          {(category.debt < 0) && <MoneyDisplay
+            label={'debt'}
+            value={category.debt}
+            size={'xs'}
+          />}
         </Card>
       </Overdrive>
 
