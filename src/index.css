@@ -5,6 +5,9 @@
   --font-text: 'Quicksand', var(--font-basis);
   --font-number: 'Comfortaa', var(--font-basis);
 
+  --transparency-normal: 0.5;
+
+  --color-neutral-white-hsl: 0, 0%, 100%;
   --color-neutral-white: #fff;
   --color-neutral-light: #fdfcfc;
   --color-neutral-light-gray: #ddd;

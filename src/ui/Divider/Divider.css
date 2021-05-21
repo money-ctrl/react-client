@@ -1,0 +1,6 @@
+.divider {
+  border: none;
+  min-width: var(--size-xxxs);
+  min-height: var(--size-xxxs);
+  background-color: hsla(var(--color-neutral-white-hsl), var(--transparency-normal));
+}
