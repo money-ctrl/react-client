@@ -44,6 +44,10 @@ function CategoryCard({
       <MoneyDisplay
         label={name}
         value={amountWithDeductions}
+        formatOptions={{
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        }}
       />
     </Card>
   )
