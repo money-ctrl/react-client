@@ -17,6 +17,8 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { getTypeIdFromResourceId, resourceId } from '../../../utils'
 import { descheduleTransaction } from '../../../services/backend'
+import Divider from '../../../ui/Divider'
+import { categoryPresenter } from '../../../services/category'
 
 dayjs.extend(relativeTime)
 
@@ -75,7 +77,13 @@ function CategoriesIndexPage() {
   const history = useHistory()
 
   const { categoryId } = useParams()
-  const category = useSelector(state => state.categories.ids[categoryId])
+  const category = categoryPresenter(useSelector(state => state.categories.ids[categoryId]))
+
+  const categoryTotalSchedules = useSelector(state => {
+    return state.schedules.list
+      .filter(schedule => schedule.categoryId === (category || {}).id)
+      .reduce((total, schedule) => total + schedule.transactionPayload.amount, 0)
+  })
 
   const [transactions, setTransactions] = useState([])
   const [limit, setLimit] = useState(25)
@@ -158,15 +166,25 @@ function CategoriesIndexPage() {
 
       <Overdrive id={`category-card-${categoryId}`}>
         <Card className="categories-index-page__card">
-          <MoneyDisplay
-            value={category.amount}
-          />
+          <div className="categories-index-page__card-balance">
+            <MoneyDisplay
+              value={category.amount}
+            />
 
-          <div className="categories-index-page__slash">/</div>
+            <div className="categories-index-page__slash">/</div>
+
+            <MoneyDisplay
+              value={category.allocated}
+              size="xxs"
+            />
+          </div>
+
+          <Divider variant="dark" />
 
           <MoneyDisplay
-            value={category.allocated}
-            size="xxs"
+            label="Total allocated in scheduled payments"
+            value={categoryTotalSchedules}
+            size="xs"
           />
         </Card>
       </Overdrive>

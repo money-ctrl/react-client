@@ -1,7 +1,10 @@
 .categories-index-page__card {
+  padding: var(--space-m);
+}
+
+.categories-index-page__card-balance {
   display: flex;
   align-items: baseline;
-  padding: var(--space-m);
 }
 
 .categories-index-page__slash {
