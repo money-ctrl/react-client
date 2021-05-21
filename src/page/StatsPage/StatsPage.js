@@ -8,13 +8,14 @@ import Divider from '../../ui/Divider'
 
 function StatsPage() {
   const categories = useSelector(state => state.categories.list)
-
   const amountSum = categories.reduce((acc, cur) => acc + cur.amount, 0)
   const allocatedSum = categories.reduce((acc, cur) => acc + cur.allocated, 0)
   const debtSum = categories.reduce((acc, cur) => acc + cur.debt, 0)
 
-  const totalMoney = useSelector(state => state.money.amount)
+  const scheduleList = useSelector(state => state.schedules.list)
+  const scheduledSum = scheduleList.reduce((acc, cur) => acc + cur.transactionPayload.amount, 0)
 
+  const totalMoney = useSelector(state => state.money.amount)
 
   return (
     <div className="history-page">
@@ -46,6 +47,18 @@ function StatsPage() {
         label="Cycle's Total Budget"
         monochromatic={true}
         value={allocatedSum}
+      />
+
+      <MoneyDisplay
+        label="Total amount scheduled"
+        monochromatic={true}
+        value={scheduledSum}
+      />
+
+      <MoneyDisplay
+        label="Cycle's Total accounting schedules"
+        monochromatic={true}
+        value={allocatedSum - scheduledSum}
       />
 
       <MoneyDisplay
