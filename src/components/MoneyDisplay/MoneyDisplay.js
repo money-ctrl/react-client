@@ -49,6 +49,7 @@ MoneyDisplay.propTypes = {
   monochromatic: PropTypes.bool,
   size: PropTypes.oneOf([
     'xxs',
+    'xs',
     'm',
     'xxl',
   ]),
