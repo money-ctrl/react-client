@@ -77,6 +77,7 @@ function CategoriesIndexPage() {
   const history = useHistory()
 
   const { categoryId } = useParams()
+  const dispatch = useDispatch()
   const category = categoryPresenter(useSelector(state => state.categories.ids[categoryId]))
 
   const categoryTotalSchedules = useSelector(state => {
@@ -127,19 +128,25 @@ function CategoriesIndexPage() {
 
   if (!category) return <Loading/>
 
-  const editCategory = () => {
-    const newExpenseCategory = {
-      name: prompt('New category name', category.name),
-      allocated: Number(prompt('What is the total amount you want to allocate for expenses in this category?', category.allocated)),
-    }
-
-    if (!newExpenseCategory.name) return
-    if (!newExpenseCategory.allocated) return
+  const renameCategory = () => {
+    const name = prompt('New category name', category.name)
+    if (!name) return
 
     database().collection('expenseCategories')
       .doc(categoryId)
-      .set(newExpenseCategory, {merge: true})
+      .set({ name }, {merge: true})
   }
+
+  const categoryEditAllocation = () => {
+    const allocated = Number(prompt('What is the total amount you want to allocate for expenses in this category?', category.allocated))
+
+    if (!allocated) return
+
+    database().collection('expenseCategories')
+      .doc(categoryId)
+      .set({ allocated }, {merge: true})
+  }
+
 
   const deleteCategory = () => {
     if (!window.confirm('Are you sure you want to delete this category?')) return
@@ -155,11 +162,25 @@ function CategoriesIndexPage() {
     <TopNavigationLayout
       onBackPress={history.goBack}
       actions={[{
-        icon: 'trash',
-        onClick: deleteCategory,
-      }, {
+        title: 'Edit category menu',
         icon: 'cog',
-        onClick: editCategory,
+        onClick: () => dispatch(contextAssign({
+          optionList: [
+            {
+              label: 'Rename category',
+              onClick: renameCategory,
+            },
+            {
+              label: 'Change total allocated',
+              onClick: categoryEditAllocation,
+            },
+            {
+              label: 'Delete Category',
+              variant: 'danger',
+              onClick: deleteCategory,
+            },
+          ],
+        })),
       }]}
     >
       <Title title={category.name} />
