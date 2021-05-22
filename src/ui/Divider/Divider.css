@@ -11,3 +11,8 @@
 .divider--dark {
   --divider-color: hsla(var(--color-neutral-black-hsl), var(--transparency-normal));
 }
+
+.divider--m {
+  margin-top: var(--size-m);
+  margin-bottom: var(--size-m);
+}

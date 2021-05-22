@@ -201,7 +201,7 @@ function CategoriesIndexPage() {
           </div>
 
           {(!!categoryTotalSchedules || (category.debt < 0))
-            && <Divider variant="dark" />}
+            && <Divider variant="dark" space="m" />}
 
           {(!!categoryTotalSchedules) && <MoneyDisplay
             orientation="horizontal"
