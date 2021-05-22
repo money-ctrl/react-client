@@ -6,9 +6,18 @@ export const categoryPresenter = (category) => {
       return sum + current.transactionPayload.amount
     }, 0)
 
-  return {
+  const extras = {
     futureDeductions,
     amountWithDeductions: category.amount - futureDeductions,
-    ...category,
   }
+
+  return new Proxy(category, {
+    get(target, key) {
+      if (target[key] === undefined) {
+        return extras[key]
+      }
+
+      return target[key]
+    },
+  })
 }
