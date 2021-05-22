@@ -183,12 +183,14 @@ function CategoriesIndexPage() {
             && <Divider variant="dark" />}
 
           {(!!categoryTotalSchedules) && <MoneyDisplay
+            orientation="horizontal"
             label="total scheduled"
             value={categoryTotalSchedules}
             size="xs"
           />}
 
           {(category.debt < 0) && <MoneyDisplay
+            orientation="horizontal"
             label={'debt'}
             value={category.debt}
             size={'xs'}
