@@ -3,11 +3,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, formatOptions, className }) {
+function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, formatOptions, className, orientation }) {
   const classes = classnames([
     'money-display',
     monochromatic && 'money-display--monocromatic',
     behavior && `money-display--${behavior}`,
+    orientation && `money-display--${orientation}`,
     className
   ])
 
@@ -24,7 +25,7 @@ function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, forma
   const labelMultiplier = {
     xxs: 1.5,
     xs: 1.3,
-    s: 1,
+    s: 1.2,
     m: 1,
     l: 1,
     xl: 1,
@@ -50,6 +51,7 @@ MoneyDisplay.propTypes = {
   size: PropTypes.oneOf([
     'xxs',
     'xs',
+    's',
     'm',
     'xxl',
   ]),
@@ -59,6 +61,10 @@ MoneyDisplay.propTypes = {
     maximumFractionDigits: PropTypes.number,
   }),
   className: PropTypes.string,
+  orientation: PropTypes.oneOf([
+    'horizontal',
+    'vertical',
+  ]),
   behavior: PropTypes.oneOf([
     'inline',
     'block',

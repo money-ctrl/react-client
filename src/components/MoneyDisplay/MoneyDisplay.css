@@ -1,3 +1,12 @@
+.money-display--horizontal {
+  display: grid;
+  grid-template: 'a b' auto / 1fr 1fr;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
 .money-display--monocromatic > .money-display__label {
   color: hsla(0, 0%, 100%, .5);
 }
@@ -34,6 +43,7 @@
   font-size: 2.2em;
   font-weight: 600;
   letter-spacing: .09em;
+  justify-self: end;
 }
 
 .money-display__value::after {
