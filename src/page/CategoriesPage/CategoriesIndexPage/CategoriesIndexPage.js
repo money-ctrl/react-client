@@ -96,7 +96,7 @@ function CategoriesIndexPage() {
 
     const unsubscribe = getLastestTransactions({
       limit,
-      category: { ...category, type: 'category' },
+      category,
       callback: (transactions, snapshotSize) => {
         setTransactions(transactions)
         setSize(snapshotSize)
@@ -105,7 +105,7 @@ function CategoriesIndexPage() {
     })
 
     return unsubscribe
-  }, [category, limit])
+  }, [(category || {}).resourceId, limit])
 
   const infinityLoader = useRef(null)
   useEffect(() => {

@@ -1,3 +1,5 @@
+import { resourceId } from '../utils'
+
 export const categoryPresenter = (category) => {
   if (!category) return
 
@@ -7,6 +9,8 @@ export const categoryPresenter = (category) => {
     }, 0)
 
   const extras = {
+    type: 'category',
+    resourceId: resourceId({ id: category.id, type: 'category' }),
     futureDeductions,
     amountWithDeductions: category.amount - futureDeductions,
   }
