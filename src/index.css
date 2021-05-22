@@ -15,7 +15,10 @@
   --color-neutral-gray: #666;
   --color-neutral-dark: #444;
   --color-neutral-black-hsl: 0, 0%, 0%;
-  --color-neutral-black: #000;
+  --color-neutral-black: #000; /* interesting one: #090C02 */
+
+  --color-warning: #ffbd00;
+  --color-danger: #a72608;
 
   /* #c889aa */
   --color-primary-deep-hsl: 328, 36%, 66%;

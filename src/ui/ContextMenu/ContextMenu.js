@@ -49,6 +49,7 @@ function ContextMenu({ onMenuOpen }) {
             <Button
               key={option.label}
               behavior="block"
+              variant={option.variant}
               onClick={() => {
                 option.onClick()
                 closeMenu()

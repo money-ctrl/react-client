@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 function Button({
-  variant = 'default',
-  type = 'default',
-  size = 'medium',
-  behavior = 'default',
-  isLoading = false,
+  variant,
+  type,
+  size,
+  behavior,
+  isLoading,
   className,
   onClick,
   children,
@@ -39,6 +39,7 @@ Button.propTypes = {
     'block',
   ]),
   variant: PropTypes.oneOf([
+    'danger',
     'default',
     'ghost',
     'secondary',
@@ -54,6 +55,14 @@ Button.propTypes = {
   ]),
   onClick: PropTypes.func,
   isLoading: PropTypes.bool,
+}
+
+Button.defaultProps = {
+  variant: 'default',
+  type: 'default',
+  size: 'medium',
+  behavior: 'default',
+  isLoading: false,
 }
 
 export default Button

@@ -31,6 +31,11 @@
   box-shadow: none;
 }
 
+.button--danger {
+  background-color: var(--color-danger);
+  color: var(--color-neutral-light);
+}
+
 .button--primary {
   background-color: var(--color-primary-pure);
   box-shadow: 0 10px 16px -2px hsla(var(--color-primary-pure-hsl), 70%);
