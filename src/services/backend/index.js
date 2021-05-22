@@ -6,6 +6,9 @@ import { resourceId } from '../../utils'
 
 export { default as migrateUserData } from './migrateUserData'
 
+// Add a counter for observing reads happening, to easily infinite loops leading to quota exceeding.
+window.firestoreRead = 0
+
 export const enablePersistence = () => {
   db.enablePersistence()
     .catch((error) => {
@@ -162,6 +165,7 @@ export function getLastestTransactions({ category, callback, limit = 25 }) {
     .orderBy('createdAt', 'desc')
     .limit(limit)
     .onSnapshot((snapshot) => {
+      ++window.firestoreRead
       callback(snapshot.docs.map(i => ({
         ...i.data(),
         id: i.id,
