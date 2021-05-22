@@ -1,0 +1,14 @@
+.schedules-page__list-title +
+.schedules-page__list-description {
+  margin-bottom: var(--space-s);
+}
+
+.schedules-page__list-title {
+  font-weight: bold;
+}
+
+.schedules-page__list-description {
+  margin-top: var(--space-xxs);
+  padding-left: var(--space-xs);
+  padding-left: var(--space-xs);
+}
