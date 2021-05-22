@@ -6,6 +6,18 @@ import MoneyDisplay from '../../components/MoneyDisplay'
 import Title from '../../ui/Title'
 import Divider from '../../ui/Divider'
 
+const StatMoneyDisplay = (rest) => {
+  return (
+    <MoneyDisplay
+      size="s"
+      orientation="horizontal"
+      formatOptions={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+      monochromatic={true}
+      {...rest}
+    />
+  )
+}
+
 function StatsPage() {
   const categories = useSelector(state => state.categories.list)
   const amountSum = categories.reduce((acc, cur) => acc + cur.amount, 0)
@@ -23,47 +35,40 @@ function StatsPage() {
         Stats
       </Title>
 
-      <MoneyDisplay
+      <StatMoneyDisplay
         label="Balance aside from cycle's budget"
-        monochromatic={true}
         value={totalMoney}
       />
 
-      <MoneyDisplay
+      <StatMoneyDisplay
         label="Total debt in categories"
-        monochromatic={true}
         value={debtSum}
       />
 
-      <MoneyDisplay
+      <StatMoneyDisplay
         label="Balance accounting debt"
-        monochromatic={true}
         value={totalMoney + debtSum}
       />
 
       <Divider />
 
-      <MoneyDisplay
+      <StatMoneyDisplay
         label="Cycle's Total Budget"
-        monochromatic={true}
         value={allocatedSum}
       />
 
-      <MoneyDisplay
+      <StatMoneyDisplay
         label="Total amount scheduled"
-        monochromatic={true}
         value={scheduledSum}
       />
 
-      <MoneyDisplay
+      <StatMoneyDisplay
         label="Cycle's Total accounting schedules"
-        monochromatic={true}
         value={allocatedSum - scheduledSum}
       />
 
-      <MoneyDisplay
+      <StatMoneyDisplay
         label="Cycle's Current Balance"
-        monochromatic={true}
         value={amountSum}
       />
     </div>
