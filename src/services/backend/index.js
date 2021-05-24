@@ -188,8 +188,10 @@ function filterCategory(category) {
   ]
 
   return Object.fromEntries(
-    Object.entries(category)
-      .filter(([key]) => allowed.includes(key))
+    allowed.map(key => [
+      key,
+      category[key],
+    ]),
   )
 }
 
