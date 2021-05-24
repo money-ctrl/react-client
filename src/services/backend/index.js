@@ -187,7 +187,7 @@ function filterCategory(category) {
     'name',
   ]
 
-  return Object.fromEntrie(
+  return Object.fromEntries(
     Object.entries(category)
       .filter(([key]) => allowed.includes(key))
   )
