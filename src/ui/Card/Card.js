@@ -1,6 +1,7 @@
 import './Card.css'
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 function Card({
   reference,
@@ -14,7 +15,7 @@ function Card({
   return (
     <Tag
       ref={reference}
-      className={`card ${className}`}
+      className={classNames('card', className)}
       {...attrs}
     >
       {children}
