@@ -60,6 +60,14 @@
   grid-template: 'a sign b' auto / 1fr auto 1fr;
 }
 
+.categories-index-page__spending-context-title-a {
+  text-align: right;
+}
+
+.categories-index-page__spending-context-title-b {
+  text-align: left;
+}
+
 .categories-index-page__spending-context-reveal {
   width: 100%;
   text-align: center;

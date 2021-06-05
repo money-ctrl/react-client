@@ -370,11 +370,11 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                 </div>
 
                 <div className="categories-index-page__spending-context-title">
-                  {transaction.displayData.sender}
+                  <div className="categories-index-page__spending-context-title-a">{transaction.displayData.sender}</div>
 
                   <Icon name="angle-double-right" />
 
-                  {transaction.displayData.recipient}
+                  <div className="categories-index-page__spending-context-title-b">{transaction.displayData.recipient}</div>
                 </div>
 
                 <MoneyDisplay
