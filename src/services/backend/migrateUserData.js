@@ -44,3 +44,9 @@ async function upgradeV1toV2(database) {
 
   batch.commit()
 }
+
+/**
+ * Plans for v3
+ * - [ ] Change money to cents
+ * - [ ] apply "tags" for every transaction
+ */
