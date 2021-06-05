@@ -73,18 +73,6 @@
   text-align: center;
 }
 
-.categories-index-page__spending-context-reveal > *:first-child {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.categories-index-page__spending-context-reveal > *:first-child { opacity: 1; }
-.categories-index-page__spending-context-reveal > *:last-child { opacity: 0; }
-
-.categories-index-page__spending-context-reveal:hover > *:first-child { opacity: 0; }
-.categories-index-page__spending-context-reveal:hover > *:last-child { opacity: 1; }
-
 .categories-index-page__spending-context-tag-list {
   display: flex;
   gap: var(--space-xs);

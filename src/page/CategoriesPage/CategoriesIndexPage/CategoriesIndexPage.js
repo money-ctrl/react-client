@@ -27,7 +27,12 @@ dayjs.extend(localizedFormat)
 const getDateString = ({ seconds, nanoseconds }) => {
   const milliseconds = seconds * 1000 + nanoseconds / 1000000
 
-  return dayjs(milliseconds)
+  const now = dayjs(Date.now())
+  const then = dayjs(milliseconds)
+
+  return (now.diff(then, 'week') > 0)
+    ? then.format('YYYY/MM/DD - HH:mm')
+    : then.fromNow()
 }
 
 const iconType = ({ type, sender }) => {
@@ -382,13 +387,8 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                   value={value}
                 />
 
-                <div className="categories-index-page__spending-context-reveal">
-                  <div>
-                    {getDateString(transaction.createdAt).fromNow()}
-                  </div>
-                  <div>
-                    {getDateString(transaction.createdAt).format('L - LT')}
-                  </div>
+                <div>
+                  {getDateString(transaction.createdAt)}
                 </div>
 
                 {((transaction.displayData.tags || []).length > 0) && (
@@ -440,7 +440,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
             </span>
 
             <span className="categories-index-page__spending-created-at">
-              {getDateString(transaction.createdAt).fromNow()}
+              {getDateString(transaction.createdAt)}
             </span>
           </button>
         </li>)
