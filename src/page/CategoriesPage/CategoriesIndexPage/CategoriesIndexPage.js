@@ -321,6 +321,8 @@ ScheduledTransactions.propTypes = {
 }
 
 function LastestTransactions({ transactions, category, isLoadingTransactions}) {
+  const dispatch = useDispatch()
+
   return (<>
     <Title tag="h2" title="Lastest transactions" />
 
@@ -328,40 +330,46 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
 
     <ol className="categories-index-page__spending-list mt-s">
       {transactions.map(transaction =>
-        <li
-          key={transaction.createdAt}
-          className="categories-index-page__spending-item"
-        >
-          <Icon
-            size="l"
-            className="categories-index-page__spending-icon"
-            {...iconType(transaction)}
-          />
-
-          <span className="categories-index-page__spending-title">
-            {transaction.displayData.recipient === category.name ? (<>
-              {transaction.displayData.sender} <Icon name="angle-double-right" />
-            </>) : (<>
-              <Icon name="angle-double-right" /> {transaction.displayData.recipient}
-            </>)}
-          </span>
-
-          <MoneyDisplay
-            size="xxs"
-            monochromatic={true}
-            value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
-          />
-
+        <li key={transaction.createdAt}>
           <button
-            className="categories-index-page__spending-desc"
-            onClick={() => editTransactionNature(transaction)}
+            className="categories-index-page__spending-item"
+            onClick={() => dispatch(contextAssign({
+              optionList: [
+                {
+                  label: 'Edit Nature',
+                  onClick: () => editTransactionNature(transaction),
+                },
+              ],
+            }))}
           >
-            {transaction.displayData.transactionNature}
-          </button>
+            <Icon
+              size="l"
+              className="categories-index-page__spending-icon"
+              {...iconType(transaction)}
+            />
 
-          <span className="categories-index-page__spending-created-at">
-            {getDateString(transaction.createdAt)}
-          </span>
+            <span className="categories-index-page__spending-title">
+              {transaction.displayData.recipient === category.name ? (<>
+                {transaction.displayData.sender} <Icon name="angle-double-right" />
+              </>) : (<>
+                <Icon name="angle-double-right" /> {transaction.displayData.recipient}
+              </>)}
+            </span>
+
+            <MoneyDisplay
+              size="xxs"
+              monochromatic={true}
+              value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
+            />
+
+            <span className="categories-index-page__spending-desc">
+              {transaction.displayData.transactionNature}
+            </span>
+
+            <span className="categories-index-page__spending-created-at">
+              {getDateString(transaction.createdAt)}
+            </span>
+          </button>
         </li>
       )}
     </ol>

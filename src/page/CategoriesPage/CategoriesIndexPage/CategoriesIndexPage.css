@@ -21,6 +21,7 @@
 }
 
 .categories-index-page__spending-item {
+  width: 100%;
   color: var(--color-neutral-light);
   display: grid;
   grid-template:
