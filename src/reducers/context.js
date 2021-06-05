@@ -3,6 +3,7 @@ import * as types from '../constants'
 export const initialState = Object.freeze({
   isOpen: false,
   optionList: [],
+  header: null,
 })
 
 export default function(state = initialState, action) {

@@ -88,6 +88,7 @@ export async function addTransaction({ amount, sender, recipient, type, transact
       recipient: resourceId(recipient),
       relatedParties: [resourceId(sender), resourceId(recipient)],
       displayData: {
+        tags: [],
         sender: sender.name,
         recipient: recipient.name,
         transactionNature,

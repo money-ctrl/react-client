@@ -15,17 +15,19 @@ import TopNavigationLayout from '../../../layout/TopNavigationLayout'
 import { database, getLastestTransactions, setTransaction, addTransaction, updateCategory } from '../../../services/backend'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
 import { getTypeIdFromResourceId, resourceId } from '../../../utils'
 import { descheduleTransaction } from '../../../services/backend'
 import Divider from '../../../ui/Divider'
 import { categoryPresenter } from '../../../services/category'
 
 dayjs.extend(relativeTime)
+dayjs.extend(localizedFormat)
 
 const getDateString = ({ seconds, nanoseconds }) => {
   const milliseconds = seconds * 1000 + nanoseconds / 1000000
 
-  return dayjs(milliseconds).fromNow()
+  return dayjs(milliseconds)
 }
 
 const iconType = ({ type, sender }) => {
@@ -69,6 +71,26 @@ const editTransactionNature = (transaction) => {
     displayData: {
       ...transaction.displayData,
       transactionNature: newTransactionNature,
+    },
+  })
+}
+
+const editTransactionTags = (transaction) => {
+  const newTags = window.prompt(
+    'Edit transaction nature (comma separated):',
+    (transaction.displayData.tags || []).join(','),
+  )
+
+  // null == canceled
+  if (newTags === null) return
+
+  const newTagsArray = (newTags === '') ? [] : newTags.split(',')
+
+  setTransaction({
+    ...transaction,
+    displayData: {
+      ...transaction.displayData,
+      tags: newTagsArray,
     },
   })
 }
@@ -329,15 +351,66 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
     {isLoadingTransactions && <Loading style={{ marginTop: '64px' }} />}
 
     <ol className="categories-index-page__spending-list mt-s">
-      {transactions.map(transaction =>
-        <li key={transaction.createdAt}>
+      {transactions.map(transaction => {
+        const value = transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)
+
+        return (<li key={transaction.createdAt}>
           <button
             className="categories-index-page__spending-item"
             onClick={() => dispatch(contextAssign({
+              header: <>
+                <Icon
+                  size="l"
+                  className="categories-index-page__spending-icon"
+                  {...iconType(transaction)}
+                />
+
+                <div>
+                  {transaction.displayData.transactionNature}
+                </div>
+
+                <div className="categories-index-page__spending-context-title">
+                  {transaction.displayData.sender}
+
+                  <Icon name="angle-double-right" />
+
+                  {transaction.displayData.recipient}
+                </div>
+
+                <MoneyDisplay
+                  size="xs"
+                  value={value}
+                />
+
+                <div className="categories-index-page__spending-context-reveal">
+                  <div>
+                    {getDateString(transaction.createdAt).fromNow()}
+                  </div>
+                  <div>
+                    {getDateString(transaction.createdAt).format('L - LT')}
+                  </div>
+                </div>
+
+                {((transaction.displayData.tags || []).length > 0) && (
+                  <div className="categories-index-page__spending-context-tag-list">
+                    {transaction.displayData.tags.map(tag => (
+                      <Button key={tag} size="small">
+                        {tag}
+                      </Button>
+                    ))}
+                  </div>
+                )}
+
+                <div />{/* separator */}
+              </>,
               optionList: [
                 {
                   label: 'Edit Nature',
                   onClick: () => editTransactionNature(transaction),
+                },
+                {
+                  label: 'Edit Tags',
+                  onClick: () => editTransactionTags(transaction),
                 },
               ],
             }))}
@@ -359,7 +432,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
             <MoneyDisplay
               size="xxs"
               monochromatic={true}
-              value={transaction.amount * (transaction.displayData.recipient === category.name ? 1 : -1)}
+              value={value}
             />
 
             <span className="categories-index-page__spending-desc">
@@ -367,11 +440,11 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
             </span>
 
             <span className="categories-index-page__spending-created-at">
-              {getDateString(transaction.createdAt)}
+              {getDateString(transaction.createdAt).fromNow()}
             </span>
           </button>
-        </li>
-      )}
+        </li>)
+      })}
     </ol>
   </>)
 }

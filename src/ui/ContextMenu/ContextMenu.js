@@ -13,7 +13,7 @@ const transitionDuration = 300
 function ContextMenu({ onMenuOpen }) {
   const dispatch = useDispatch()
 
-  const { isOpen, optionList } = useSelector(state => state.context)
+  const { isOpen, optionList, header } = useSelector(state => state.context)
 
   const closeMenu = () => {
     dispatch(contextAssign({ isOpen: false }))
@@ -45,6 +45,8 @@ function ContextMenu({ onMenuOpen }) {
         ></div>
 
         <div className="context-menu__content">
+          {header}
+
           {optionList.map(option => (
             <Button
               key={option.label}
