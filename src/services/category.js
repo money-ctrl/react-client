@@ -25,3 +25,19 @@ export const categoryPresenter = (category) => {
     },
   })
 }
+
+export const categoryCreate = (values) => {
+  const defaultCategory = {
+    name: '',
+    allocated: 0,
+    amount: 0,
+    debt: 0,
+    scheduled: [],
+    visible: true,
+  }
+
+  return {
+    ...defaultCategory,
+    ...values,
+  }
+}
