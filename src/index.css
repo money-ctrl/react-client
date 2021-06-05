@@ -74,6 +74,12 @@
   --card-border-radius: var(--border-radius-m);
 
   --button-border-radius: var(--border-radius-m);
+
+  --shadow-s: 0 2px 3px 1.4px hsla(var(--color-neutral-gray-hsl), .3);
+  --shadow-m: 0 5px 10px 4px hsla(var(--color-neutral-gray-hsl), .3);
+  --shadow-l: 0 10px 16px -2px hsla(var(--color-secondary-pure-hsl), 70%);
+
+  --shadow-inset: 0 4px 8px -2px hsla(var(--color-neutral-gray-hsl), .5) inset;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/

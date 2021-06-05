@@ -6,7 +6,7 @@
   padding: var(--space-s);
   border-radius: var(--button-border-radius);
   background-color: var(--color-neutral-white);
-  box-shadow: 0 5px 10px 4px hsla(var(--color-neutral-gray-hsl), .3);
+  box-shadow: var(--shadow-m);
   min-width: 48px; /*makes it be a square if text is not big enough*/
 
   text-align: center;
@@ -17,7 +17,7 @@
 }
 
 .button:active {
-  box-shadow: 0 4px 8px -2px hsla(var(--color-neutral-gray-hsl), .5) inset;
+  box-shadow: var(--shadow-inset);
 }
 
 .button--round {
@@ -38,13 +38,13 @@
 
 .button--primary {
   background-color: var(--color-primary-pure);
-  box-shadow: 0 10px 16px -2px hsla(var(--color-primary-pure-hsl), 70%);
+  box-shadow: var(--shadow-l);
   color: white;
 }
 
 .button--secondary {
   background-color: var(--color-secondary-pure);
-  box-shadow: 0 10px 16px -2px hsla(var(--color-secondary-pure-hsl), 70%);
+  box-shadow: var(--shadow-l);
   color: white;
 }
 
@@ -55,6 +55,7 @@
 
 .button--small {
   --button-border-radius: var(--border-radius-s);
+  box-shadow: var(--shadow-s);
 
   padding: var(--space-xs);
 
