@@ -45,7 +45,9 @@ function ContextMenu({ onMenuOpen }) {
         ></div>
 
         <div className="context-menu__content">
-          {header}
+          {header && header({
+            closeMenu,
+          })}
 
           {optionList.map(option => (
             <Button

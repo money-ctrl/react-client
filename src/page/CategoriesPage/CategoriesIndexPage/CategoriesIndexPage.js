@@ -349,6 +349,7 @@ ScheduledTransactions.propTypes = {
 
 function LastestTransactions({ transactions, category, isLoadingTransactions}) {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   return (<>
     <Title tag="h2" title="Lastest transactions" />
@@ -363,7 +364,8 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
           <button
             className="categories-index-page__spending-item"
             onClick={() => dispatch(contextAssign({
-              header: <>
+              // eslint-disable-next-line react/prop-types
+              header({ closeMenu }) { return <>
                 <Icon
                   size="l"
                   className="categories-index-page__spending-icon"
@@ -394,7 +396,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                 {((transaction.displayData.tags || []).length > 0) && (
                   <div className="categories-index-page__spending-context-tag-list">
                     {transaction.displayData.tags.map(tag => (
-                      <Button key={tag} size="small">
+                      <Button key={tag} size="small" onClick={() => { history.push(`/tag/${tag}`); closeMenu() }}>
                         {tag}
                       </Button>
                     ))}
@@ -402,7 +404,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                 )}
 
                 <div />{/* separator */}
-              </>,
+              </> },
               optionList: [
                 {
                   label: 'Edit Nature',

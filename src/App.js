@@ -5,6 +5,7 @@ import AccountPage from './page/AccountPage'
 import CategoriesPage from './page/CategoriesPage'
 import SchedulesPage from './page/SchedulesPage'
 import StatsPage from './page/StatsPage'
+import TagPage from './page/TagPage'
 import React, { useEffect, useState } from 'react'
 import ToolbarLayout from './layout/ToolbarLayout'
 import LoginPage from './page/LoginPage'
@@ -104,6 +105,10 @@ function App() {
 
               <Route path="/schedules">
                 <SchedulesPage />
+              </Route>
+
+              <Route path="/tag/:tag">
+                <TagPage />
               </Route>
             </Switch>
           </ToolbarLayout>
