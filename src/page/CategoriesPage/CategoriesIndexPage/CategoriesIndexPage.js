@@ -174,6 +174,18 @@ function CategoriesIndexPage() {
       .set({ allocated }, {merge: true})
   }
 
+  const categoryPayDebt = () => {
+    const value = Number(prompt('How much to pay debt?'))
+
+    if (!value) return
+
+    database().collection('expenseCategories')
+      .doc(categoryId)
+      .set({
+        amount: category.amount - value,
+        debt: category.debt + value,
+      }, { merge: true })
+  }
 
   const deleteCategory = () => {
     if (!window.confirm('Are you sure you want to delete this category?')) return
@@ -200,6 +212,10 @@ function CategoriesIndexPage() {
             {
               label: 'Change total allocated',
               onClick: categoryEditAllocation,
+            },
+            {
+              label: 'Pay debt',
+              onClick: categoryPayDebt,
             },
             {
               label: 'Delete Category',
