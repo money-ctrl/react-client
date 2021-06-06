@@ -1,5 +1,5 @@
 import './SchedulesPage.css'
-import React from 'react'
+import React, { Fragment } from 'react'
 import TopNavigationLayout from '../../layout/TopNavigationLayout'
 import Title from '../../ui/Title'
 import { useHistory } from 'react-router-dom'
@@ -18,10 +18,10 @@ function SchedulesPage() {
       <Card key={schedule.id} className="p-m mb-s w-100">
         <dl>
           {Object.entries(flat(schedule)).map(([key, value]) => (
-            <>
+            <Fragment key={key}>
               <dt className="schedules-page__list-title">{key}</dt>
               <dd className="schedules-page__list-description">{JSON.stringify(value)}</dd>
-            </>
+            </Fragment>
           ))}
         </dl>
       </Card>
