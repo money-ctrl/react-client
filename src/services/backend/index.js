@@ -35,6 +35,23 @@ export const database = () => {
   return db.collection('users').doc(userUId)
 }
 
+export function getAllTransactionsByTag(tag) {
+  return database()
+    .collection('transactions')
+    .where('displayData.tags', 'array-contains', tag)
+    .get()
+    .then((querySnapshot) => {
+      return querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+    })
+    .catch(error => {
+      alert('[ERROR]:', error)
+      return []
+    })
+}
+
 export function updateCategory(id, override) {
   return database()
     .collection('expenseCategories')
