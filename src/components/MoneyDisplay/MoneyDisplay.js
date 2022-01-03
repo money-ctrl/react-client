@@ -39,7 +39,7 @@ function MoneyDisplay({ size = 'm', label, value, monochromatic, behavior, forma
       </div>}
 
       <div className="money-display__value">
-        {new Intl.NumberFormat('en-US', formatOptions).format(value)}
+        {new Intl.NumberFormat('en-US', formatOptions).format(value / 100)}
       </div>
     </div>
   )

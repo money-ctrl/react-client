@@ -12,7 +12,7 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
     <div className="money-calculator">
       <MoneyDisplay
         className="money-calculator__display"
-        value={value/100}
+        value={value}
         formatOptions={{
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
@@ -72,7 +72,7 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
           <Button
             type="round"
             variant="primary"
-            onClick={() => onSubmit(value/100)}
+            onClick={() => onSubmit(value)}
           >
             <Icon name="check" />
           </Button>

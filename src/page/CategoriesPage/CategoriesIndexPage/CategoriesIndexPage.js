@@ -165,7 +165,7 @@ function CategoriesIndexPage() {
   }
 
   const categoryEditAllocation = () => {
-    const allocated = Number(prompt('What is the total amount you want to allocate for expenses in this category?', category.allocated))
+    const allocated = Number(prompt('What is the total amount (in cents) you want to allocate for expenses in this category?', category.allocated))
 
     if (!allocated) return
 
@@ -175,7 +175,7 @@ function CategoriesIndexPage() {
   }
 
   const categoryPayDebt = () => {
-    const value = Number(prompt('How much to pay debt?'))
+    const value = Number(prompt('How much (in cents) to pay debt?'))
 
     if (!value) return
 

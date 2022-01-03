@@ -21,7 +21,7 @@ export const userLogin = (info) => async (dispatch, getState) => {
 
   if (!doc.exists) {
     database().set({
-      version: 2,
+      version: 3,
       initialDatabasePayload
     })
   }

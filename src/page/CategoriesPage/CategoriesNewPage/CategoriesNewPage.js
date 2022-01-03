@@ -11,7 +11,7 @@ function CategoriesPageNew() {
   const addNewCategory = () => {
     const newExpenseCategory = categoryCreate({
       name: prompt('New category name'),
-      allocated: Number(prompt('What is the total amount you want to allocate for expenses in this category?')),
+      allocated: Number(prompt('What is the total amount (in cents) you want to allocate for expenses in this category?')),
     })
 
     if (!newExpenseCategory.name) return
