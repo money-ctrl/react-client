@@ -44,6 +44,8 @@ async function upgradeV1toV2(database) {
   }))
 
   batch.commit()
+
+  console.log('[migration] upgrade to v2 successfully')
 }
 
 /**
@@ -110,4 +112,6 @@ async function upgradeV2toV3(database) {
       amount: toCents(doc.amount),
     }, { merge: true })
   }))
+
+  console.log('[migration] upgrade to v3 successfully')
 }
