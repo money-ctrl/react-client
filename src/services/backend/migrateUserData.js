@@ -1,9 +1,10 @@
-import { db } from '../firebase'
+import { firebase, db } from '../firebase'
 
 export default async function migrateUserData(database) {
   let { version } = await database().get().then(ref => ({version:1, ...ref.data()}))
 
-  if (version === 1) await upgradeV1toV2(database)
+  if (version === 1) (await upgradeV1toV2(database), ++version)
+  if (version === 2) (await upgradeV2toV3(database), ++version)
 }
 
 /**
@@ -47,6 +48,66 @@ async function upgradeV1toV2(database) {
 
 /**
  * Plans for v3
- * - [ ] Change money to cents
- * - [ ] apply "tags" for every transaction
+ * - [x] Change money to cents
+ * - [ ] won't fix: don't remember motivation -- apply "tags" for every transaction
+ * - [x] add "createdAt" fields retroactively to "schedules" and "categories"
  */
+async function upgradeV2toV3(database) {
+  const batch = db.batch()
+
+  const toCents = value => Math.trunc(value * 100)
+
+  const userRoot = await database().get().then(ref => ref.data())
+  batch.set(database(), {
+    amount: toCents(userRoot.amount),
+    version: 3,
+  }, { merge: true })
+
+  const categories = await database().collection('expenseCategories').get().then(snapshot => snapshot.docs)
+  categories.forEach((snapshot) => {
+    const doc = snapshot.data()
+
+    batch.set(snapshot.ref, {
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      //
+      allocated: toCents(doc.allocated),
+      amount: toCents(doc.amount),
+      debt: toCents(doc.debt),
+      scheduled: doc.scheduled.map(scheduledPayment => ({
+        ...scheduledPayment,
+        transactionPayload: {
+          ...scheduledPayment.transactionPayload,
+          amount: toCents(scheduledPayment.transactionPayload.amount),
+        },
+      }))
+    }, { merge: true })
+  })
+
+  const schedules = await database().collection('schedules').get().then(snapshot => snapshot.docs)
+  schedules.forEach((snapshot) => {
+    const doc = snapshot.data()
+
+    batch.set(snapshot.ref, {
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      //
+      transactionPayload: {
+        ...doc.transactionPayload,
+        amount: toCents(doc.transactionPayload.amount),
+      },
+    }, { merge: true })
+  })
+
+  batch.commit()
+
+  // batch has a limit of 500 operations, transactions weren't gonna fit in
+  // there for sure, so we are compromising in updating them outside the batch
+  // (sad).
+  const transactions = await database().collection('transactions').get().then(snapshot => snapshot.docs)
+  await Promise.all(transactions.map((snapshot) => {
+    const doc = snapshot.data()
+
+    return snapshot.ref.set({
+      amount: toCents(doc.amount),
+    }, { merge: true })
+  }))
+}
