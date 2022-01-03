@@ -1,6 +1,6 @@
 import { addTransaction } from '../../../../services/backend'
 
-export async function addBudgetToCategory({ category, amount }) {
+export async function addBudgetToCategory({ category, amount, transactionNature }) {
   return addTransaction({
     type: 'transfer',
     amount,
@@ -10,6 +10,6 @@ export async function addBudgetToCategory({ category, amount }) {
       id: 'main',
     },
     recipient: {type: 'category', ...category},
-    transactionNature: 'Nature not specified',
+    transactionNature: transactionNature || 'Nature not specified',
   })
 }
