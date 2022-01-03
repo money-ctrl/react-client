@@ -214,21 +214,32 @@ function filterCategory(category) {
 }
 
 export function createSchedule({ repeatCount, sender, recipient, type, amount, transactionNature }) {
-  return database()
-    .collection('schedules')
-    .doc()
-    .set({
-      transactionPayload: {
-        type,
-        transactionNature,
-        amount,
-        sender: filterCategory(sender),
-        recipient: filterCategory(recipient),
-      },
-      categoryId: sender.id,
-      repeatCount,
-      triggerType: 'manual',
-    })
+  const scheduleNewDoc = database().collection('schedules').doc()
+  const scheduleId = scheduleNewDoc.id
+  const categoryDoc = database().collection('expenseCategories').doc(sender.id)
+
+  const payload = {
+    transactionPayload: {
+      type,
+      transactionNature,
+      amount,
+      sender: filterCategory(sender),
+      recipient: filterCategory(recipient),
+    },
+    categoryId: sender.id,
+    repeatCount,
+    triggerType: 'manual',
+  }
+
+  db.batch()
+    .set(scheduleNewDoc, payload)
+    .set(categoryDoc, {
+      scheduled: firebase.firestore.FieldValue.arrayUnion({
+        ...payload,
+        id: scheduleId,
+      }),
+    }, { merge: true })
+    .commit()
 }
 
 export async function scheduleTransactionToCategory({ category }) {
