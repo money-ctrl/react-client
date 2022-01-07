@@ -13,7 +13,7 @@ function MenuItemExpense({style, onSubmit}) {
   const onExpenseSubmit = (sender, close, value = 0) => {
     addTransaction({
       type: 'expense',
-      transactionNature: 'Nature not specified',
+      transactionNature: window.prompt() || 'Nature not specified',
       amount: value || amount,
       sender: {type: 'category', ...sender},
       recipient: {
