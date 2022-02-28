@@ -33,7 +33,7 @@ function SchedulesPage() {
           </dd>
 
           <dt className="schedules-page__list-title">repeatCount:</dt>
-          <dd className="schedules-page__list-description">{JSON.stringify(schedule.repeatCount)}</dd>
+          <dd className="schedules-page__list-description">{schedule.repeatCount}/{schedule.repeatCountTotal}</dd>
 
           <dt className="schedules-page__list-title">triggerType:</dt>
           <dd className="schedules-page__list-description">{JSON.stringify(schedule.triggerType)}</dd>

@@ -256,6 +256,7 @@ export function createSchedule({
     },
     categoryId: sender.id,
     repeatCount,
+    repeatCountTotal: repeatCount,
     triggerType,
   }
 
@@ -288,7 +289,20 @@ export async function scheduleTransactionToCategory({ category }) {
   const batch = db.batch()
 
   batch.set(refCategory, {
-    scheduled: toScheduleInCategory,
+    scheduled: toScheduleInCategory.map(schedule => {
+      if (schedule.repeatCount === Infinity) return schedule
+
+      const { transactionPayload: { transactionNature }, repeatCountTotal, repeatCount } = schedule
+      const paidCount = 1 + repeatCountTotal - repeatCount
+
+      return {
+        ...schedule,
+        transactionPayload: {
+          ...schedule.transactionPayload,
+          transactionNature: `${transactionNature} (${paidCount}/${repeatCountTotal})`
+        },
+      }
+    }),
   }, { merge: true })
 
   query.docs.forEach(doc => {
