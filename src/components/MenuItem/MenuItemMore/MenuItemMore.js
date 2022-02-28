@@ -1,5 +1,5 @@
 import './MenuItemMore.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MenuItemBase from '../MenuItemBase'
 import MoneyCalculator from '../../MoneyCalculator'
 import CategorySelector from '../../CategorySelector'
@@ -12,17 +12,53 @@ const actionList = {
   addBudgetToCategory: {
     handler: addBudgetToCategory,
     label: 'Add budget to a category',
+    pages: ['money', 'category', 'nature'],
   },
   schedulePayment: {
     handler: schedulePayment,
     label: 'Add scheduled payment',
+    pages: ['money', 'category', 'nature'],
   },
 }
+
+const Execute = ({ onRender }) => {
+  useEffect(() => onRender(), [onRender])
+  return null
+}
+
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
+const pagePool = {
+  'money': ({ nextStep }) => (
+    <MoneyCalculator
+      onSubmit={(amount) => nextStep({ amount })}
+    />
+  ),
+  'category': ({ previousStep, nextStep, payload }) => (
+    <CategorySelector
+      title="Where to add budget?"
+      onBackPress={previousStep}
+      onSubmit={(category) => nextStep({
+        ...payload,
+        category,
+      })}
+    />
+  ),
+  'nature': ({ nextStep, payload }) => (
+    <Execute onRender={() => nextStep({
+      ...payload,
+      transactionNature: window.prompt('Edit transition nature', 'Nature not specified'),
+    })} />
+  ),
+}
+/* eslint-enable react/prop-types */
+/* eslint-enable react/display-name */
 
 function MenuItemMore({style}) {
   const categories = useSelector(state => state.categories.list)
 
   const [isLoading, setLoading] = useState(false)
+  const [action, setAction] = useState(null)
 
   const pages = [
     ({ close, nextStep }) => (
@@ -42,34 +78,19 @@ function MenuItemMore({style}) {
         {Object.entries(actionList).map(([key, { label }]) => (
           <Button
             key={key}
-            onClick={()=>nextStep({ action: key })}
+            onClick={() => { setAction(key); nextStep() }}
           >
             { label }
           </Button>
         ))}
       </div>
     ),
-    ({ nextStep }) => (
-      <MoneyCalculator
-        onSubmit={(amount) => nextStep({ amount })}
-      />
-    ),
-    ({ previousStep, close, payload: { action, ...payload } }) => (
-      <CategorySelector
-        title="Where to add budget?"
-        onBackPress={previousStep}
-        onSubmit={(category) => {
-          const transactionNature = window.prompt('Edit transition nature', 'Nature not specified')
-
-          actionList[action].handler({
-            ...payload,
-            category,
-            transactionNature,
-          })
-
-          close()
-        }}
-      />
+    ...(action ? actionList[action].pages.map(pageId => pagePool[pageId]) : []),
+    ({ close, payload }) => (
+      <Execute onRender={() => {
+        actionList[action].handler(payload)
+        close()
+      }} />
     ),
   ]
 
