@@ -69,20 +69,20 @@ export function processDebt(category) {
 
     if (isAmountNegative) {
       return {
-        amount: 0,
-        debt: currentDebt + category.amount,
+        amount: firebase.firestore.FieldValue.increment(-1 * category.amount),
+        debt: firebase.firestore.FieldValue.increment(category.amount),
       }
     }
     else if (isDebtGreaterThanAvailableAmount) {
       return {
-        amount: 0,
-        debt: currentDebt + category.amount,
+        amount: firebase.firestore.FieldValue.increment(-1 * category.amount),
+        debt: firebase.firestore.FieldValue.increment(category.amount),
       }
     }
     else if (canPayDebt) {
       return {
-        amount: category.amount + currentDebt,
-        debt: 0,
+        amount: firebase.firestore.FieldValue.increment(currentDebt),
+        debt: firebase.firestore.FieldValue.increment(-1 * currentDebt),
       }
     }
 
@@ -112,25 +112,23 @@ export async function addTransaction({ amount, sender, recipient, type, transact
       },
     }
 
-    database().collection('transactions').doc().set(payload)
+    const transactions = [
+      database().collection('transactions').doc().set(payload),
+    ]
 
     const applyTransaction = async (path, { partyType, party }) => {
       const modifier = { 'sender': -1, 'recipient': 1 }
       const amount = payload.amount * modifier[partyType]
 
-      const {
-        amount: previousAmount,
-      } = await path(party.id).get().then(ref => ref.data() || {})
-
-      return path(party.id).set({ amount: (previousAmount||0) + amount }, {merge:true})
+      return path(party.id).set({
+        amount: firebase.firestore.FieldValue.increment(amount),
+      }, {merge:true})
     }
 
     const collections = {
       'category': (id) => database().collection('expenseCategories').doc(id),
       'wallet': () => database(),
     }
-
-    const transactions = []
 
     if (['wallet', 'category'].includes(sender.type)) {
       transactions.push(
