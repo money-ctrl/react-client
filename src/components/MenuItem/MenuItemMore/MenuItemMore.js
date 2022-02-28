@@ -17,7 +17,7 @@ const actionList = {
   schedulePayment: {
     handler: schedulePayment,
     label: 'Add scheduled payment',
-    pages: ['money', 'category', 'nature'],
+    pages: ['money', 'category', 'nature', 'schedule'],
   },
 }
 
@@ -48,6 +48,13 @@ const pagePool = {
     <Execute onRender={() => nextStep({
       ...payload,
       transactionNature: window.prompt('Edit transition nature', 'Nature not specified'),
+    })} />
+  ),
+  'schedule': ({ nextStep, payload }) => (
+    <Execute onRender={() => nextStep({
+      ...payload,
+      repeatCount: Number(window.prompt('repeatCount(Number)', 'Infinity')),
+      triggerType: window.prompt('triggerType("manual"|"onCycleReset")', 'manual'),
     })} />
   ),
 }

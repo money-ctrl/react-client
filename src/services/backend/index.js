@@ -233,7 +233,15 @@ function filterCategory(category) {
   )
 }
 
-export function createSchedule({ repeatCount, sender, recipient, type, amount, transactionNature }) {
+export function createSchedule({
+  sender,
+  recipient,
+  type,
+  amount,
+  repeatCount = Infinity,
+  transactionNature = 'Nature not specified',
+  triggerType = 'manual',
+}) {
   const scheduleNewDoc = database().collection('schedules').doc()
   const scheduleId = scheduleNewDoc.id
   const categoryDoc = database().collection('expenseCategories').doc(sender.id)
@@ -248,7 +256,7 @@ export function createSchedule({ repeatCount, sender, recipient, type, amount, t
     },
     categoryId: sender.id,
     repeatCount,
-    triggerType: 'manual',
+    triggerType,
   }
 
   db.batch()
