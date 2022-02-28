@@ -17,7 +17,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import { getTypeIdFromResourceId, resourceId } from '../../../utils'
-import { descheduleTransaction } from '../../../services/backend'
+import { descheduleTransaction, removeScheduledTransaction } from '../../../services/backend'
 import Divider from '../../../ui/Divider'
 import { categoryPresenter } from '../../../services/category'
 
@@ -341,6 +341,14 @@ function ScheduledTransactions({ category }) {
                     {
                       label: 'Remove for this cycle',
                       onClick: () => descheduleTransaction({ schedule }),
+                    },
+                    {
+                      label: 'Remove and stop scheduling',
+                      variant: 'danger',
+                      onClick: () => {
+                        descheduleTransaction({ schedule })
+                        removeScheduledTransaction({ schedule })
+                      },
                     },
                   ],
                 }))}

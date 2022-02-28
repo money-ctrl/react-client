@@ -269,3 +269,10 @@ export async function descheduleTransaction({ schedule }) {
       scheduled: firebase.firestore.FieldValue.arrayRemove(schedule),
     }, { merge: true })
 }
+
+export async function removeScheduledTransaction({ schedule }) {
+  return database()
+    .collection('schedules')
+    .doc(schedule.id)
+    .delete()
+}
