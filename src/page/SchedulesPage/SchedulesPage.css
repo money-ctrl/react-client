@@ -11,4 +11,6 @@
   margin-top: var(--space-xxs);
   padding-left: var(--space-xs);
   padding-left: var(--space-xs);
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
