@@ -241,22 +241,39 @@ export function createSchedule({ repeatCount, sender, recipient, type, amount, t
 }
 
 export async function scheduleTransactionToCategory({ category }) {
-  const scheduleIds = await database()
+  const refCategory = database()
+    .collection('expenseCategories')
+    .doc(category.id)
+
+  const query = await database()
     .collection('schedules')
     .where('categoryId', '==', category.id)
     .get()
-    .then(query => query.docs
-      .map(ref => ({
-        id: ref.id,
-        ...ref.data(),
-      })))
 
-  return database()
-    .collection('expenseCategories')
-    .doc(category.id)
-    .set({
-      scheduled: scheduleIds,
-    }, { merge: true })
+  const toScheduleInCategory = query.docs.map(ref => ({
+    id: ref.id,
+    ...ref.data(),
+  }))
+
+  const batch = db.batch()
+
+  batch.set(refCategory, {
+    scheduled: toScheduleInCategory,
+  }, { merge: true })
+
+  query.docs.forEach(doc => {
+    const { repeatCount } = doc.data()
+
+    if (repeatCount > 1) {
+      batch.set(doc.ref, {
+        repeatCount: firebase.firestore.FieldValue.increment(-1),
+      }, { merge: true })
+    } else {
+      batch.delete(doc.ref)
+    }
+  })
+
+  return batch.commit()
 }
 
 export async function descheduleTransaction({ schedule }) {
