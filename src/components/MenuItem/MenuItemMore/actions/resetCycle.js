@@ -1,4 +1,4 @@
-import { addTransaction, scheduleTransactionToCategory, processDebt  } from '../../../../services/backend'
+import { addTransaction, scheduleTransactionToCategory, processDebt, processAutomaticSchedules } from '../../../../services/backend'
 
 export async function resetCycle({ categories }) {
   return await Promise.all(categories.map((category) => {
@@ -17,7 +17,8 @@ export async function resetCycle({ categories }) {
         transactionNature: 'Cycle reset',
       }),
 
-      scheduleTransactionToCategory({ category }),
+      scheduleTransactionToCategory({ category })
+        .then(() => processAutomaticSchedules(category)),
     ]
 
     return Promise.all(subpromises)

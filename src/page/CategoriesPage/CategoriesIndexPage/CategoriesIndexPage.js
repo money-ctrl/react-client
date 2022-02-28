@@ -12,7 +12,7 @@ import Button from '../../../ui/Button'
 import MoneyDisplay from '../../../components/MoneyDisplay'
 import Overdrive from 'react-overdrive'
 import TopNavigationLayout from '../../../layout/TopNavigationLayout'
-import { database, getLastestTransactions, setTransaction, addTransaction, updateCategory } from '../../../services/backend'
+import { database, getLastestTransactions, setTransaction, commitSchedule } from '../../../services/backend'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
@@ -284,11 +284,8 @@ function CategoriesIndexPage() {
 function ScheduledTransactions({ category }) {
   const dispatch = useDispatch()
 
-  const commit = (id, transaction) => {
-    addTransaction(transaction)
-    updateCategory(category.id, {
-      scheduled: category.scheduled.filter(transaction => transaction.id !== id),
-    })
+  const commit = (schedule) => {
+    commitSchedule(category.id, schedule)
   }
 
   return (<>
@@ -330,8 +327,8 @@ function ScheduledTransactions({ category }) {
             </span>
 
             <div className="categories-index-page__spending-action">
-              <Button size="small" onClick={() => commit(id, transaction)}>
-              commit
+              <Button size="small" onClick={() => commit(schedule)}>
+                commit
               </Button>
 
               <Button

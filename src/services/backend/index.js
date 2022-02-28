@@ -93,6 +93,28 @@ export function processDebt(category) {
   return updateCategory(category.id, calculateNewBalance(category))
 }
 
+export async function processAutomaticSchedules(category) {
+  const { scheduled: scheduledList } = await database()
+    .collection('expenseCategories')
+    .doc(category.id)
+    .get()
+    .then(doc => doc.data())
+
+  return scheduledList
+    .filter(s => s.triggerType === 'onCycleReset')
+    .map(schedule => commitSchedule(category.id, schedule))
+}
+
+export async function commitSchedule(categoryId, scheduledTransactions) {
+  return Promise.all([
+    addTransaction(scheduledTransactions.transactionPayload),
+
+    updateCategory(categoryId, {
+      scheduled: firebase.firestore.FieldValue.arrayRemove(scheduledTransactions)
+    }),
+  ])
+}
+
 export async function addTransaction({ amount, sender, recipient, type, transactionNature }) {
   try {
     validateArguments(...arguments)
