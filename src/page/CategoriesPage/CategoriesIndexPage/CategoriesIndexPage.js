@@ -12,7 +12,7 @@ import Button from '../../../ui/Button'
 import MoneyDisplay from '../../../components/MoneyDisplay'
 import Overdrive from 'react-overdrive'
 import TopNavigationLayout from '../../../layout/TopNavigationLayout'
-import { database, getLastestTransactions, setTransaction, commitSchedule } from '../../../services/backend'
+import { database, getLastestTransactions, setTransaction, commitSchedule, refundTransaction } from '../../../services/backend'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
@@ -37,14 +37,21 @@ const getDateString = ({ seconds, nanoseconds }) => {
 
 const iconType = ({ type, sender }) => {
   const { type: subtype } = getTypeIdFromResourceId(sender)
-  return {
+
+  const anyKeyReturnValueProxy = (value) => new Proxy({}, {
+    get: () => value,
+  })
+
+  const walletIcon = {
+    name: 'wallet',
+    style: {
+      color: '#5bbaa4',
+    },
+  }
+
+  return ({
     'transfer': {
-      'wallet': {
-        name: 'wallet',
-        style: {
-          color: '#5bbaa4',
-        },
-      },
+      'wallet': walletIcon,
       'category': {
         name: 'exchange-alt',
         style: {
@@ -52,15 +59,14 @@ const iconType = ({ type, sender }) => {
         },
       },
     },
-    'expense': new Proxy({}, {
-      get: () => ({
-        name: 'shopping-cart',
-        style: {
-          color: '#da7a98',
-        },
-      }),
+    'income': anyKeyReturnValueProxy(walletIcon),
+    'expense': anyKeyReturnValueProxy({
+      name: 'shopping-cart',
+      style: {
+        color: '#da7a98',
+      },
     }),
-  }[type][subtype] || { name: 'question-circle' }
+  }[type] || {})[subtype] || { name: 'question-circle' }
 }
 
 const editTransactionNature = (transaction) => {
@@ -427,6 +433,10 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                 <div />{/* separator */}
               </> },
               optionList: [
+                (transaction.type === 'expense') && {
+                  label: 'Refund transaction',
+                  onClick: () => refundTransaction(transaction),
+                },
                 {
                   label: 'Edit Nature',
                   onClick: () => editTransactionNature(transaction),
@@ -435,7 +445,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                   label: 'Edit Tags',
                   onClick: () => editTransactionTags(transaction),
                 },
-              ],
+              ].filter(Boolean),
             }))}
           >
             <Icon

@@ -2,7 +2,7 @@ import {
   db,
   firebase
 } from '../firebase'
-import { resourceId } from '../../utils'
+import { resourceId, getTypeIdFromResourceId } from '../../utils'
 
 export { default as migrateUserData } from './migrateUserData'
 
@@ -216,6 +216,28 @@ export function setTransaction({ id, ...transaction }) {
     .collection('transactions')
     .doc(id)
     .set(transaction, { merge: true })
+}
+
+export function refundTransaction(transaction) {
+  const { amount, sender: senderResourceId, displayData } = transaction
+  const { transactionNature, recipient, sender } = displayData
+  const { type, id } = getTypeIdFromResourceId(senderResourceId)
+
+  addTransaction({
+    type: 'income',
+    transactionNature: `Refund: ${transactionNature}`,
+    amount,
+    sender: {
+      type: 'reason',
+      name: `Refund from ${recipient}`,
+      id: 'refund',
+    },
+    recipient: {
+      type,
+      name: sender,
+      id,
+    },
+  })
 }
 
 function filterCategory(category) {
