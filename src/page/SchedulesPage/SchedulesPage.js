@@ -59,7 +59,13 @@ function SchedulesPage() {
               <dd className="schedules-page__list-description">{JSON.stringify(schedule.triggerType)}</dd>
 
               <dt className="schedules-page__list-title">raw:</dt>
-              <dd className="schedules-page__list-description">{JSON.stringify(schedule)}</dd>
+              <dd className="schedules-page__list-description">
+                <details>
+                  <summary>json object</summary>
+
+                  {JSON.stringify(schedule)}
+                </details>
+              </dd>
             </dl>
           </Card>
         ))}
