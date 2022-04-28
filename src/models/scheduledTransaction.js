@@ -6,6 +6,7 @@ export const exemple = {
     nanoseconds: 0,
   },
   repeatCount: Infinity || Number(), // decremented on each cycle
+  repeatCountTotal: Infinity || Number(), // stays as is of when created
   transactionPayload: {
     amount: 799, // cents
     recipient: {
