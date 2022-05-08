@@ -5,6 +5,7 @@ import classnames from 'classnames'
 
 function Input({
   className,
+  ...rest
 }) {
   return (
     <div
@@ -15,6 +16,7 @@ function Input({
     >
       <input
         className="input__input"
+        {...rest}
       />
     </div>
   )
