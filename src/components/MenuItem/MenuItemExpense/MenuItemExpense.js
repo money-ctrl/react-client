@@ -6,6 +6,10 @@ import MoneyCalculator from '../../MoneyCalculator'
 import { useSelector } from 'react-redux'
 import { useRouteMatch } from 'react-router-dom'
 import CategorySelector from '../../CategorySelector'
+import Input from '../../../ui/Input'
+import Button from '../../../ui/Button'
+import Form from '../../../ui/Form'
+import Label from '../../../ui/Label'
 
 const Execute = ({ onRender }) => {
   useEffect(() => onRender(), [onRender])
@@ -30,13 +34,38 @@ function MenuItemExpense({style, onSubmit}) {
         onSubmit={(amount) => nextStep({ amount })}
       />
     ),
+    ({ nextStep }) => (
+      <Form
+        onSubmit={({ data }) => nextStep(data)}
+      >
+        <Label
+          label="Transaction Nature"
+          name="nature"
+          className="mt-m"
+        >
+          {attrs => (
+            <Input
+              autocomplete="off"
+              {...attrs}
+            />
+          )}
+        </Label>
+
+        <Button
+          className="mt-m"
+          variant="primary"
+        >
+          Next
+        </Button>
+      </Form>
+    ),
     ({ close, payload }) => (
       <Execute onRender={() => {
-        const { category, amount } = payload
+        const { category, nature, amount } = payload
 
         addTransaction({
           type: 'expense',
-          transactionNature: window.prompt() || 'Nature not specified',
+          transactionNature: nature,
           amount,
           sender: { type: 'category', ...category },
           recipient: { type: 'reason', name: 'Unknown', id: 'unknown' },

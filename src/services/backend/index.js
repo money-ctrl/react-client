@@ -130,7 +130,7 @@ export async function addTransaction({ amount, sender, recipient, type, transact
         tags: [],
         sender: sender.name,
         recipient: recipient.name,
-        transactionNature,
+        transactionNature: transactionNature || 'Nature not specified',
       },
     }
 
