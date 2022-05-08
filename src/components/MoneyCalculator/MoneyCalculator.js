@@ -5,8 +5,8 @@ import MoneyDisplay from '../MoneyDisplay'
 import PropTypes from 'prop-types'
 import Icon from '../../ui/Icon'
 
-function MoneyCalculator({ onBackPress, onSubmit }) {
-  const [value, setValue] = useState(0)
+function MoneyCalculator({ onBackPress, onSubmit, initial }) {
+  const [value, setValue] = useState(initial)
 
   const backButton = () => {
     if (value === 0) {
@@ -92,11 +92,13 @@ function MoneyCalculator({ onBackPress, onSubmit }) {
 }
 
 MoneyCalculator.propTypes = {
+  initial: PropTypes.number,
   onBackPress: PropTypes.func,
   onSubmit: PropTypes.func,
 }
 
 MoneyCalculator.defaultProps = {
+  initial: 0,
   onBackPress: () => {},
   onSubmit: () => {},
 }
