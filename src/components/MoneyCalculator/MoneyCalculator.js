@@ -5,8 +5,17 @@ import MoneyDisplay from '../MoneyDisplay'
 import PropTypes from 'prop-types'
 import Icon from '../../ui/Icon'
 
-function MoneyCalculator({ onSubmit = (() => {}) }) {
+function MoneyCalculator({ onBackPress, onSubmit }) {
   const [value, setValue] = useState(0)
+
+  const backButton = () => {
+    if (value === 0) {
+      onBackPress()
+      return
+    }
+
+    setValue(Math.floor(value / 10))
+  }
 
   return (
     <div className="money-calculator">
@@ -49,7 +58,7 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
           <Button
             type="round"
             variant="ghost"
-            onClick={() => setValue(Math.floor(value / 10))}
+            onClick={backButton}
           >
             <Icon name="backspace" />
           </Button>
@@ -83,7 +92,13 @@ function MoneyCalculator({ onSubmit = (() => {}) }) {
 }
 
 MoneyCalculator.propTypes = {
+  onBackPress: PropTypes.func,
   onSubmit: PropTypes.func,
+}
+
+MoneyCalculator.defaultProps = {
+  onBackPress: () => {},
+  onSubmit: () => {},
 }
 
 export default MoneyCalculator
