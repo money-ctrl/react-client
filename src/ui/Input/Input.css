@@ -1,0 +1,13 @@
+.input {
+  border-radius: var(--button-border-radius);
+  background-color: var(--color-neutral-white);
+  box-shadow: var(--shadow-m);
+}
+
+.input__input {
+  background-color: transparent;
+  border-radius: inherit;
+  border: none;
+  padding: var(--space-s);
+  width: 100%;
+}
