@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
 import { addTransaction } from '../../../services/backend'
@@ -8,13 +8,11 @@ import { useRouteMatch } from 'react-router-dom'
 import CategorySelector from '../../CategorySelector'
 
 function MenuItemExpense({style, onSubmit}) {
-  const [amount, setAmount] = useState(0)
-
   const onExpenseSubmit = (sender, close, value = 0) => {
     addTransaction({
       type: 'expense',
       transactionNature: window.prompt() || 'Nature not specified',
-      amount: value || amount,
+      amount: value,
       sender: {type: 'category', ...sender},
       recipient: {
         type: 'reason',
@@ -31,15 +29,14 @@ function MenuItemExpense({style, onSubmit}) {
     ({ nextStep }) => (
       <MoneyCalculator
         onSubmit={(amount) => {
-          setAmount(amount)
-          nextStep()
+          nextStep({ amount })
         }}
       />
     ),
-    ({ previousStep, close }) => (
+    ({ previousStep, close, payload: { amount } }) => (
       <CategorySelector
         onBackPress={previousStep}
-        onSubmit={category => onExpenseSubmit(category, close)}
+        onSubmit={category => onExpenseSubmit(category, close, amount)}
         title="Where to spend?"
       />
     ),
