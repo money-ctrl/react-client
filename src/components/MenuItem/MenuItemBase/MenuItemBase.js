@@ -63,10 +63,14 @@ function MenuItemBase({
   const [stepsPayload, setPagePayload] = useState({})
   const [pageIndex, setPageIndex] = useState(0)
 
-  const previousStep = () => setPageIndex(pageIndex-1)
+  const previousStep = () => setPageIndex((pageIndex) => {
+    return pageIndex === 0 ? 0 : pageIndex - 1
+  })
   const nextStep = (payload) => {
     setPagePayload({ ...stepsPayload, ...payload })
-    setPageIndex(pageIndex+1)
+    setPageIndex((pageIndex) => {
+      return pageIndex === (pages.length - 1) ? pageIndex : pageIndex + 1
+    })
   }
 
   const displayCurrentPage = () => {
