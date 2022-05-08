@@ -34,25 +34,22 @@ const pagePool = {
       onSubmit={(amount) => nextStep({ amount })}
     />
   ),
-  'category': ({ previousStep, nextStep, payload }) => (
+  'category': ({ previousStep, nextStep }) => (
     <CategorySelector
       title="Where to add budget?"
       onBackPress={previousStep}
       onSubmit={(category) => nextStep({
-        ...payload,
         category,
       })}
     />
   ),
-  'nature': ({ nextStep, payload }) => (
+  'nature': ({ nextStep }) => (
     <Execute onRender={() => nextStep({
-      ...payload,
       transactionNature: window.prompt('Edit transition nature', 'Nature not specified'),
     })} />
   ),
-  'schedule': ({ nextStep, payload }) => (
+  'schedule': ({ nextStep }) => (
     <Execute onRender={() => nextStep({
-      ...payload,
       repeatCount: Number(window.prompt('repeatCount(Number)', 'Infinity')),
       triggerType: window.prompt('triggerType("manual"|"onCycleReset")', 'manual'),
     })} />
