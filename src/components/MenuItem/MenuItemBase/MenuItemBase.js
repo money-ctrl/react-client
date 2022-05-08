@@ -64,7 +64,12 @@ function MenuItemBase({
   const [pageIndex, setPageIndex] = useState(0)
 
   const previousStep = () => setPageIndex((pageIndex) => {
-    return pageIndex === 0 ? 0 : pageIndex - 1
+    if (pageIndex === 0) {
+      close()
+      return 0
+    }
+
+    return pageIndex - 1
   })
   const nextStep = (payload) => {
     setPagePayload({ ...stepsPayload, ...payload })
