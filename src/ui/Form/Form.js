@@ -9,7 +9,7 @@ function Form({ onSubmit, children, ...rest }) {
         event.preventDefault()
         onSubmit({
           data: Object.fromEntries(new FormData(event.target).entries()),
-          event: event.nativeEvent,
+          event,
         })
       }}
     >
