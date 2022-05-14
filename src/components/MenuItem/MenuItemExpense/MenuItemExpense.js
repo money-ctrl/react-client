@@ -10,6 +10,7 @@ import Input from '../../../ui/Input'
 import Button from '../../../ui/Button'
 import Form from '../../../ui/Form'
 import Label from '../../../ui/Label'
+import { trim, mapValues } from '../../../utils'
 
 const Execute = ({ onRender }) => {
   useEffect(() => onRender(), [onRender])
@@ -36,19 +37,22 @@ function MenuItemExpense({style, onSubmit}) {
     ),
     ({ nextStep }) => (
       <Form
-        onSubmit={({ data }) => nextStep(data)}
+        onSubmit={({ data }) => nextStep(mapValues(data, trim))}
       >
         <Label
           label="Transaction Nature"
           name="nature"
           className="mt-m"
         >
-          {attrs => (
-            <Input
-              autoComplete="off"
-              {...attrs}
-            />
-          )}
+          {attrs => (<Input autoComplete="off" {...attrs} />)}
+        </Label>
+
+        <Label
+          label="Tags (comma separated)"
+          name="tags"
+          className="mt-m"
+        >
+          {attrs => (<Input autoComplete="off" {...attrs} />)}
         </Label>
 
         <Button
@@ -61,12 +65,13 @@ function MenuItemExpense({style, onSubmit}) {
     ),
     ({ close, payload }) => (
       <Execute onRender={() => {
-        const { category, nature, amount } = payload
+        const { category, nature, amount, tags } = payload
 
         addTransaction({
           type: 'expense',
           transactionNature: nature,
           amount,
+          tags: tags.split(','),
           sender: { type: 'category', ...category },
           recipient: { type: 'reason', name: 'Unknown', id: 'unknown' },
         })

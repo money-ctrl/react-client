@@ -115,7 +115,14 @@ export async function commitSchedule(categoryId, scheduledTransactions) {
   ])
 }
 
-export async function addTransaction({ amount, sender, recipient, type, transactionNature }) {
+export async function addTransaction({
+  amount,
+  sender,
+  recipient,
+  type,
+  transactionNature,
+  tags = [],
+}) {
   try {
     validateArguments(...arguments)
 
@@ -127,7 +134,7 @@ export async function addTransaction({ amount, sender, recipient, type, transact
       recipient: resourceId(recipient),
       relatedParties: [resourceId(sender), resourceId(recipient)],
       displayData: {
-        tags: [],
+        tags,
         sender: sender.name,
         recipient: recipient.name,
         transactionNature: transactionNature || 'Nature not specified',

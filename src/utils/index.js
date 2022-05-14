@@ -27,3 +27,21 @@ export const flat = (original) => {
   return object
 }
 
+export const mapEntries = (object, transformer) => {
+  if (!object) return undefined
+
+  return Object.fromEntries(
+    Object.entries(object)
+      .map(transformer)
+  )
+}
+
+export const mapValues = (object, transformer) => {
+  return mapEntries(object, ([key, value]) => [key, transformer(value)])
+}
+
+export const trim = (str) => {
+  if (typeof str !== 'string') return str
+
+  return str.trim()
+}
