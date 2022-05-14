@@ -45,7 +45,7 @@ function MenuItemExpense({style, onSubmit}) {
         >
           {attrs => (
             <Input
-              autocomplete="off"
+              autoComplete="off"
               {...attrs}
             />
           )}
