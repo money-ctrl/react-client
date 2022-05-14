@@ -32,7 +32,7 @@ function ToolbarLayout({ items = [], children, requestLowOpacity = false }) {
     </NavLink>
   )
 
-  return (<>
+  return (<div className="toolbar-layout">
     <div className={classNames(
       'toolbar-layout__tab-container',
       (isMenuOpen || requestLowOpacity) && 'toolbar-layout__tab-container--menu-is-open',
@@ -54,7 +54,7 @@ function ToolbarLayout({ items = [], children, requestLowOpacity = false }) {
         <MenuItemExpense onSubmit={() => setMenuOpen(false)} />
       </ActionButton>
     </Card>
-  </>)
+  </div>)
 }
 
 ToolbarLayout.propTypes = {

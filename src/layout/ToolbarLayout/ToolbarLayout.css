@@ -1,6 +1,13 @@
+.toolbar-layout {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 1fr auto;
+}
+
 .toolbar-layout__tab-container {
   --scroll-padding: calc(70px + var(--space-s));
 
+  grid-area: 1/1/-1/-1;
   height: 100%;
   padding-bottom: var(--scroll-padding);
   overflow-y: scroll;
@@ -17,10 +24,7 @@
 }
 
 .toolbar-layout__toolbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  grid-area: 2/1/-1/-1;
 
   backdrop-filter: blur(5px);
   background-color: hsla(var(--color-neutral-white-hsl), var(--transparency-normal));
