@@ -1,4 +1,9 @@
 .menu-item-base {
+  --cancel-button-y-padding: var(--space-xs);
+  --cancel-button-margin: var(--space-s);
+  --page-padding: var(--space-xxs);
+  --cancel-button-top-offset: calc((var(--space-xxs) + var(--space-s) + var(--space-xs)) * 2 + 1em);
+
   position: relative;
   max-width: 400px;
   margin-left: auto;

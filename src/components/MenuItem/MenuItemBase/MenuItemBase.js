@@ -44,7 +44,7 @@ function MenuItemBase({
     const entered = {
       position: 'fixed',
       height: '500px',
-      maxHeight: 'calc(100vh - (var(--space-xxs) * 2))',
+      maxHeight: 'calc(100vh - var(--cancel-button-top-offset))',
       bottom: 'var(--space-xxs)',
       right: 'var(--space-xxs)',
       left: 'var(--space-xxs)',
