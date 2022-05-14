@@ -20,10 +20,15 @@ jobs:
           path: node_modules
           key: build-${{ hashFiles('**/package-lock.json') }}
 
+      - name: Load Node Version
+        id: node-version
+        run: echo "::set-output name=name::$(grep NODE_VERSION .env | sed 's/^.*=//')"
+
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 12.11.1
+          # node-version: 12.11.1
+          node-version: ${{ steps.node-version.outputs.name }}
 
       - name: Create firebaseConfig.json
         run: |

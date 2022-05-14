@@ -1,0 +1,18 @@
+version: "3.5"
+
+services:
+  ctrl-money:
+    tty: true
+    stdin_open: true
+    # env_file: envs/global-secret.env
+    image: node:$NODE_VERSION
+    working_dir: /ctrl-money
+    command: make startup
+    ports:
+      - $PORT:$PORT
+    volumes:
+      - ./:/ctrl-money
+      - ctrl-money-node-modules:/ctrl-money/node_modules
+
+volumes:
+  ctrl-money-node-modules:
