@@ -29,7 +29,7 @@ function Label({ className, children, name, label, ...rest }) {
 }
 
 Label.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   label: PropTypes.string,
   name: PropTypes.string,
   className: PropTypes.any,
