@@ -71,7 +71,7 @@ function MenuItemExpense({style, onSubmit}) {
           type: 'expense',
           transactionNature: nature,
           amount,
-          tags: tags.split(','),
+          tags: (tags === '') ? [] : tags.split(','),
           sender: { type: 'category', ...category },
           recipient: { type: 'reason', name: 'Unknown', id: 'unknown' },
         })
