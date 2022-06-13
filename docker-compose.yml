@@ -12,7 +12,4 @@ services:
       - $PORT:$PORT
     volumes:
       - ./:/ctrl-money
-      - ctrl-money-node-modules:/ctrl-money/node_modules
-
-volumes:
-  ctrl-money-node-modules:
+      - ./node_modules:/ctrl-money/node_modules:delegated
