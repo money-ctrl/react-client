@@ -1,36 +1,33 @@
 import './Icon.css'
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
-
-const ICONS = Object.freeze({
-  'plus': 'fas fa-plus',
-  'minus': 'fas fa-minus',
-  'chevron-right': 'fas fa-chevron-right',
-})
+import classnames from 'classnames'
 
 const fontModifiers = {
-  'xs': 0.25,
-  's': 0.5,
-  'm': 1,
-  'l': 1.5,
-  'xl': 2,
-  'xxl': 2.5,
+  'xs': 'fa-xs',
+  's': 'fa-sm',
+  'm': '',
+  'l': 'fa-lg',
+  'xl': 'fa-2x',
+  'xxl': 'fa-3x',
 }
 
-function Icon({className, style = {}, name, size = 'm'}) {
+function Icon({className, style, name, size, type}) {
   const fontModifier = fontModifiers[size]
 
-  const classes = classNames(
-    ICONS[name] || `fas fa-${name}`,
-    className,
-  )
+  if (['xmark-large', 'delete-left'].includes(name)) {
+    console.log('fuck', name)
+  }
 
   return (
-    <i
-      className={classes}
-      style={{ ...style, fontSize: `${fontModifier}rem` }}
-    />
+    <div
+      className={classnames('icon', className)}
+      style={style}
+    >
+      <i
+        className={classnames(`fa-${type} fa-${name}`, fontModifier)}
+      />
+    </div>
   )
 }
 
@@ -39,6 +36,13 @@ Icon.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.oneOf(Object.keys(fontModifiers)),
   style: PropTypes.object,
+  type: PropTypes.oneOf(['solid', 'regular', 'light', 'thin', 'duotone'])
+}
+
+Icon.defaultProps = {
+  style: {},
+  size: 'm',
+  type: 'solid',
 }
 
 export default Icon
