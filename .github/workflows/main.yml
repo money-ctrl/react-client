@@ -7,9 +7,10 @@ on:
 
 jobs:
   deploy_to_firebase_hosting:
-
+    name: Deploy to Firebase Hosting
     runs-on: ubuntu-latest
-
+    env:
+      VHOYER_FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.VHOYER_FONTAWESOME_NPM_AUTH_TOKEN }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@master
