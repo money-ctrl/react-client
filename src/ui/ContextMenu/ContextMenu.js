@@ -55,8 +55,18 @@ function ContextMenu({ onMenuOpen }) {
               behavior="block"
               variant={option.variant}
               onClick={() => {
-                option.onClick()
-                closeMenu()
+                let defaultBehavior = true
+                const event = {
+                  preventDefault: () => {
+                    defaultBehavior = false
+                  },
+                }
+
+                option.onClick(event)
+
+                if (defaultBehavior) {
+                  closeMenu()
+                }
               }}
             >
               {option.label}

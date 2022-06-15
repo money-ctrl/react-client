@@ -10,13 +10,14 @@ import Card from '../../../ui/Card'
 import Icon from '../../../ui/Icon'
 import Button from '../../../ui/Button'
 import MoneyDisplay from '../../../components/MoneyDisplay'
+import MoneyCalculator from '../../../components/MoneyCalculator'
 import Overdrive from 'react-overdrive'
 import TopNavigationLayout from '../../../layout/TopNavigationLayout'
 import { database, getLastestTransactions, setTransaction, commitSchedule, refundTransaction } from '../../../services/backend'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
-import { getTypeIdFromResourceId, resourceId } from '../../../utils'
+import { getTypeIdFromResourceId, resourceId, merge } from '../../../utils'
 import { descheduleTransaction, removeScheduledTransaction } from '../../../services/backend'
 import Divider from '../../../ui/Divider'
 import { categoryPresenter } from '../../../services/category'
@@ -341,6 +342,31 @@ function ScheduledTransactions({ category }) {
                 size="small"
                 onClick={() => dispatch(contextAssign({
                   optionList: [
+                    {
+                      label: 'Commit with a different value',
+                      onClick: (e) => {
+                        e.preventDefault()
+
+                        dispatch(contextAssign({
+                          // eslint-disable-next-line react/prop-types
+                          header({ closeMenu }) {
+                            return (
+                              <MoneyCalculator
+                                onBackPress={closeMenu}
+                                onSubmit={(amount) => {
+                                  commit(merge(schedule, {
+                                    transactionPayload: { amount },
+                                  }))
+                                  descheduleTransaction({ schedule })
+                                  closeMenu()
+                                }}
+                              />
+                            )
+                          },
+                          optionList: [],
+                        }))
+                      },
+                    },
                     {
                       label: 'Remove for this cycle',
                       onClick: () => descheduleTransaction({ schedule }),
