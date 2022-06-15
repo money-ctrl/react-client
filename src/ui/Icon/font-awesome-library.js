@@ -11,6 +11,7 @@ import {
   faPlus,
   faShoppingCart,
   faWallet,
+  faXmarkLarge,
 } from '@fortawesome/pro-solid-svg-icons'
 
 library.add(
@@ -25,4 +26,5 @@ library.add(
   faPlus,
   faShoppingCart,
   faWallet,
+  faXmarkLarge,
 )

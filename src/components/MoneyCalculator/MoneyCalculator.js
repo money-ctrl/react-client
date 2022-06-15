@@ -8,8 +8,10 @@ import Icon from '../../ui/Icon'
 function MoneyCalculator({ onBackPress, onSubmit, initial }) {
   const [value, setValue] = useState(initial)
 
+  const isBackPress = value === 0
+
   const backButton = () => {
-    if (value === 0) {
+    if (isBackPress) {
       onBackPress()
       return
     }
@@ -60,7 +62,7 @@ function MoneyCalculator({ onBackPress, onSubmit, initial }) {
             variant="ghost"
             onClick={backButton}
           >
-            <Icon name="backspace" />
+            <Icon name={isBackPress ? 'xmark-large' : 'delete-left'} />
           </Button>
         </div>
 
