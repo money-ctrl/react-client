@@ -47,11 +47,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          yarn
+          npm install
 
       - name: Build project
         run: |
-          yarn build
+          npm run build
 
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
