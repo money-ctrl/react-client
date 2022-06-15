@@ -4,6 +4,8 @@ services:
   ctrl-money:
     tty: true
     stdin_open: true
+    environment:
+      - VHOYER_FONTAWESOME_NPM_AUTH_TOKEN
     # env_file: envs/global-secret.env
     image: node:$NODE_VERSION
     working_dir: /ctrl-money
