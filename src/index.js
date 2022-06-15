@@ -1,4 +1,5 @@
 import './index.css'
+import './ui/Icon/font-awesome-library'
 import { createStore, applyMiddleware } from 'redux'
 import reducer from './reducers'
 import ReduxThunk from 'redux-thunk'

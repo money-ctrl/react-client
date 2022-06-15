@@ -2,30 +2,34 @@ import './Icon.css'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const fontModifiers = {
-  'xs': 'fa-xs',
-  's': 'fa-sm',
-  'm': '',
-  'l': 'fa-lg',
-  'xl': 'fa-2x',
-  'xxl': 'fa-3x',
+const iconTypeDict = {
+  'solid': 'fas',
+  'regular': 'far',
+  'light': 'fal',
+  'thin': 'fat',
+  'duotone': 'fad',
+}
+
+const fontModifierDict = {
+  'xs': 'xs',
+  's': 'sm',
+  'm': null,
+  'l': 'lg',
+  'xl': '2x',
+  'xxl': '3x',
 }
 
 function Icon({className, style, name, size, type}) {
-  const fontModifier = fontModifiers[size]
-
-  if (['xmark-large', 'delete-left'].includes(name)) {
-    console.log('fuck', name)
-  }
-
   return (
     <div
       className={classnames('icon', className)}
       style={style}
     >
-      <i
-        className={classnames(`fa-${type} fa-${name}`, fontModifier)}
+      <FontAwesomeIcon
+        icon={[iconTypeDict[type], name]}
+        size={fontModifierDict[size]}
       />
     </div>
   )
@@ -34,7 +38,7 @@ function Icon({className, style, name, size, type}) {
 Icon.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(Object.keys(fontModifiers)),
+  size: PropTypes.oneOf(Object.keys(fontModifierDict)),
   style: PropTypes.object,
   type: PropTypes.oneOf(['solid', 'regular', 'light', 'thin', 'duotone'])
 }
