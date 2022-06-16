@@ -23,7 +23,13 @@ function TransactionForm({ nextStep }) {
         name="nature"
         className="mt-m"
       >
-        {attrs => (<Input autoComplete="off" {...attrs} />)}
+        {attrs => (
+          <Input
+            autoComplete="off"
+            {...attrs}
+            placeholder="Nature not specified"
+          />
+        )}
       </Label>
 
       <Label
@@ -31,7 +37,13 @@ function TransactionForm({ nextStep }) {
         name="tags"
         className="mt-m"
       >
-        {attrs => (<Input autoComplete="off" {...attrs} />)}
+        {attrs => (
+          <Input
+            autoComplete="off"
+            {...attrs}
+            placeholder="Ex.: home,fixed"
+          />
+        )}
       </Label>
 
       <Button
