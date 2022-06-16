@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-function Title({ tag = 'h1', title, children, color = 'light', className }) {
+function Title({ tag = 'h1', title, children, color = 'light', className, size }) {
   const Heading = tag
 
   return (
@@ -11,6 +11,7 @@ function Title({ tag = 'h1', title, children, color = 'light', className }) {
       className={classNames(
         'title',
         color !== 'light' && `title--${color}`,
+        Boolean(size) && `title--size-${size}`,
         className,
       )}
     >
@@ -28,6 +29,9 @@ Title.propTypes = {
   color: PropTypes.oneOf([
     'light',
     'dark',
+  ]),
+  size: PropTypes.oneOf([
+    '100', '200', '300', '400', '500', '600', '700', '800',
   ]),
   className: PropTypes.string,
 }

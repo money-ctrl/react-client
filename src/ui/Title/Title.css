@@ -32,3 +32,12 @@ strong.title {
   font-size: 1.15rem;
   font-weight: 600;
 }
+
+.title.title--size-800 { font-size: 2.00rem; font-weight: 600; }
+.title.title--size-700 { font-size: 1.35rem; font-weight: 600; }
+.title.title--size-600 { font-size: 1.30rem; font-weight: 600; }
+.title.title--size-500 { font-size: 1.25rem; font-weight: 600; }
+.title.title--size-400 { font-size: 1.20rem; font-weight: 600; }
+.title.title--size-300 { font-size: 1.15rem; font-weight: 600; }
+.title.title--size-200 { font-size: 1.10rem; font-weight: 600; }
+.title.title--size-100 { font-size: 1.05rem; font-weight: 400; }
