@@ -13,7 +13,7 @@ function TransactionForm({ nextStep }) {
         const { nature, tags } = mapValues(data, trim)
 
         nextStep({
-          transactionNature: nature,
+          transactionNature: nature || 'Nature not specified',
           tags: (tags === '') ? [] : tags.split(','),
         })
       }}
