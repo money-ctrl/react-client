@@ -45,7 +45,7 @@ function MenuItemTransfer({style}) {
       <CategorySelector
         key="Where to deposit?"
         title="Where to deposit?"
-        blacklist={[resourceId(from)]}
+        blocklist={[resourceId(from)]}
         onBackPress={previousStep}
         onSubmit={(category) => {
           onTransactionSubmit({

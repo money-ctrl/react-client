@@ -13,12 +13,12 @@ import { resourceId } from '@/utils'
 function CategorySelector({
   onBackPress = () => {},
   onSubmit = () => {},
-  blacklist = [],
+  blocklist = [],
   title,
 }) {
   const categorylist = useSelector(state => state.categories.list)
     .map(categoryPresenter)
-    .filter(category => !blacklist.includes(resourceId(category)))
+    .filter(category => !blocklist.includes(resourceId(category)))
 
   return (
     <TopNavigationLayout
@@ -62,7 +62,7 @@ function CategorySelector({
 CategorySelector.propTypes = {
   onBackPress: PropTypes.func,
   onSubmit: PropTypes.func,
-  blacklist: PropTypes.arrayOf(PropTypes.string),
+  blocklist: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
 }
 
