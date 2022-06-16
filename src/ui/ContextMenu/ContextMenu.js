@@ -1,12 +1,12 @@
 import './ContextMenu.css'
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Card from '../Card'
-import Button from '../Button'
-import classNames from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
-import { contextAssign } from '../../actions'
-import { initialState } from '../../reducers/context'
+import classNames from 'classnames'
+import Card from '@/ui/Card'
+import Button from '@/ui/Button'
+import { contextAssign } from '@/actions'
+import { initialState } from '@/reducers/context'
 
 const transitionDuration = 300
 

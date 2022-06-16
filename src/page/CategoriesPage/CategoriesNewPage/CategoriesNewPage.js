@@ -1,9 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { database } from '../../../services/backend'
-import Button from '../../../ui/Button'
-import TopNavigationLayout from '../../../layout/TopNavigationLayout'
-import { categoryCreate } from '../../../services/category'
+import { database } from '@/services/backend'
+import Button from '@/ui/Button'
+import TopNavigationLayout from '@/layout/TopNavigationLayout'
+import { categoryCreate } from '@/services/category'
 
 function CategoriesPageNew() {
   const history = useHistory()

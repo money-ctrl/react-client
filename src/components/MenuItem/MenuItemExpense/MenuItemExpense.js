@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
-import { addTransaction } from '../../../services/backend'
-import MoneyCalculator from '../../MoneyCalculator'
-import { useSelector } from 'react-redux'
 import { useRouteMatch } from 'react-router-dom'
-import CategorySelector from '../../CategorySelector'
-import TransactionForm from '../pages/TransactionForm'
+import { useSelector } from 'react-redux'
+import { addTransaction } from '@/services/backend'
+import MenuItemBase from '@/components/MenuItem/MenuItemBase'
+import TransactionForm from '@/components/MenuItem/pages/TransactionForm'
+import MoneyCalculator from '@/components/MoneyCalculator'
+import CategorySelector from '@/components/CategorySelector'
 
 const Execute = ({ onRender }) => {
   useEffect(() => onRender(), [onRender])

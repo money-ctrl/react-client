@@ -1,8 +1,8 @@
 import {
   db,
   firebase
-} from '../firebase'
-import { resourceId, getTypeIdFromResourceId } from '../../utils'
+} from '@/services/firebase'
+import { resourceId, getTypeIdFromResourceId } from '@/utils'
 
 export { default as migrateUserData } from './migrateUserData'
 

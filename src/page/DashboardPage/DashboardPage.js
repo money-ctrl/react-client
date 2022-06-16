@@ -1,11 +1,11 @@
 import './DashboardPage.css'
 import React from 'react'
-import Title from '../../ui/Title'
-import MoneyDisplay from '../../components/MoneyDisplay'
-import CategoriesCarousel from '../../components/CategoriesCarousel'
-import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import { useSelector } from 'react-redux'
+import Title from '@/ui/Title'
+import MoneyDisplay from '@/components/MoneyDisplay'
+import CategoriesCarousel from '@/components/CategoriesCarousel'
 
 function DashboardPage({ className }) {
   const totalMoney = useSelector(state => state.categories.list.map(item => item.amount).reduce((acc, cur) => acc + cur, 0))

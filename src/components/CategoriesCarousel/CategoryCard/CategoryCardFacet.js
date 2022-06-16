@@ -1,11 +1,11 @@
 import './CategoryCardFacet.css'
-import Card from '../../../ui/Card'
-import CircularProgress from '../../../ui/CircularProgress'
-import MoneyDisplay from '../../MoneyDisplay'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { categoryPresenter } from '../../../services/category'
+import Card from '@/ui/Card'
+import CircularProgress from '@/ui/CircularProgress'
+import MoneyDisplay from '@/components/MoneyDisplay'
+import { categoryPresenter } from '@/services/category'
 
 function CategoryCard({
   onClick = () => {},

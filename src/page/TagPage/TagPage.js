@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import TopNavigationLayout from '../../layout/TopNavigationLayout'
-import Title from '../../ui/Title'
-import Card from '../../ui/Card'
-import Loading from '../../ui/Loading'
-import { getAllTransactionsByTag } from '../../services/backend'
-import MoneyDisplay from '../../components/MoneyDisplay'
+import TopNavigationLayout from '@/layout/TopNavigationLayout'
+import Title from '@/ui/Title'
+import Card from '@/ui/Card'
+import Loading from '@/ui/Loading'
+import { getAllTransactionsByTag } from '@/services/backend'
+import MoneyDisplay from '@/components/MoneyDisplay'
 
 const StatMoneyDisplay = (rest) => {
   return (

@@ -1,9 +1,9 @@
-import * as types from '../constants'
+import * as types from '@/constants'
 import {
   database,
   userLogout as _userLogout,
-} from '../services/backend'
-import { initialState as initialDatabasePayload } from '../reducers/money'
+} from '@/services/backend'
+import { initialState as initialDatabasePayload } from '@/reducers/money'
 
 
 export const userLogin = (info) => async (dispatch, getState) => {

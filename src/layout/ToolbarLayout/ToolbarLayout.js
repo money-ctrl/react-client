@@ -1,16 +1,16 @@
 import './ToolbarLayout.css'
-import ActionButton from '../../ui/ActionButton'
-import Card from '../../ui/Card'
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
+import ActionButton from '@/ui/ActionButton'
+import Card from '@/ui/Card'
 import {
   MenuItemExpense,
   MenuItemIncome,
   MenuItemMore,
   MenuItemTransfer,
-} from '../../components/MenuItem'
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import { NavLink } from 'react-router-dom'
+} from '@/components/MenuItem'
 
 function ToolbarLayout({ items = [], children, requestLowOpacity = false }) {
   const [isMenuOpen, setMenuOpen] = useState(false)

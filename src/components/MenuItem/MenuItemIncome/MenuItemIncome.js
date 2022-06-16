@@ -1,8 +1,8 @@
 import React from 'react'
-import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
-import { addTransaction } from '../../../services/backend'
-import MoneyCalculator from '../../MoneyCalculator'
+import MoneyCalculator from '@/components/MoneyCalculator'
+import MenuItemBase from '@/components/MenuItem/MenuItemBase'
+import { addTransaction } from '@/services/backend'
 
 function MenuItemIncome({
   style,

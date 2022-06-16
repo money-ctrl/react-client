@@ -1,4 +1,4 @@
-import { resourceId } from '../utils'
+import { resourceId } from '@/utils'
 
 export const categoryPresenter = (category) => {
   if (!category) return

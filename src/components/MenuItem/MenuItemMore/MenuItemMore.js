@@ -1,11 +1,11 @@
 import './MenuItemMore.css'
 import React, { useState, useEffect } from 'react'
-import MenuItemBase from '../MenuItemBase'
-import MoneyCalculator from '../../MoneyCalculator'
-import CategorySelector from '../../CategorySelector'
-import Button from '../../../ui/Button'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
+import Button from '@/ui/Button'
+import MenuItemBase from '@/components/MenuItem/MenuItemBase'
+import MoneyCalculator from '@/components/MoneyCalculator'
+import CategorySelector from '@/components/CategorySelector'
 import { resetCycle, addBudgetToCategory, schedulePayment } from './actions'
 
 const actionList = {

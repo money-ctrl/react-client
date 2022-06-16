@@ -1,14 +1,14 @@
 import './CategorySelector.css'
 import React from 'react'
 import PropTypes from 'prop-types'
-import TopNavigationLayout from '../../layout/TopNavigationLayout'
 import { useSelector } from 'react-redux'
-import CircularProgress from '../../ui/CircularProgress'
-import Button from '../../ui/Button'
-import Title from '../../ui/Title'
-import { resourceId } from '../../utils'
-import MoneyDisplay from '../MoneyDisplay'
-import { categoryPresenter } from '../../services/category'
+import Button from '@/ui/Button'
+import CircularProgress from '@/ui/CircularProgress'
+import Title from '@/ui/Title'
+import MoneyDisplay from '@/components/MoneyDisplay'
+import TopNavigationLayout from '@/layout/TopNavigationLayout'
+import { categoryPresenter } from '@/services/category'
+import { resourceId } from '@/utils'
 
 function CategorySelector({
   onBackPress = () => {},

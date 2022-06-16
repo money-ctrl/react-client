@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Form from '../../../ui/Form'
-import Label from '../../../ui/Label'
-import Input from '../../../ui/Input'
-import Button from '../../.././ui/Button'
-import { trim, mapValues } from '../../../utils'
+import Form from '@/ui/Form'
+import Label from '@/ui/Label'
+import Input from '@/ui/Input'
+import Button from '@/ui/Button'
+import { trim, mapValues } from '@/utils'
 
 function TransactionForm({ nextStep }) {
   return (

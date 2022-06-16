@@ -1,9 +1,9 @@
 import './MoneyCalculator.css'
 import React, {useState} from 'react'
-import Button from '../../ui/Button'
-import MoneyDisplay from '../MoneyDisplay'
 import PropTypes from 'prop-types'
-import Icon from '../../ui/Icon'
+import Button from '@/ui/Button'
+import Icon from '@/ui/Icon'
+import MoneyDisplay from '@/components/MoneyDisplay'
 
 function MoneyCalculator({ onBackPress, onSubmit, initial }) {
   const [value, setValue] = useState(initial)

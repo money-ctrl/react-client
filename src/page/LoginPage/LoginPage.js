@@ -1,16 +1,16 @@
 import './LoginPage.css'
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import Title from '../../ui/Title'
-import Loading from '../../ui/Loading'
-import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { useSelector, useDispatch } from 'react-redux'
+import { userLogin } from '@/actions'
+import Title from '@/ui/Title'
+import Loading from '@/ui/Loading'
 import {
   firebase,
   ui as firebaseUI,
   uiConfig,
-} from '../../services/firebase'
-import { userLogin } from '../../actions'
+} from '@/services/firebase'
 
 function LoginPage({ className }) {
   const dispatch = useDispatch()

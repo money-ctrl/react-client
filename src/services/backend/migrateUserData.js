@@ -1,4 +1,4 @@
-import { firebase, db } from '../firebase'
+import { firebase, db } from '@/services/firebase'
 
 export default async function migrateUserData(database) {
   let { version } = await database().get().then(ref => ({version:1, ...ref.data()}))

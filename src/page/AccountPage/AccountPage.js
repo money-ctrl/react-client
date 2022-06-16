@@ -1,13 +1,13 @@
 import './AccountPage.css'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Title from '../../ui/Title'
-import Button from '../../ui/Button'
-import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import { userLogout } from '../../actions'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useHistory } from 'react-router-dom'
+import classnames from 'classnames'
+import { useDispatch, useSelector } from 'react-redux'
+import Title from '@/ui/Title'
+import Button from '@/ui/Button'
+import { userLogout } from '@/actions'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
 
 function AccountPage({ className }) {
   const dispatch = useDispatch()

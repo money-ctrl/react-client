@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import MenuItemBase from '../MenuItemBase'
 import PropTypes from 'prop-types'
-import MoneyCalculator from '../../MoneyCalculator'
-import CategorySelector from '../../CategorySelector'
-import { addTransaction } from '../../../services/backend'
-import { resourceId } from '../../../utils'
+import MenuItemBase from '@/components/MenuItem/MenuItemBase'
+import MoneyCalculator from '@/components/MoneyCalculator'
+import CategorySelector from '@/components/CategorySelector'
+import { addTransaction } from '@/services/backend'
+import { resourceId } from '@/utils'
 
 function MenuItemTransfer({style}) {
   const [amount, setAmount] = useState(0)

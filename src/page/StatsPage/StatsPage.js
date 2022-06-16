@@ -1,10 +1,10 @@
 import './StatsPage.css'
 import React from 'react'
-import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
-import MoneyDisplay from '../../components/MoneyDisplay'
-import Title from '../../ui/Title'
-import Divider from '../../ui/Divider'
+import { useSelector } from 'react-redux'
+import MoneyDisplay from '@/components/MoneyDisplay'
+import Title from '@/ui/Title'
+import Divider from '@/ui/Divider'
 
 const StatMoneyDisplay = (rest) => {
   return (

@@ -1,7 +1,7 @@
 import './Background.css'
 import React from 'react'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 import classnames from 'classnames'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
 
 function randomBetween({ min = 0, max = 1} = {}) {
   return Math.random() * (max - min) + min

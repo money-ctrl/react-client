@@ -1,6 +1,4 @@
 import './CategoriesCarousel.css'
-import Carousel from '../../ui/Carousel'
-import CategoryCard, { AddCategoryCard } from './CategoryCard'
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { SwitchTransition, Transition } from 'react-transition-group'
@@ -8,6 +6,8 @@ import classnames from 'classnames'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Overdrive from 'react-overdrive'
+import Carousel from '@/ui/Carousel'
+import CategoryCard, { AddCategoryCard } from './CategoryCard'
 
 function CategoriesCarousel({ className }) {
   const carousel = useRef(null)

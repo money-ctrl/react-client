@@ -1,9 +1,9 @@
 import './TopNavigationLayout.css'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '../../ui/Button'
-import Icon from '../../ui/Icon'
 import classNames from 'classnames'
+import Button from '@/ui/Button'
+import Icon from '@/ui/Icon'
 
 function TopNavigationLayout({ children, onBackPress, actions = [], titleSlot, className }) {
   return (

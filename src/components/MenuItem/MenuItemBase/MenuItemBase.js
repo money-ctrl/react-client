@@ -1,10 +1,10 @@
 import './MenuItemBase.css'
 import React, { useState, useEffect, useRef } from 'react'
-import { Transition, CSSTransition, SwitchTransition } from 'react-transition-group'
-import classnames from 'classnames'
-import Card from '../../../ui/Card'
 import PropTypes from 'prop-types'
-import Icon from '../../../ui/Icon'
+import classnames from 'classnames'
+import { Transition, CSSTransition, SwitchTransition } from 'react-transition-group'
+import Card from '@/ui/Card'
+import Icon from '@/ui/Icon'
 
 const sleep = (time) => new Promise((r) => setTimeout(r, time))
 

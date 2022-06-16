@@ -1,6 +1,6 @@
 import './AddCategoryCardFacet.css'
-import Card from '../../../../ui/Card'
-import MoneyDisplay from '../../../MoneyDisplay'
+import Card from '@/ui/Card'
+import MoneyDisplay from '@/components/MoneyDisplay'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'

@@ -1,12 +1,12 @@
 import './SchedulesPage.css'
 import React from 'react'
-import TopNavigationLayout from '../../layout/TopNavigationLayout'
-import Title from '../../ui/Title'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Card from '../../ui/Card'
-import MoneyDisplay from '../../components/MoneyDisplay'
-import { resourceId } from '../../utils'
+import Title from '@/ui/Title'
+import Card from '@/ui/Card'
+import { resourceId } from '@/utils'
+import TopNavigationLayout from '@/layout/TopNavigationLayout'
+import MoneyDisplay from '@/components/MoneyDisplay'
 
 function SchedulesPage() {
   const history = useHistory()

@@ -1,9 +1,9 @@
 import './ActionButton.css'
 import React from 'react'
-import Card from '../Card'
-import classNames from 'classnames'
-import SVGPlus from '../../assets/plus.svg'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import SVGPlus from '@/assets/plus.svg'
+import Card from '@/ui/Card'
 
 function ActionButton({
   children,
