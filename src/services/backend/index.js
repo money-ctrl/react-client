@@ -269,6 +269,7 @@ export function createSchedule({
   amount,
   repeatCount = Infinity,
   transactionNature = 'Nature not specified',
+  tags = [],
   triggerType = 'manual',
 }) {
   const scheduleNewDoc = database().collection('schedules').doc()
@@ -279,6 +280,7 @@ export function createSchedule({
     transactionPayload: {
       type,
       transactionNature,
+      tags,
       amount,
       sender: filterCategory(sender),
       recipient: filterCategory(recipient),

@@ -4,12 +4,14 @@ export async function schedulePayment({
   category,
   amount,
   transactionNature = 'Nature not specified',
+  tags,
   repeatCount = Infinity,
   triggerType = 'manual',
 }) {
   return createSchedule({
     type: 'expense',
     transactionNature,
+    tags,
     amount,
     repeatCount,
     triggerType,
