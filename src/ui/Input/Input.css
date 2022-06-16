@@ -11,3 +11,12 @@
   padding: var(--space-s);
   width: 100%;
 }
+
+select.input__input {
+  appearance: none;
+}
+
+.input__right-icon {
+  position: absolute;
+  transform: translate(calc(-100% - var(--space-s)), var(--space-s));
+}

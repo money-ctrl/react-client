@@ -2,6 +2,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faAngleDoubleRight,
   faCheck,
+  faChevronDown,
   faChevronLeft,
   faChevronRight,
   faCog,
@@ -18,6 +19,7 @@ import {
 library.add(
   faAngleDoubleRight,
   faCheck,
+  faChevronDown,
   faChevronLeft,
   faChevronRight,
   faCog,
