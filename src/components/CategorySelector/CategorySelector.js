@@ -17,8 +17,8 @@ function CategorySelector({
   title,
 }) {
   const categorylist = useSelector(state => state.categories.list)
-    .filter(category => !blacklist.includes(resourceId(category)))
     .map(categoryPresenter)
+    .filter(category => !blacklist.includes(resourceId(category)))
 
   return (
     <TopNavigationLayout
