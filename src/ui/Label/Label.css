@@ -2,3 +2,8 @@
   display: block;
   margin-bottom: var(--space-xs);
 }
+
+.label__hint {
+  font-size: var(--font-size-025);
+  color: var(--color-neutral-dark);
+}

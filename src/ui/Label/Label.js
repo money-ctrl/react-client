@@ -3,7 +3,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-function Label({ className, children, name, label, ...rest }) {
+function Label({ className, children, name, label, hint, ...rest }) {
+  const labelledby = {
+    label: `${name}-label`,
+    ...(hint && { hint: `${name}-hint` }),
+  }
+
   return (
     <div
       className={classnames([
@@ -12,6 +17,7 @@ function Label({ className, children, name, label, ...rest }) {
       ])}
     >
       <label
+        id={labelledby.label}
         htmlFor={name}
         className="label__label"
         {...rest}
@@ -23,7 +29,17 @@ function Label({ className, children, name, label, ...rest }) {
         id: name,
         name,
         placeholder: label,
+        'aria-labelledby': Object.values(labelledby).join(' '),
       })}
+
+      {hint && (
+        <span
+          id={labelledby.hint}
+          className="label__hint mt-xxs"
+        >
+          {hint}
+        </span>
+      )}
     </div>
   )
 }
@@ -31,6 +47,7 @@ function Label({ className, children, name, label, ...rest }) {
 Label.propTypes = {
   children: PropTypes.func,
   label: PropTypes.string,
+  hint: PropTypes.string,
   name: PropTypes.string,
   className: PropTypes.any,
 }
