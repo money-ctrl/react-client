@@ -350,8 +350,21 @@ function ScheduledTransactions({ category }) {
                         dispatch(contextAssign({
                           // eslint-disable-next-line react/prop-types
                           header({ closeMenu }) {
-                            return (
+                            return (<>
+                              <Title
+                                tag="strong"
+                                title={transaction.recipient.name}
+                                color="dark"
+                                size="400"
+                              />
+                              <Title
+                                tag="strong"
+                                title={transaction.transactionNature}
+                                color="dark"
+                                size="100"
+                              />
                               <MoneyCalculator
+                                initial={schedule.transactionPayload.amount}
                                 onBackPress={closeMenu}
                                 onSubmit={(amount) => {
                                   commit(merge(schedule, {
@@ -361,7 +374,7 @@ function ScheduledTransactions({ category }) {
                                   closeMenu()
                                 }}
                               />
-                            )
+                            </>)
                           },
                           optionList: [],
                         }))
