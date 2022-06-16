@@ -86,3 +86,13 @@ export const trim = (str) => {
 
   return str.trim()
 }
+
+export const mapKeyedTransform = (target, transformDict) => {
+  const indentify = v => v
+  const fallbackedTransform = (key) => transformDict[key] || indentify
+
+  return mapEntries(target, ([key, value]) => [
+    key,
+    fallbackedTransform(key)(value),
+  ])
+}

@@ -7,6 +7,7 @@ import MenuItemBase from '@/components/MenuItem/MenuItemBase'
 import MoneyCalculator from '@/components/MoneyCalculator'
 import CategorySelector from '@/components/CategorySelector'
 import TransactionForm from '@/components/MenuItem/pages/TransactionForm'
+import ScheduleForm from '@/components/MenuItem/pages/ScheduleForm'
 import { resetCycle, addBudgetToCategory, schedulePayment } from './actions'
 
 const actionList = {
@@ -45,12 +46,7 @@ const pagePool = {
     />
   ),
   'nature': TransactionForm,
-  'schedule': ({ nextStep }) => (
-    <Execute onRender={() => nextStep({
-      repeatCount: Number(window.prompt('repeatCount(Number)', 'Infinity')),
-      triggerType: window.prompt('triggerType("manual"|"onCycleReset")', 'manual'),
-    })} />
-  ),
+  'schedule': ScheduleForm,
 }
 /* eslint-enable react/prop-types */
 /* eslint-enable react/display-name */
