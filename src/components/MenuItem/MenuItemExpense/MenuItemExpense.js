@@ -34,13 +34,13 @@ function MenuItemExpense({style, onSubmit}) {
     TransactionForm,
     ({ close, payload }) => (
       <Execute onRender={() => {
-        const { category, nature, amount, tags } = payload
+        const { category, transactionNature, amount, tags } = payload
 
         addTransaction({
           type: 'expense',
-          transactionNature: nature,
+          transactionNature,
           amount,
-          tags: (tags === '') ? [] : tags.split(','),
+          tags,
           sender: { type: 'category', ...category },
           recipient: { type: 'reason', name: 'Unknown', id: 'unknown' },
         })

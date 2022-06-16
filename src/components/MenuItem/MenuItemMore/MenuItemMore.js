@@ -6,13 +6,14 @@ import Button from '@/ui/Button'
 import MenuItemBase from '@/components/MenuItem/MenuItemBase'
 import MoneyCalculator from '@/components/MoneyCalculator'
 import CategorySelector from '@/components/CategorySelector'
+import TransactionForm from '@/components/MenuItem/pages/TransactionForm'
 import { resetCycle, addBudgetToCategory, schedulePayment } from './actions'
 
 const actionList = {
   addBudgetToCategory: {
     handler: addBudgetToCategory,
     label: 'Add budget to a category',
-    pages: ['money', 'category', 'nature'],
+    pages: ['category', 'money', 'nature'],
   },
   schedulePayment: {
     handler: schedulePayment,
@@ -43,11 +44,7 @@ const pagePool = {
       })}
     />
   ),
-  'nature': ({ nextStep }) => (
-    <Execute onRender={() => nextStep({
-      transactionNature: window.prompt('Edit transition nature', 'Nature not specified'),
-    })} />
-  ),
+  'nature': TransactionForm,
   'schedule': ({ nextStep }) => (
     <Execute onRender={() => nextStep({
       repeatCount: Number(window.prompt('repeatCount(Number)', 'Infinity')),

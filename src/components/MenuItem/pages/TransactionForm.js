@@ -9,7 +9,14 @@ import { trim, mapValues } from '@/utils'
 function TransactionForm({ nextStep }) {
   return (
     <Form
-      onSubmit={({ data }) => nextStep(mapValues(data, trim))}
+      onSubmit={({ data }) => {
+        const { nature, tags } = mapValues(data, trim)
+
+        nextStep({
+          transactionNature: nature,
+          tags: (tags === '') ? [] : tags.split(','),
+        })
+      }}
     >
       <Label
         label="Transaction Nature"
