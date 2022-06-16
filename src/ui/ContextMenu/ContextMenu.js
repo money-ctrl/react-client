@@ -5,22 +5,22 @@ import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import Card from '@/ui/Card'
 import Button from '@/ui/Button'
-import { contextAssign } from '@/actions'
-import { initialState } from '@/reducers/context'
+import { contextAssign, contextNext } from '@/actions'
 
 const transitionDuration = 300
 
 function ContextMenu({ onMenuOpen }) {
   const dispatch = useDispatch()
 
-  const { isOpen, optionList, header } = useSelector(state => state.context)
+  const { isOpen, queue } = useSelector(state => state.context)
+  const [{ optionList = [], header = null } = {}] = queue
 
   const closeMenu = () => {
     dispatch(contextAssign({ isOpen: false }))
 
     setTimeout(() => {
       // back to default
-      dispatch(contextAssign(initialState))
+      dispatch(contextNext())
     }, transitionDuration)
   }
 
@@ -55,18 +55,8 @@ function ContextMenu({ onMenuOpen }) {
               behavior="block"
               variant={option.variant}
               onClick={() => {
-                let defaultBehavior = true
-                const event = {
-                  preventDefault: () => {
-                    defaultBehavior = false
-                  },
-                }
-
-                option.onClick(event)
-
-                if (defaultBehavior) {
-                  closeMenu()
-                }
+                option.onClick()
+                closeMenu()
               }}
             >
               {option.label}

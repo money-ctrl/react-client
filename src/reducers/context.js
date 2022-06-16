@@ -1,23 +1,51 @@
 import * as types from '@/constants'
 
+/**
+ * queue: {
+ *   header: null | React.Component
+ *   optionList: {
+ *     label: string,
+ *     onClick: () => void,
+ *   }[],
+ * }[]
+ **/
+
 export const initialState = Object.freeze({
   isOpen: false,
-  optionList: [],
-  header: null,
+  queue: [],
 })
+
+const injectProcessedIsOpen = (state) => {
+  const [current = {}] = state.queue
+  const hasOptions = (current.optionList || []).length > 0
+  const hasHeader = Boolean(current.header)
+  const isOpen = hasOptions || hasHeader
+
+  return {
+    ...state,
+    isOpen,
+  }
+}
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case types.CONTEXT_ASSIGN: {
-      const hasOptions = (action.payload.optionList || []).length > 0
-      const hasHeader = Boolean(action.payload.header)
-      const isOpen = hasOptions || hasHeader
-
+    case types.CONTEXT_ASSIGN:
       return {
         ...state,
-        isOpen,
         ...action.payload,
       }
+    case types.CONTEXT_ENQUEUE:
+      return injectProcessedIsOpen({
+        ...state,
+        queue: [...state.queue, action.payload]
+      })
+    case types.CONTEXT_NEXT: {
+      const [, ...newQueue] = state.queue
+
+      return injectProcessedIsOpen({
+        ...state,
+        queue: newQueue,
+      })
     }
     default:
       return state

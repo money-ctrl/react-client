@@ -7,7 +7,7 @@ import Overdrive from 'react-overdrive'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
-import { contextAssign } from '@/actions'
+import { contextEnqueue } from '@/actions'
 import Button from '@/ui/Button'
 import Card from '@/ui/Card'
 import Divider from '@/ui/Divider'
@@ -210,7 +210,7 @@ function CategoriesIndexPage() {
       actions={[{
         title: 'Edit category menu',
         icon: 'cog',
-        onClick: () => dispatch(contextAssign({
+        onClick: () => dispatch(contextEnqueue({
           optionList: [
             {
               label: 'Rename category',
@@ -340,14 +340,12 @@ function ScheduledTransactions({ category }) {
 
               <Button
                 size="small"
-                onClick={() => dispatch(contextAssign({
+                onClick={() => dispatch(contextEnqueue({
                   optionList: [
                     {
                       label: 'Commit with a different value',
-                      onClick: (e) => {
-                        e.preventDefault()
-
-                        dispatch(contextAssign({
+                      onClick: () => {
+                        dispatch(contextEnqueue({
                           // eslint-disable-next-line react/prop-types
                           header({ closeMenu }) {
                             return (<>
@@ -429,7 +427,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
         return (<li key={transaction.createdAt}>
           <button
             className="categories-index-page__spending-item"
-            onClick={() => dispatch(contextAssign({
+            onClick={() => dispatch(contextEnqueue({
               // eslint-disable-next-line react/prop-types
               header({ closeMenu }) { return <>
                 <Icon

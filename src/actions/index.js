@@ -50,3 +50,13 @@ export const contextAssign = (payload) => ({
   type: types.CONTEXT_ASSIGN,
   payload: payload || {},
 })
+
+export const contextEnqueue = (payload) => ({
+  type: types.CONTEXT_ENQUEUE,
+  payload: payload || {},
+})
+
+export const contextNext = () => ({
+  type: types.CONTEXT_NEXT,
+  payload: {},
+})
