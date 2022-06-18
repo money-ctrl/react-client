@@ -472,7 +472,39 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
               optionList: [
                 (transaction.type === 'expense') && {
                   label: 'Refund transaction',
-                  onClick: () => refundTransaction(transaction),
+                  onClick: () => {
+                    dispatch(contextEnqueue({
+                      // eslint-disable-next-line react/prop-types
+                      header({ closeMenu }) {
+                        return (<>
+                          <Title
+                            tag="strong"
+                            title="Refund"
+                            color="dark"
+                            size="400"
+                          />
+                          <Title
+                            tag="strong"
+                            title={transaction.displayData.transactionNature}
+                            color="dark"
+                            size="100"
+                          />
+                          <div>
+                            how much to refund from {transaction.displayData.recipient}?
+                          </div>
+
+                          <MoneyCalculator
+                            initial={transaction.amount}
+                            onBackPress={closeMenu}
+                            onSubmit={(amount) => {
+                              refundTransaction(transaction, { amount })
+                              closeMenu()
+                            }}
+                          />
+                        </>)
+                      },
+                    }))
+                  },
                 },
                 {
                   label: 'Edit Nature',

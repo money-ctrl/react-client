@@ -225,7 +225,8 @@ export function setTransaction({ id, ...transaction }) {
     .set(transaction, { merge: true })
 }
 
-export function refundTransaction(transaction) {
+export function refundTransaction(transaction, override = {}) {
+  const { amount: amountOverride } = override
   const { amount, sender: senderResourceId, displayData } = transaction
   const { transactionNature, recipient, sender } = displayData
   const { type, id } = getTypeIdFromResourceId(senderResourceId)
@@ -233,7 +234,7 @@ export function refundTransaction(transaction) {
   addTransaction({
     type: 'income',
     transactionNature: `Refund: ${transactionNature}`,
-    amount,
+    amount: amountOverride || amount,
     sender: {
       type: 'reason',
       name: `Refund from ${recipient}`,
