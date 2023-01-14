@@ -275,6 +275,10 @@ body {
 .pl-xl { padding-left: var(--space-xl) }
 .pl-xxl { padding-left: var(--space-xxl) }
 
+.d-flex { display: flex }
+.space-between { justify-content: space-between }
+.reverse { flex-flow: row-reverse }
+
 html.no-focus-outline :focus {
   outline: none;
 }
