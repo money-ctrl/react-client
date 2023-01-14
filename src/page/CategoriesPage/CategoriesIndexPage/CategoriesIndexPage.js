@@ -20,7 +20,7 @@ import TopNavigationLayout from '@/layout/TopNavigationLayout'
 import { database, getLastestTransactions, setTransaction, commitSchedule, refundTransaction } from '@/services/backend'
 import { descheduleTransaction, removeScheduledTransaction } from '@/services/backend'
 import { categoryPresenter } from '@/services/category'
-import { getTypeIdFromResourceId, resourceId, merge } from '@/utils'
+import { formatCurrency, getTypeIdFromResourceId, resourceId, merge } from '@/utils'
 
 dayjs.extend(relativeTime)
 dayjs.extend(localizedFormat)
@@ -485,7 +485,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                           />
                           <Title
                             tag="strong"
-                            title={transaction.displayData.transactionNature}
+                            title={`${transaction.displayData.transactionNature} (${formatCurrency(transaction.amount)})`}
                             color="dark"
                             size="100"
                           />
@@ -494,7 +494,6 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                           </div>
 
                           <MoneyCalculator
-                            initial={transaction.amount}
                             onBackPress={closeMenu}
                             onSubmit={(amount) => {
                               refundTransaction(transaction, { amount })
