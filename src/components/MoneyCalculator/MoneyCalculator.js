@@ -6,7 +6,20 @@ import Icon from '@/ui/Icon'
 import MoneyDisplay from '@/components/MoneyDisplay'
 
 function MoneyCalculator({ onBackPress, onSubmit, initial }) {
-  const [value, setValue] = useState(initial)
+  const [value, setValueRaw] = useState(initial)
+  const [hasTouched, setHasTouched] = useState(false)
+  const setValue = (newValue) => {
+    setHasTouched(true)
+    setValueRaw(newValue)
+
+    if (!hasTouched && initial !== 0) {
+      // if there was an initial value, but the user want's to change the
+      // initial value, act as if the initial value was 0, this prevents the
+      // need of clearing the input value before inserting the actual desired
+      // value.
+      setValueRaw((v) => v % 10)
+    }
+  }
 
   const isBackPress = value === 0
 
