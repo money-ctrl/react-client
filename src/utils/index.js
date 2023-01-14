@@ -1,5 +1,19 @@
 import clone from 'clone'
 
+/**
+ * Prefer using the <MoneyDisplay /> component when possible
+ */
+export const formatCurrency = (value) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    // USD because it only adds the $ sign before, then it feels currency
+    // agnostic, even though it is not.
+    currency: 'USD',
+  }).format(value / 100)
+}
+
+window.formatCurrency = formatCurrency
+
 export const resourceId = ({type, id}) => `${type}:${id}`
 
 export const getTypeIdFromResourceId = (resourceId) => {
