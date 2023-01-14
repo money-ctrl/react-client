@@ -494,6 +494,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                           </div>
 
                           <MoneyCalculator
+                            initial={transaction.amount}
                             onBackPress={closeMenu}
                             onSubmit={(amount) => {
                               refundTransaction(transaction, { amount })
