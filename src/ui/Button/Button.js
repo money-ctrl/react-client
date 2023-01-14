@@ -23,6 +23,7 @@ function Button({
         size !== 'medium' && `button--${size}`,
         className,
       ])}
+      type={onClick ? 'button' : 'submit'}
       onClick={onClick}
       disabled={isLoading}
     >
