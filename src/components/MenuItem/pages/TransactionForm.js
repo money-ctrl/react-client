@@ -6,7 +6,7 @@ import Input from '@/ui/Input'
 import Button from '@/ui/Button'
 import { trim, mapValues } from '@/utils'
 
-function TransactionForm({ nextStep }) {
+function TransactionForm({ nextStep, previousStep }) {
   return (
     <Form
       onSubmit={({ data }) => {
@@ -46,18 +46,29 @@ function TransactionForm({ nextStep }) {
         )}
       </Label>
 
-      <Button
-        className="mt-m"
-        variant="primary"
-      >
-        Next
-      </Button>
+      <div className="d-flex space-between reverse">
+        <Button
+          className="mt-m"
+          variant="primary"
+        >
+          Next
+        </Button>
+
+        <Button
+          className="mt-m"
+          variant="default"
+          onClick={previousStep}
+        >
+          Back
+        </Button>
+      </div>
     </Form>
   )
 }
 
 TransactionForm.propTypes = {
   nextStep: PropTypes.func,
+  previousStep: PropTypes.func,
 }
 
 export default TransactionForm
