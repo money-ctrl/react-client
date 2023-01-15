@@ -15,33 +15,36 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@master
 
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: build-${{ hashFiles('**/package-lock.json') }}
+      - name: Load dependencies versions
+        id: versions
+        run: |
+          echo "node=$(sed -n 's/NODE_VERSION=//p' .env)" >> $GITHUB_OUTPUT
 
-      - name: Load Node Version
-        id: node-version
-        run: echo "::set-output name=name::$(grep NODE_VERSION .env | sed 's/^.*=//')"
-
-      - name: Use Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@master
         with:
-          # node-version: 12.11.1
-          node-version: ${{ steps.node-version.outputs.name }}
+          node-version: ${{ steps.versions.outputs.node }}
+          cache: 'npm' # save global npm install cache
+
+      - name: Generate Dependencies Cache
+        id: dependencies
+        uses: actions/cache@main
+        with:
+          path: |
+            node_modules
+          key: ${{ hashFiles('package-lock.json') }}
 
       - name: Install dependencies
-        run: |
-          npm install
+        if: steps.dependencies.outputs.cache-hit != 'true'
+        run: npm clean-install
 
       - name: Build project
         run: |
           npm run build
 
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          args: deploy
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MONEY_CTRL }}'
+          channelId: live
+          projectId: money-ctrl
