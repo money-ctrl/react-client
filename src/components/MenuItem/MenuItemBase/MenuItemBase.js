@@ -2,9 +2,10 @@ import './MenuItemBase.css'
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { Transition, CSSTransition, SwitchTransition } from 'react-transition-group'
+import { Transition } from 'react-transition-group'
 import Card from '@/ui/Card'
 import Icon from '@/ui/Icon'
+import ViewMultiSteps from '@/ui/ViewMultiSteps'
 
 const sleep = (time) => new Promise((r) => setTimeout(r, time))
 
@@ -59,38 +60,7 @@ function MenuItemBase({
     })
   }, [cardTransitions.exited])
 
-  const close = () => {setExpanded(false);setPageIndex(0)}
-
-  const [stepsPayload, setPagePayload] = useState({})
-  const [pageIndex, setPageIndex] = useState(0)
-
-  const previousStep = () => setPageIndex((pageIndex) => {
-    if (pageIndex === 0) {
-      close()
-      return 0
-    }
-
-    return pageIndex - 1
-  })
-  const nextStep = (payload) => {
-    setPagePayload({ ...stepsPayload, ...payload })
-    setPageIndex((pageIndex) => {
-      return pageIndex === (pages.length - 1) ? pageIndex : pageIndex + 1
-    })
-  }
-
-  const displayCurrentPage = () => {
-    if (typeof pages[pageIndex] === 'function') {
-      return pages[pageIndex]({
-        payload: stepsPayload,
-        nextStep,
-        previousStep,
-        close,
-      })
-    } else {
-      return pages[pageIndex]
-    }
-  }
+  const close = () => {setExpanded(false)}
 
   return (<>
     {isExpanded && <div className="event-capture" />}
@@ -148,13 +118,10 @@ function MenuItemBase({
             </Title>
 
             {isExpanded && (
-              <SwitchTransition>
-                <CSSTransition key={pageIndex} classNames="slide-left" timeout={250}>
-                  <div>
-                    {displayCurrentPage()}
-                  </div>
-                </CSSTransition>
-              </SwitchTransition>
+              <ViewMultiSteps
+                pages={pages}
+                onClose={close}
+              />
             )}
           </div>
         </Card>
