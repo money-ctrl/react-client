@@ -57,7 +57,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.6",
-    "react-dev-utils": "^11.0.4",
+    "react-dev-utils": "^12.0.1",
     "react-dom": "^16.8.6",
     "react-overdrive": "^0.0.10",
     "react-redux": "^7.1.3",
