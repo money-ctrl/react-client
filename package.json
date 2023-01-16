@@ -9,6 +9,21 @@
     "test": "exit 1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/pro-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "classnames": "^2.3.2",
+    "clone": "^2.1.2",
+    "dayjs": "^1.11.7",
+    "firebase": "^9.15.0",
+    "firebaseui": "^6.0.2",
+    "prop-types": "^15.8.1",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.6.2",
+    "react-transition-group": "^4.4.5",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2",
     "vite": "^4.0.4"
   },
   "devDependencies": {
