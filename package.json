@@ -4,10 +4,16 @@
   "private": true,
   "homepage": "https://ctrlmoney.web.app/",
   "scripts": {
-    "start": "REACT_APP_VERSION=dev node scripts/start.js",
-    "build": "REACT_APP_VERSION=$(git rev-parse --short HEAD) node scripts/build.js",
-    "test": "node scripts/test.js",
-    "predeploy": "npm run build",
-    "deploy": "firebase deploy"
+    "start": "scripts/start.sh",
+    "build": "scripts/build.sh",
+    "test": "exit 1"
+  },
+  "dependencies": {
+    "vite": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "dotenv": "^16.0.3",
+    "typescript": "^4.9.4"
   }
 }
