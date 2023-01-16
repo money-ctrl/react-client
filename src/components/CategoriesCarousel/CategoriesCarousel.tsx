@@ -5,7 +5,7 @@ import { SwitchTransition, Transition } from 'react-transition-group'
 import classnames from 'classnames'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Overdrive from 'react-overdrive'
+// import Overdrive from 'react-overdrive'
 import Carousel from '@/ui/Carousel'
 import CategoryCard, { AddCategoryCard } from './CategoryCard'
 
@@ -55,16 +55,16 @@ function CategoriesCarousel({ className }) {
       className={classnames('categories-carousel', className)}
     >
       {categories.map(category => (
-        <Overdrive
-          key={category.name}
-          id={`category-card-${category.id}`}
-        >
+        // <Overdrive
+        //   key={category.name}
+        //   id={`category-card-${category.id}`}
+        // >
           <CategoryCard
             className="categories-carousel__card"
             category={category}
             onClick={() => history.push(`/categories/${category.id}`)}
           />
-        </Overdrive>
+        // </Overdrive>
       ))}
 
       <div className="categories-carousel__card-container">

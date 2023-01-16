@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import Overdrive from 'react-overdrive'
+// import Overdrive from 'react-overdrive'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
@@ -235,7 +235,7 @@ function CategoriesIndexPage() {
     >
       <Title title={category.name} />
 
-      <Overdrive id={`category-card-${categoryId}`}>
+      {/*<Overdrive id={`category-card-${categoryId}`}>*/}
         <Card className="categories-index-page__card">
           <div className="categories-index-page__card-balance">
             <MoneyDisplay
@@ -269,7 +269,7 @@ function CategoriesIndexPage() {
             size={'xs'}
           />}
         </Card>
-      </Overdrive>
+      {/*</Overdrive>*/}
 
       <div className="mt-l">
         {category.scheduled && category.scheduled.length > 0
