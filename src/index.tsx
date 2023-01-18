@@ -1,15 +1,13 @@
 import './index.css'
 import './ui/Icon/font-awesome-library'
-import { createStore, applyMiddleware } from 'redux'
-import reducer from './reducers'
-import ReduxThunk from 'redux-thunk'
-import { render } from 'react-dom'
-import React from 'react'
-import { Provider } from 'react-redux'
-import App from './App'
 import * as serviceWorker from './serviceWorker'
 
-const store = createStore(reducer, applyMiddleware(ReduxThunk))
+import React from 'react'
+import { render } from 'react-dom'
+import App from './App'
+
+import { store } from './store'
+import { Provider } from 'react-redux'
 
 render(
   <Provider store={store}>
