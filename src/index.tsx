@@ -3,18 +3,18 @@ import './ui/Icon/font-awesome-library'
 import * as serviceWorker from './serviceWorker'
 
 import React from 'react'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 
 import { store } from './store'
 import { Provider } from 'react-redux'
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
+createRoot(document.getElementById('root'))
+  .render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
 
 window.addEventListener('keyup', (e) => {
   if (e.key !== 'Tab') { return }

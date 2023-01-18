@@ -19,9 +19,10 @@ function ToolbarLayout({ items = [], children, requestLowOpacity = false }) {
     <NavLink
       key={item.alt}
       to={item.path}
-      className="toolbar-layout__item"
-      activeClassName="toolbar-layout__item--active"
-      exact
+      className={({ isActive }) => classNames([
+        'toolbar-layout__item',
+        isActive && 'toolbar-layout__item--active',
+      ])}
     >
       <img
         src={item.src}

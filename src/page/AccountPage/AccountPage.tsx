@@ -1,7 +1,7 @@
 import './AccountPage.css'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import classnames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 import Title from '@/ui/Title'
@@ -16,10 +16,10 @@ function AccountPage({ className }) {
   const [isOfflineModeEnabled, setOfflineMode] = useLocalStorage('offlineMode', false)
   const [isAnimatedBackgroundEnabled, setAnimatedBackground] = useLocalStorage('animatedBackground', false)
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const logout = async () => {
     await dispatch(userLogout())
-    history.push('/')
+    navigate('/')
   }
 
   return (
@@ -57,7 +57,7 @@ function AccountPage({ className }) {
 
         <Button
           behavior="block"
-          onClick={() => history.push('/schedules')}
+          onClick={() => navigate('/schedules')}
         >
           Scheduled transactions
         </Button>

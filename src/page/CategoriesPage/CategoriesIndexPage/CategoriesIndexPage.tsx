@@ -1,7 +1,7 @@
 import './CategoriesIndexPage.css'
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 // import Overdrive from 'react-overdrive'
 import dayjs from 'dayjs'
@@ -108,7 +108,7 @@ const editTransactionTags = (transaction) => {
 }
 
 function CategoriesIndexPage() {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { categoryId } = useParams()
   const dispatch = useDispatch()
@@ -201,12 +201,12 @@ function CategoriesIndexPage() {
       .doc(categoryId)
       .set({ visible: false }, {merge: true})
 
-    history.goBack()
+    navigate(-1)
   }
 
   return (<>
     <TopNavigationLayout
-      onBackPress={history.goBack}
+      onBackPress={() => navigate(-1)}
       actions={[{
         title: 'Edit category menu',
         icon: 'cog',
@@ -416,7 +416,7 @@ ScheduledTransactions.propTypes = {
 
 function LastestTransactions({ transactions, category, isLoadingTransactions}) {
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   return (<>
     <Title tag="h2" title="Lastest transactions" />
@@ -463,7 +463,7 @@ function LastestTransactions({ transactions, category, isLoadingTransactions}) {
                 {((transaction.displayData.tags || []).length > 0) && (
                   <div className="categories-index-page__spending-context-tag-list">
                     {transaction.displayData.tags.map(tag => (
-                      <Button key={tag} size="small" onClick={() => { history.push(`/tag/${tag}`); closeMenu() }}>
+                      <Button key={tag} size="small" onClick={() => { navigate(`/tag/${tag}`); closeMenu() }}>
                         {tag}
                       </Button>
                     ))}

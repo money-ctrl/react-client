@@ -1,6 +1,6 @@
 import './SchedulesPage.css'
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Title from '@/ui/Title'
 import Card from '@/ui/Card'
@@ -9,7 +9,7 @@ import TopNavigationLayout from '@/layout/TopNavigationLayout'
 import MoneyDisplay from '@/components/MoneyDisplay'
 
 function SchedulesPage() {
-  const history = useHistory()
+  const navigate = useNavigate()
   const scheduleList = useSelector(state => state.schedules.list)
 
   const separatedPerCategory = Object.values(scheduleList.reduce((separated, item) => {
@@ -27,7 +27,7 @@ function SchedulesPage() {
     return separated
   }, {}))
 
-  return <TopNavigationLayout onBackPress={history.goBack}>
+  return <TopNavigationLayout onBackPress={() => navigate(-1)}>
     <Title tag="h1" title="Schedules" />
 
     {separatedPerCategory.length

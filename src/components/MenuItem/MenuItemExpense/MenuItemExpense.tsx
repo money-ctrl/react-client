@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { useRouteMatch } from 'react-router-dom'
+import { useMatch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { addTransaction } from '@/services/backend'
 import MenuItemBase from '@/components/MenuItem/MenuItemBase'
@@ -14,7 +14,7 @@ const Execute = ({ onRender }) => {
 }
 
 function MenuItemExpense({style, onSubmit}) {
-  const categoriesPageMatch = useRouteMatch('/categories/:categoryId')
+  const categoriesPageMatch = useMatch('/categories/:categoryId')
   const categories = useSelector(state => state.categories.ids)
 
   const pages = [

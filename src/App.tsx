@@ -18,7 +18,7 @@ import { enablePersistence } from './services/backend'
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
+  Routes,
 } from 'react-router-dom'
 import { database, migrateUserData } from './services/backend'
 import { moneyAssign, categoriesAssign, schedulesAssign } from './actions'
@@ -86,31 +86,37 @@ function App() {
               { alt: 'account',   src: SVGHome,      path: '/account' },
             ]}
           >
-            <Switch>
-              <Route exact path="/">
-                <DashboardPage />
-              </Route>
+            <Routes>
+              <Route
+                path="/"
+                element={<DashboardPage />}
+              />
 
-              <Route path="/account">
-                <AccountPage />
-              </Route>
+              <Route
+                path="/account"
+                element={<AccountPage />}
+              />
 
-              <Route path="/categories">
-                <CategoriesPage />
-              </Route>
+              <Route
+                path="/categories"
+                element={<CategoriesPage />}
+              />
 
-              <Route path="/stats">
-                <StatsPage />
-              </Route>
+              <Route
+                path="/stats"
+                element={<StatsPage />}
+              />
 
-              <Route path="/schedules">
-                <SchedulesPage />
-              </Route>
+              <Route
+                path="/schedules"
+                element={<SchedulesPage />}
+              />
 
-              <Route path="/tag/:tag">
-                <TagPage />
-              </Route>
-            </Switch>
+              <Route
+                path="/tag/:tag"
+                element={<TagPage />}
+              />
+            </Routes>
           </ToolbarLayout>
         </> : <>
           <LoginPage />

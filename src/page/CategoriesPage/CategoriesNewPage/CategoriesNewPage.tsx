@@ -1,12 +1,12 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, redirect } from 'react-router-dom'
 import { database } from '@/services/backend'
 import Button from '@/ui/Button'
 import TopNavigationLayout from '@/layout/TopNavigationLayout'
 import { categoryCreate } from '@/services/category'
 
 function CategoriesPageNew() {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const addNewCategory = () => {
     const newExpenseCategory = categoryCreate({
@@ -21,11 +21,11 @@ function CategoriesPageNew() {
 
     docRef.set(newExpenseCategory)
 
-    history.replace(`/categories/${docRef.id}`)
+    redirect(`/categories/${docRef.id}`)
   }
 
   return (
-    <TopNavigationLayout onBackPress={history.goBack}>
+    <TopNavigationLayout onBackPress={() => navigate(-1)}>
       <Button onClick={addNewCategory} variant="primary" behavior="block">
         Add new Category
       </Button>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import TopNavigationLayout from '@/layout/TopNavigationLayout'
 import Title from '@/ui/Title'
 import Card from '@/ui/Card'
@@ -21,7 +21,7 @@ const StatMoneyDisplay = (rest) => {
 
 function TagPage() {
   const { tag } = useParams()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const [transactionList, setTransactionList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -37,7 +37,7 @@ function TagPage() {
     })()
   }, [])
 
-  return (<TopNavigationLayout onBackPress={history.goBack}>
+  return (<TopNavigationLayout onBackPress={() => navigate(-1)}>
     <Title tag="h1" title={tag} />
 
     <Title tag="h2" title="Stats" className="mb-m" />

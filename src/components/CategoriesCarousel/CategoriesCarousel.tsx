@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { SwitchTransition, Transition } from 'react-transition-group'
 import classnames from 'classnames'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 // import Overdrive from 'react-overdrive'
 import Carousel from '@/ui/Carousel'
@@ -40,11 +40,11 @@ function CategoriesCarousel({ className }) {
     setHasClicked(true)
   }
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const transitionEndHandler = (done) => {
     done()
 
-    history.push('/categories/new')
+    navigate('/categories/new')
   }
 
   const categories = useSelector(state => state.categories.list)
@@ -62,7 +62,7 @@ function CategoriesCarousel({ className }) {
           <CategoryCard
             className="categories-carousel__card"
             category={category}
-            onClick={() => history.push(`/categories/${category.id}`)}
+            onClick={() => navigate(`/categories/${category.id}`)}
           />
         // </Overdrive>
       ))}

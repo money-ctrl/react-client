@@ -3,7 +3,7 @@ import {
   database,
   userLogout as _userLogout,
 } from '@/services/backend'
-import { initialState as initialDatabasePayload } from '@/reducers/money'
+import { initialState as initialDatabasePayload } from '@/store/reducers/money'
 
 
 export const userLogin = (info) => async (dispatch, getState) => {
