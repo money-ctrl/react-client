@@ -42,14 +42,14 @@ function App() {
 
     const unsubscribe = database()
       .onSnapshot((doc) => {
-        ++window.firestoreRead
+        ++(window as any).firestoreRead
         dispatch(moneyAssign(doc.data()))
       })
 
     const unsubscribeCategories = database().collection('expenseCategories')
       .where('visible', '==', true)
       .onSnapshot((snapshot) => {
-        ++window.firestoreRead
+        ++(window as any).firestoreRead
         dispatch(categoriesAssign(snapshot.docs
           .map(doc => ({id: doc.id, ...doc.data()}))
         ))
@@ -57,7 +57,7 @@ function App() {
 
     const unsubscribeSchedule = database().collection('schedules')
       .onSnapshot((snapshota) => {
-        ++window.firestoreRead
+        ++(window as any).firestoreRead
         dispatch(schedulesAssign(snapshota.docs
           .map(doc => ({id: doc.id, ...doc.data()}))
         ))
