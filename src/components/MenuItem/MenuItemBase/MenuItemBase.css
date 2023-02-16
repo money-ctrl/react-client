@@ -30,6 +30,11 @@
   overflow-y: scroll;
 }
 
+.menu-item-base--is-expanded
+> .menu-item-base__wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 .menu-item-base__title {
   width: 100%;
   display: flex;
