@@ -1,5 +1,5 @@
 import './MoneyCalculator.css'
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import PropTypes from 'prop-types'
 import Button from '@/ui/Button'
 import Icon from '@/ui/Icon'
@@ -31,6 +31,27 @@ function MoneyCalculator({ onBackPress, onSubmit, initial }) {
 
     setValue(Math.floor(value / 10))
   }
+
+  /**
+   * @param e {KeyboardEvent}
+   */
+  const eventKeydown = (e) => {
+    const wasNumber = /^[0-9]$/.test(e.key)
+    const wasBack = 'Backspace' === e.key
+
+    if (wasNumber) {
+      const number = Number(e.key)
+      setValue(value * 10 + number)
+    } else if (wasBack) {
+      backButton()
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('keydown', eventKeydown, { passive: true })
+    return () => {
+      window.removeEventListener('keydown', eventKeydown, { passive: true })
+    }
+  })
 
   return (
     <div className="money-calculator">
