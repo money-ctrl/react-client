@@ -3,6 +3,12 @@
 }
 
 .categories-index-page__card-balance {
+  max-width: 100%;
+  display: grid;
+  justify-content: end;
+}
+
+.categories-index-page__limit {
   display: flex;
   align-items: baseline;
 }

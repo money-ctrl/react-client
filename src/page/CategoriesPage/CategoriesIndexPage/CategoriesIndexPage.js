@@ -242,12 +242,14 @@ function CategoriesIndexPage() {
               value={category.amount}
             />
 
-            <div className="categories-index-page__slash">/</div>
+            <div className="categories-index-page__limit">
+              <div className="categories-index-page__slash">/</div>
 
-            <MoneyDisplay
-              value={category.allocated}
-              size="xxs"
-            />
+              <MoneyDisplay
+                value={category.allocated}
+                size="xxs"
+              />
+            </div>
           </div>
 
           {(!!categoryTotalSchedules || (category.debt < 0))
