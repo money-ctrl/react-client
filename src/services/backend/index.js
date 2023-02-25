@@ -303,6 +303,19 @@ export function createSchedule({
     .commit()
 }
 
+export function scheduleUpdate(id, { amount }) {
+  const payload = {
+    transactionPayload: {
+      amount,
+    },
+  }
+
+  database()
+    .collection('schedules')
+    .doc(id)
+    .set(payload, { merge: true })
+}
+
 export async function scheduleTransactionToCategory({ category }) {
   const refCategory = database()
     .collection('expenseCategories')
