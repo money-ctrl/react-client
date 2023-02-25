@@ -18,7 +18,7 @@ import MoneyDisplay from '@/components/MoneyDisplay'
 import MoneyCalculator from '@/components/MoneyCalculator'
 import TopNavigationLayout from '@/layout/TopNavigationLayout'
 import { database, getLastestTransactions, setTransaction, commitSchedule, refundTransaction } from '@/services/backend'
-import { descheduleTransaction, removeScheduledTransaction } from '@/services/backend'
+import { descheduleTransaction, removeScheduledTransaction, scheduleUpdate } from '@/services/backend'
 import { categoryPresenter } from '@/services/category'
 import { formatCurrency, getTypeIdFromResourceId, resourceId, merge } from '@/utils'
 
@@ -371,6 +371,7 @@ function ScheduledTransactions({ category }) {
                                     transactionPayload: { amount },
                                   }))
                                   descheduleTransaction({ schedule })
+                                  scheduleUpdate(schedule.id, { amount })
                                   closeMenu()
                                 }}
                               />
